@@ -1,4 +1,4 @@
-const body = document.body;
+const {body} = document;
 const menuButton = document.querySelector('.menu-button');
 const navLinks = Array.from(document.querySelectorAll('.toc a'));
 const sections = navLinks
