@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Wiki colaborativa da Avaliação 2 de Interface Humano-Computador sobre Engenharia de Usabilidade no YouTube Music."
+    >
+    <title>IHC | Engenharia de Usabilidade - YouTube Music</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <div class="page-shell">
+      <aside class="sidebar" aria-label="Navegação da wiki">
+        <div class="sidebar-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">Wiki IHC</p>
+            <strong>YouTube Music</strong>
+          </div>
+        </div>
+
+        <nav class="toc" aria-label="Sumário">
+          <a href="#contexto">1 Contexto</a>
+          <a href="#persona">1.2 Persona</a>
+          <a href="#diagnostico">1.3 Diagnóstico</a>
+          <a href="#decisoes">1.4 Decisões</a>
+        </nav>
+      </aside>
+
+      <main id="conteudo" class="content">
+        <button class="menu-button" type="button" aria-label="Abrir navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="reading-progress" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <header class="page-header">
+          <p class="eyebrow">Avaliação 2 | WIKI Colaborativa</p>
+          <h1>INTERFACE HUMANO COMPUTADOR - IHC</h1>
+          <p class="lead">Engenharia de Usabilidade: Sistema YouTube Music</p>
+
+          <dl class="meta-grid" aria-label="Dados do trabalho">
+            <div>
+              <dt>Aluno</dt>
+              <dd>Felipe Cidade Soares</dd>
+            </div>
+            <div>
+              <dt>Professor</dt>
+              <dd>Matheus Cataneo</dd>
+            </div>
+            <div>
+              <dt>Semestre</dt>
+              <dd>2026/1</dd>
+            </div>
+          </dl>
+        </header>
+
+        <section id="contexto" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">01 CICLO 1</p>
+            <h2>Contexto e Diagnóstico Inicial</h2>
+            <p>Primeira leitura do sistema, do usuário principal e dos problemas de usabilidade mais relevantes.</p>
+          </div>
+
+          <article class="note-block">
+            <h3>1.1 Sistema Escolhido</h3>
+            <p>
+              O sistema avaliado é o aplicativo web do YouTube Music. A escolha se justifica por ser uma plataforma
+              de streaming amplamente utilizada que apresenta falhas de usabilidade específicas na gestão de filas de
+              reprodução, impactando negativamente a experiência do usuário.
+            </p>
+          </article>
+        </section>
+
+        <section id="persona" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">1.2</p>
+            <h2>Persona</h2>
+            <p>Representação do usuário usado para orientar o diagnóstico e as decisões de design.</p>
+          </div>
+
+          <article class="persona-card">
+            <div class="persona-summary">
+              <span class="persona-avatar" aria-hidden="true">RS</span>
+              <div>
+                <h3>Rafael Silva</h3>
+                <p>22 anos, estudante universitário de tecnologia.</p>
+              </div>
+            </div>
+
+            <dl class="persona-details">
+              <div>
+                <dt>Escolaridade</dt>
+                <dd>Estudante universitário de tecnologia.</dd>
+              </div>
+              <div>
+                <dt>Perfil</dt>
+                <dd>Alta familiaridade com tecnologia. Consome música digital diariamente enquanto estuda no desktop.</dd>
+              </div>
+              <div>
+                <dt>Motivação</dt>
+                <dd>Criar playlists específicas para manter o foco nos estudos ou energia na academia.</dd>
+              </div>
+              <div>
+                <dt>Frustração</dt>
+                <dd>Perde a concentração quando o aplicativo insere músicas não solicitadas na sua fila de reprodução.</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+
+        <section id="diagnostico" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">1.3</p>
+            <h2>Avaliação Heurística e Diagnóstico</h2>
+            <p>Problemas identificados a partir das heurísticas de Nielsen, com severidade e evidências visuais.</p>
+          </div>
+
+          <article class="problem-card problem-card--critical">
+            <div class="problem-header">
+              <div>
+                <p class="problem-label">Problema P1</p>
+                <h3>Quebra de Controle Explícito e Compatibilidade</h3>
+              </div>
+              <span class="severity severity--high">Severidade Alta</span>
+            </div>
+
+            <p>
+              Ao clicar no botão de reprodução aleatória dentro de uma playlist, o sistema ignora a lista original e
+              gera uma nova fila contendo músicas sugeridas pelo algoritmo, sem solicitação prévia.
+            </p>
+
+            <div class="heuristic-list" aria-label="Heurísticas violadas no problema P1">
+              <h4>Heurísticas Violadas (Nielsen)</h4>
+              <ul>
+                <li>
+                  <strong>Controle e liberdade do usuário:</strong> o sistema toma o controle da curadoria e o usuário
+                  perde a liberdade de ouvir estritamente a playlist selecionada.
+                </li>
+                <li>
+                  <strong>Compatibilidade entre o sistema e o mundo real:</strong> o modelo mental de "embaralhar"
+                  remete a misturar apenas o que já existe no conjunto, não adicionar elementos novos.
+                </li>
+              </ul>
+            </div>
+
+            <div class="screens-grid screens-grid--large">
+              <figure class="screen-placeholder">
+                <img
+                  src="src/img/fila-antes.png"
+                  alt="[Inserir print da tela: Fila antes do clique]"
+                  loading="lazy"
+                >
+                <figcaption>[Inserir print da tela: Fila antes do clique]</figcaption>
+              </figure>
+              <figure class="screen-placeholder">
+                <img
+                  src="src/img/fila-depois.png"
+                  alt="[Inserir print da tela: Fila com músicas intrusas após o clique]"
+                  loading="lazy"
+                >
+                <figcaption>[Inserir print da tela: Fila com músicas intrusas após o clique]</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="problem-card">
+            <div class="problem-header">
+              <div>
+                <p class="problem-label">Problema P2</p>
+                <h3>Sobrecarga Cognitiva na Tela Inicial</h3>
+              </div>
+              <span class="severity severity--medium">Severidade Média</span>
+            </div>
+
+            <p>
+              A tela inicial do YouTube Music apresenta uma alta densidade informacional, misturando diferentes tipos
+              de conteúdo, como álbuns de estúdio, videoclipes, covers de fãs e playlists automáticas de forma conjunta.
+              Isso exige um esforço cognitivo maior do usuário para filtrar o que deseja consumir.
+            </p>
+
+            <div class="heuristic-list" aria-label="Heurísticas violadas no problema P2">
+              <h4>Heurísticas Violadas (Nielsen)</h4>
+              <ul>
+                <li>
+                  <strong>Estética e design minimalista:</strong> a interface contém informações irrelevantes ou
+                  raramente necessárias competindo com as informações importantes, dificultando a visibilidade.
+                </li>
+              </ul>
+            </div>
+
+            <figure class="screen-placeholder">
+              <img
+                src="src/img/tela-inicial-poluida.png"
+                alt="[Inserir print da tela: Tela inicial poluída com múltiplos tipos de mídia]"
+                loading="lazy"
+              >
+              <figcaption>[Inserir print da tela: Tela inicial poluída com múltiplos tipos de mídia]</figcaption>
+            </figure>
+          </article>
+
+          <article class="problem-card">
+            <div class="problem-header">
+              <div>
+                <p class="problem-label">Problema P3</p>
+                <h3>Feedback Ineficaz e Controle Restrito</h3>
+              </div>
+              <span class="severity severity--medium">Severidade Média</span>
+            </div>
+
+            <p>
+              Ao adicionar uma música a uma playlist, o aplicativo exibe um aviso de confirmação na parte inferior da
+              tela por um tempo muito curto. Se o usuário cometer um erro e quiser desfazer a ação ou trocar a playlist
+              de destino, o tempo de leitura e clique é insuficiente.
+            </p>
+
+            <div class="heuristic-list" aria-label="Heurísticas violadas no problema P3">
+              <h4>Heurísticas Violadas (Nielsen)</h4>
+              <ul>
+                <li>
+                  <strong>Visibilidade do status do sistema:</strong> o feedback da ação não permanece visível o tempo
+                  necessário para o usuário processar a informação.
+                </li>
+                <li>
+                  <strong>Controle e liberdade do usuário:</strong> o usuário não tem tempo hábil para utilizar a
+                  "saída de emergência" caso tenha clicado por engano.
+                </li>
+              </ul>
+            </div>
+
+            <figure class="screen-placeholder">
+              <img
+                src="src/img/notificacao-rapida.png"
+                alt="[Inserir print da tela: Notificação rápida de música adicionada]"
+                loading="lazy"
+              >
+              <figcaption>[Inserir print da tela: Notificação rápida de música adicionada]</figcaption>
+            </figure>
+          </article>
+        </section>
+
+        <section id="decisoes" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">1.4</p>
+            <h2>Decisões de Design</h2>
+            <p>Próximos passos para devolver previsibilidade, autonomia e clareza ao usuário.</p>
+          </div>
+
+          <article class="decision-panel">
+            <div>
+              <h3>Separar funcionalidades para reduzir erro e ambiguidade</h3>
+              <p>
+                A solução proposta envolve a separação clara de funcionalidades. O botão de "Ordem Aleatória" (Shuffle)
+                passará a atuar estritamente sobre a playlist atual. A funcionalidade de recomendações automáticas do
+                algoritmo será isolada em um controle do tipo "Toggle" (Ligar/Desligar Rádio Automática), devolvendo a
+                previsibilidade e o controle ao usuário.
+              </p>
+            </div>
+
+            <div class="control-preview" aria-label="Prévia conceitual dos controles propostos">
+              <div class="preview-row">
+                <span class="preview-icon" aria-hidden="true"></span>
+                <div>
+                  <strong>Ordem Aleatória</strong>
+                  <small>Age somente sobre a playlist selecionada.</small>
+                </div>
+              </div>
+
+              <label class="toggle-row">
+                <span>
+                  <strong>Rádio Automática</strong>
+                  <small>Adiciona recomendações apenas quando o usuário permitir.</small>
+                </span>
+                <input type="checkbox" id="radio-toggle">
+                <span class="toggle-visual" aria-hidden="true"></span>
+              </label>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="src/js/script.js"></script>
+  </body>
+</html>
