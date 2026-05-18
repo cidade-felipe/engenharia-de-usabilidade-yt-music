@@ -6,7 +6,7 @@ const sections = navLinks
   .filter(Boolean);
 const progressBar = document.querySelector('.reading-progress span');
 const radioToggle = document.querySelector('#radio-toggle');
-const revealItems = Array.from(document.querySelectorAll('.doc-section, .note-block, .persona-card, .problem-card, .decision-panel'));
+const revealItems = Array.from(document.querySelectorAll('.doc-section, .note-block, .persona-card, .problem-card, .decision-panel, .prototype-summary, .prototype-block'));
 const interactiveCards = Array.from(document.querySelectorAll('.problem-card'));
 
 function setNavigationState(isOpen) {

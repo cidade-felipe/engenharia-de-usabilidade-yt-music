@@ -28,6 +28,7 @@
           <a href="#persona">1.2 Persona</a>
           <a href="#diagnostico">1.3 Diagnóstico</a>
           <a href="#decisoes">1.4 Decisões</a>
+          <a href="#prototipo">1.5 Protótipo</a>
         </nav>
       </aside>
 
@@ -156,7 +157,7 @@
               <figure class="screen-placeholder">
                 <img
                   src="src/img/fila-antes.png"
-                  alt="Fila antes do clique]"
+                  alt="Fila antes do clique"
                   loading="lazy"
                 >
                 <figcaption>Fila antes do clique</figcaption>
@@ -164,7 +165,7 @@
               <figure class="screen-placeholder">
                 <img
                   src="src/img/fila-depois.png"
-                  alt="Fila com músicas intrusas após o clique]"
+                  alt="Fila com músicas intrusas após o clique"
                   loading="lazy"
                 >
                 <figcaption>Fila com músicas intrusas após o clique</figcaption>
@@ -219,7 +220,7 @@
             <div>
               <h3>Separar funcionalidades para reduzir erro e ambiguidade</h3>
               <p>
-                A solução proposta envolve a separação clara de funcionalidades. O botão de "Ordem Aleatória" (Shuffle) passará a atuar estritamente sobre a playlist atual. A tela inicial será reorganizada para reduzir a sobrecarga cognitiva e aumentando a previsibilidade, principalmente no tamanho dos cards, que atualmente não possuem um padrão visual claro para o usuário.
+                A solução proposta envolve a separação clara de funcionalidades. O botão de "Ordem Aleatória" (Shuffle) passará a atuar estritamente sobre a playlist atual. A tela inicial será reorganizada para reduzir a sobrecarga cognitiva e aumentar a previsibilidade, principalmente com cards de tamanho consistente e agrupamento claro por tipo de conteúdo.
               </p>
             </div>
 
@@ -241,6 +242,199 @@
                 <span class="toggle-visual" aria-hidden="true"></span>
               </label>
             </div>
+          </article>
+        </section>
+
+        <section id="prototipo" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">1.5</p>
+            <h2>Protótipo - Antes vs. Depois</h2>
+            <p>Representação visual das correções priorizadas para reduzir perda de controle e sobrecarga cognitiva.</p>
+          </div>
+
+          <article class="prototype-summary">
+            <h3>Objetivo do protótipo</h3>
+            <p>
+              O protótipo traduz o diagnóstico em mudanças concretas de interface. A prioridade é manter o usuário no
+              controle da fila, separar recomendações automáticas da reprodução aleatória e reorganizar a tela inicial
+              para facilitar a escolha do conteúdo.
+            </p>
+          </article>
+
+          <article class="prototype-block">
+            <div class="prototype-block-header">
+              <div>
+                <p class="problem-label">Correção P1</p>
+                <h3>Fila de reprodução e ordem aleatória</h3>
+              </div>
+              <span class="severity severity--high">Impacto Alto</span>
+            </div>
+
+            <div class="prototype-comparison">
+              <div class="prototype-screen prototype-screen--before">
+                <div class="prototype-screen-title">
+                  <span>Antes</span>
+                  <strong>Aleatório mistura playlist com sugestões</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Buscar músicas, álbuns, artistas</span>
+                  </div>
+
+                  <div class="mock-layout">
+                    <div class="mock-sidebar" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+                    <div class="mock-content">
+                      <div class="mock-playlist-head">
+                        <div>
+                          <small>Playlist</small>
+                          <strong>Foco nos estudos</strong>
+                        </div>
+                        <span class="mock-button mock-button--danger">Aleatório</span>
+                      </div>
+
+                      <ol class="mock-queue">
+                        <li><span>Lo-fi study beat</span><small>Da playlist</small></li>
+                        <li><span>Deep focus synth</span><small>Da playlist</small></li>
+                        <li class="is-intruder"><span>Mix automático</span><small>Sugerida pelo algoritmo</small></li>
+                        <li class="is-intruder"><span>Clipe recomendado</span><small>Fora da playlist</small></li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="prototype-screen prototype-screen--after">
+                <div class="prototype-screen-title">
+                  <span>Depois</span>
+                  <strong>Aleatório respeita a playlist atual</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Buscar músicas, álbuns, artistas</span>
+                  </div>
+
+                  <div class="mock-layout">
+                    <div class="mock-sidebar" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+                    <div class="mock-content">
+                      <div class="mock-playlist-head">
+                        <div>
+                          <small>Playlist</small>
+                          <strong>Foco nos estudos</strong>
+                        </div>
+                        <span class="mock-button mock-button--safe">Aleatório da playlist</span>
+                      </div>
+
+                      <div class="mock-setting">
+                        <span>
+                          <strong>Rádio automática</strong>
+                          <small>Recomendações fora da playlist</small>
+                        </span>
+                        <span class="mock-switch is-off" aria-label="Rádio automática desligada"></span>
+                      </div>
+
+                      <ol class="mock-queue">
+                        <li><span>Deep focus synth</span><small>Da playlist</small></li>
+                        <li><span>Lo-fi study beat</span><small>Da playlist</small></li>
+                        <li><span>Ambient code flow</span><small>Da playlist</small></li>
+                        <li><span>Minimal piano loop</span><small>Da playlist</small></li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="prototype-impact">
+              Resultado esperado: menos erro de interpretação, mais previsibilidade e menor risco de interromper o foco
+              do usuário durante estudo ou trabalho.
+            </p>
+          </article>
+
+          <article class="prototype-block">
+            <div class="prototype-block-header">
+              <div>
+                <p class="problem-label">Correção P2</p>
+                <h3>Tela inicial e organização do conteúdo</h3>
+              </div>
+              <span class="severity severity--medium">Impacto Médio</span>
+            </div>
+
+            <div class="prototype-comparison">
+              <div class="prototype-screen prototype-screen--before">
+                <div class="prototype-screen-title">
+                  <span>Antes</span>
+                  <strong>Tipos de mídia aparecem misturados</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Início</span>
+                  </div>
+
+                  <div class="mock-home-grid mock-home-grid--busy">
+                    <div class="mock-media-card tall"><span>Álbum</span></div>
+                    <div class="mock-media-card video"><span>Videoclipe</span></div>
+                    <div class="mock-media-card small"><span>Cover</span></div>
+                    <div class="mock-media-card wide"><span>Mix automático</span></div>
+                    <div class="mock-media-card small"><span>Live</span></div>
+                    <div class="mock-media-card tall"><span>Playlist</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="prototype-screen prototype-screen--after">
+                <div class="prototype-screen-title">
+                  <span>Depois</span>
+                  <strong>Conteúdo agrupado por intenção de uso</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Início</span>
+                  </div>
+
+                  <div class="mock-filter-row" aria-label="Filtros do protótipo">
+                    <span class="is-selected">Músicas</span>
+                    <span>Álbuns</span>
+                    <span>Vídeos</span>
+                    <span>Playlists</span>
+                  </div>
+
+                  <div class="mock-section-label">
+                    <strong>Continuar ouvindo</strong>
+                    <small>Itens do mesmo tipo, com tamanho consistente</small>
+                  </div>
+
+                  <div class="mock-home-grid mock-home-grid--organized">
+                    <div class="mock-media-card"><span>Faixa</span></div>
+                    <div class="mock-media-card"><span>Faixa</span></div>
+                    <div class="mock-media-card"><span>Faixa</span></div>
+                    <div class="mock-media-card"><span>Faixa</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="prototype-impact">
+              Resultado esperado: leitura visual mais rápida, menor esforço para filtrar conteúdos e mais consistência
+              entre os cards exibidos.
+            </p>
           </article>
         </section>
       </main>
