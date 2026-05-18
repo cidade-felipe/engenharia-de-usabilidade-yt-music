@@ -121,7 +121,7 @@ a {
 .problem-label {
   margin: 0;
   color: var(--color-red-dark);
-  font-size: 0.78rem;
+  font-size: 1.5em;
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -1019,6 +1019,10 @@ dd {
 
   .mock-window {
     min-height: auto;
+  }
+  .cicle-index{
+    display: none;
+    font-size: 50px;
   }
 }
 
