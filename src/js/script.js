@@ -165,25 +165,89 @@ function prepareUndoFeedback() {
   document.querySelectorAll('[data-remove-track]').forEach((button) => {
     const item = button.closest('li');
     const content = button.closest('.mock-content');
+    const block = button.closest('.prototype-block');
     const toast = content?.querySelector('[data-undo-toast]');
     const toastText = toast?.querySelector('span');
     const undoButton = toast?.querySelector('button');
+    const resetButton = block?.querySelector('[data-reset-queue]');
+    let countdownId = null;
+    let secondsLeft = 5;
+
+    function clearCountdown() {
+      if (countdownId) {
+        window.clearInterval(countdownId);
+        countdownId = null;
+      }
+    }
+
+    function updateCountdownText() {
+      if (toastText) {
+        toastText.textContent = `Faixa removida da fila. Apagando em ${secondsLeft}s.`;
+      }
+    }
+
+    function hideToast() {
+      toast?.classList.remove('is-visible');
+      if (toastText) {
+        toastText.textContent = '';
+      }
+    }
+
+    function restoreTrack() {
+      clearCountdown();
+      item?.classList.remove('is-removed');
+      button.disabled = false;
+      if (undoButton) {
+        undoButton.disabled = false;
+      }
+      hideToast();
+    }
+
+    function deleteTrackPermanently() {
+      clearCountdown();
+      item?.classList.add('is-removed');
+      button.disabled = true;
+
+      if (toastText) {
+        toastText.textContent = 'Faixa apagada da fila.';
+      }
+
+      if (undoButton) {
+        undoButton.disabled = true;
+      }
+
+      window.setTimeout(hideToast, 900);
+    }
 
     button.addEventListener('click', () => {
+      clearCountdown();
       item?.classList.add('is-removed');
       toast?.classList.add('is-visible');
       button.disabled = true;
-      if (toastText) {
-        toastText.textContent = 'Faixa removida da fila.';
+      if (undoButton) {
+        undoButton.disabled = false;
       }
+      secondsLeft = 5;
+      updateCountdownText();
+
+      countdownId = window.setInterval(() => {
+        secondsLeft -= 1;
+
+        if (secondsLeft <= 0) {
+          deleteTrackPermanently();
+          return;
+        }
+
+        updateCountdownText();
+      }, 1000);
     });
 
-    undoButton?.addEventListener('click', () => {
-      item?.classList.remove('is-removed');
-      toast?.classList.remove('is-visible');
-      button.disabled = false;
-      if (toastText) {
-        toastText.textContent = '';
+    undoButton?.addEventListener('click', restoreTrack);
+    resetButton?.addEventListener('click', () => {
+      restoreTrack();
+      const radioButton = block?.querySelector('[data-radio-toggle]');
+      if (radioButton?.getAttribute('aria-pressed') === 'true') {
+        radioButton.click();
       }
     });
   });
