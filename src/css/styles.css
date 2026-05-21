@@ -264,7 +264,9 @@ a {
 .problem-card,
 .decision-panel,
 .prototype-summary,
-.prototype-block {
+.prototype-block,
+.feedback-card,
+.refinement-panel {
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
@@ -331,7 +333,9 @@ dd {
 .problem-card h3,
 .decision-panel h3,
 .prototype-summary h3,
-.prototype-block h3 {
+.prototype-block h3,
+.feedback-card h3,
+.refinement-panel h3 {
   margin: 0 0 10px;
   line-height: 1.18;
 }
@@ -340,7 +344,8 @@ dd {
 .problem-card p,
 .decision-panel p,
 .prototype-summary p,
-.prototype-block p {
+.prototype-block p,
+.feedback-card p {
   margin: 0;
 }
 
@@ -793,6 +798,17 @@ dd {
   background: #1f1f1f;
 }
 
+.mock-setting--interactive {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52px;
+  column-gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mock-setting--interactive > span {
+  min-width: 0;
+}
+
 .mock-playlist-head small,
 .mock-setting small,
 .mock-section-label small,
@@ -833,7 +849,9 @@ dd {
 
 .mock-queue li {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 2px;
+  align-items: center;
   padding: 10px 12px;
   border-radius: 8px;
   background: #202020;
@@ -841,6 +859,7 @@ dd {
 
 .mock-queue li::before {
   content: '';
+  grid-column: 1 / -1;
   width: 34px;
   height: 4px;
   margin-bottom: 4px;
@@ -853,9 +872,43 @@ dd {
   box-shadow: inset 3px 0 0 var(--color-red);
 }
 
+.mock-queue li.is-removed {
+  display: none;
+}
+
+.mock-inline-action {
+  grid-row: 2 / span 2;
+  grid-column: 2;
+  align-self: center;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.mock-inline-action:hover {
+  border-color: rgba(215, 25, 32, 0.72);
+  color: #ffffff;
+}
+
+.mock-switch-button {
+  display: block;
+  width: 52px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 .mock-switch {
   position: relative;
-  flex: 0 0 auto;
+  display: block;
   width: 52px;
   height: 28px;
   border-radius: 999px;
@@ -877,6 +930,69 @@ dd {
   transform: translateX(0);
 }
 
+.mock-switch.is-on {
+  background: var(--color-red);
+}
+
+.mock-switch.is-on::after {
+  transform: translateX(24px);
+}
+
+.mock-next-preview {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mock-next-preview strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.mock-next-preview span {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mock-content.is-radio-on .mock-next-preview {
+  border-color: rgba(215, 25, 32, 0.72);
+  background: rgba(215, 25, 32, 0.18);
+  color: #ffffff;
+}
+
+.mock-toast {
+  display: none;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f2f2f2;
+  color: #111111;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.mock-toast.is-visible {
+  display: flex;
+}
+
+.mock-toast button {
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-red);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
 .mock-home-grid {
   display: grid;
   gap: 12px;
@@ -894,15 +1010,32 @@ dd {
 
 .mock-media-card {
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: flex-end;
   min-height: 108px;
-  align-items: flex-end;
+  align-items: flex-start;
   padding: 10px;
+  border: 0;
   border-radius: 8px;
   background:
     linear-gradient(145deg, rgba(215, 25, 32, 0.9), rgba(42, 42, 42, 0.95));
   color: #ffffff;
+  cursor: pointer;
+  font: inherit;
   font-size: 0.8rem;
   font-weight: 900;
+  text-align: left;
+}
+
+.mock-media-card small {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.mock-media-card:hover {
+  filter: brightness(1.08);
 }
 
 .mock-media-card.tall {
@@ -931,16 +1064,19 @@ dd {
   padding: 16px 18px 0;
 }
 
-.mock-filter-row span {
+.mock-tab {
   padding: 6px 10px;
+  border: 0;
   border-radius: 999px;
   background: #2b2b2b;
   color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  font: inherit;
   font-size: 0.8rem;
   font-weight: 800;
 }
 
-.mock-filter-row .is-selected {
+.mock-tab.is-selected {
   background: #ffffff;
   color: #111111;
 }
@@ -950,6 +1086,49 @@ dd {
   padding: 14px 18px 0;
 }
 
+.mock-quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 18px 18px;
+}
+
+.mock-quick-actions button {
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: #202020;
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.mock-quick-actions button:hover {
+  border-color: rgba(215, 25, 32, 0.72);
+  color: #ffffff;
+}
+
+.mock-progressive-preview {
+  display: grid;
+  gap: 4px;
+  margin: 0 18px 18px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--color-red);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.mock-progressive-preview strong {
+  color: #ffffff;
+}
+
+.mock-progressive-preview.is-expanded {
+  background: rgba(215, 25, 32, 0.18);
+}
+
 .prototype-impact {
   margin-top: 16px;
   padding: 14px 16px;
@@ -957,6 +1136,30 @@ dd {
   background: var(--color-red-soft);
   color: var(--color-black);
   font-weight: 700;
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.feedback-card {
+  padding: clamp(18px, 3vw, 24px);
+  box-shadow: var(--shadow-soft);
+}
+
+.refinement-panel {
+  margin-top: 18px;
+  padding: clamp(20px, 3vw, 28px);
+  border-left: 4px solid var(--color-red);
+}
+
+.refinement-panel ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1008,7 +1211,8 @@ dd {
   .persona-details,
   .screens-grid,
   .decision-panel,
-  .prototype-comparison {
+  .prototype-comparison,
+  .feedback-grid {
     grid-template-columns: 1fr;
   }
 

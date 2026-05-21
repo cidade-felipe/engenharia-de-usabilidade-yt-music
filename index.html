@@ -8,7 +8,7 @@
       content="Wiki colaborativa da Avaliação 2 de Interface Humano-Computador sobre Engenharia de Usabilidade no YouTube Music."
     >
     <title>IHC | Engenharia de Usabilidade - YouTube Music</title>
-    <link rel="stylesheet" href="src/css/styles.css?v=20260517-prototipo">
+    <link rel="stylesheet" href="src/css/styles.css?v=20260521-ciclo2-undo">
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -31,7 +31,8 @@
         </nav>
         <h4>Ciclo 2</h4>
         <nav class="toc" aria-label="Sumário">
-          <a href="#prototipo">2.1 Protótipo</a>
+          <a href="#prototipo">2.1 Protótipo refinado</a>
+          <a href="#feedback-ciclo-2">2.2 Teste e refinamento</a>
         </nav>
       </aside>
 
@@ -255,16 +256,16 @@
           </div>
           <div class="section-heading">
             <p class="section-index">2.1</p>
-            <h3>Protótipo - Antes vs. Depois</h3>
-            <p>Representação visual das correções priorizadas para reduzir perda de controle e sobrecarga cognitiva.</p>
+            <h3>Protótipo Refinado - Antes vs. Depois</h3>
+            <p>Representação visual das correções priorizadas após os comentários do ciclo 2.</p>
           </div>
 
           <article class="prototype-summary">
             <h3>Objetivo do protótipo</h3>
             <p>
-              O protótipo traduz o diagnóstico em mudanças concretas de interface. A prioridade é manter o usuário no
-              controle da fila, separar recomendações automáticas da reprodução aleatória e reorganizar a tela inicial
-              para facilitar a escolha do conteúdo.
+              O protótipo refinado mantém os ganhos do primeiro ciclo, mas resolve as lacunas apontadas na avaliação:
+              mostra estados ligados e desligados da Rádio Automática, adiciona feedback reversível para ações críticas
+              e prova que as abas da tela inicial têm conteúdo próprio, ações rápidas e divulgação progressiva.
             </p>
           </article>
 
@@ -345,20 +346,43 @@
                         <span class="mock-button mock-button--safe">Aleatório da playlist</span>
                       </div>
 
-                      <div class="mock-setting">
+                      <div class="mock-setting mock-setting--interactive" data-radio-control>
                         <span>
-                          <strong>Rádio automática</strong>
-                          <small>Recomendações fora da playlist</small>
+                          <strong>Rádio automática desta playlist</strong>
+                          <small data-radio-copy>Desligada por padrão para manter foco</small>
                         </span>
-                        <span class="mock-switch is-off" aria-label="Rádio automática desligada"></span>
+                        <button
+                          class="mock-switch-button"
+                          type="button"
+                          aria-pressed="false"
+                          aria-label="Alternar rádio automática desta playlist"
+                          data-radio-toggle
+                        >
+                          <span class="mock-switch is-off" aria-hidden="true"></span>
+                        </button>
                       </div>
 
                       <ol class="mock-queue">
-                        <li><span>Deep focus synth</span><small>Da playlist</small></li>
+                        <li>
+                          <span>Deep focus synth</span>
+                          <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                        </li>
                         <li><span>Lo-fi study beat</span><small>Da playlist</small></li>
                         <li><span>Ambient code flow</span><small>Da playlist</small></li>
                         <li><span>Minimal piano loop</span><small>Da playlist</small></li>
                       </ol>
+
+                      <div class="mock-next-preview" data-radio-preview>
+                        <strong>Próximas músicas se ligar a Rádio</strong>
+                        <span>Beat recomendado</span>
+                        <span>Focus discovery</span>
+                      </div>
+
+                      <div class="mock-toast" data-undo-toast aria-live="polite">
+                        <span></span>
+                        <button type="button">Desfazer</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -366,8 +390,8 @@
             </div>
 
             <p class="prototype-impact">
-              Resultado esperado: menos erro de interpretação, mais previsibilidade e menor risco de interromper o foco
-              do usuário durante estudo ou trabalho.
+              Resultado esperado: menos erro de interpretação, mais previsibilidade, reversão clara para ações críticas
+              e menor risco de interromper o foco do usuário durante estudo ou trabalho.
             </p>
           </article>
 
@@ -416,37 +440,123 @@
                     <span class="mock-search">Início</span>
                   </div>
 
-                  <div class="mock-filter-row" aria-label="Filtros do protótipo">
-                    <span class="is-selected">Músicas</span>
-                    <span>Álbuns</span>
-                    <span>Vídeos</span>
-                    <span>Playlists</span>
+                  <div class="mock-filter-row" aria-label="Filtros do protótipo" data-tab-group>
+                    <button class="mock-tab is-selected" type="button" data-tab="musicas">Músicas</button>
+                    <button class="mock-tab" type="button" data-tab="albuns">Álbuns</button>
+                    <button class="mock-tab" type="button" data-tab="videos">Vídeos</button>
+                    <button class="mock-tab" type="button" data-tab="playlists">Playlists</button>
                   </div>
 
                   <div class="mock-section-label">
-                    <strong>Continuar ouvindo</strong>
-                    <small>Itens do mesmo tipo, com tamanho consistente</small>
+                    <strong data-tab-title>Continuar ouvindo</strong>
+                    <small data-tab-description>Faixas recentes, com tamanho consistente e ações rápidas.</small>
                   </div>
 
-                  <div class="mock-home-grid mock-home-grid--organized">
-                    <div class="mock-media-card"><span>Faixa</span></div>
-                    <div class="mock-media-card"><span>Faixa</span></div>
-                    <div class="mock-media-card"><span>Faixa</span></div>
-                    <div class="mock-media-card"><span>Faixa</span></div>
+                  <div class="mock-home-grid mock-home-grid--organized" data-tab-panel>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 01</span>
+                      <small>Adicionar à playlist</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 02</span>
+                      <small>Enviar para fila</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 03</span>
+                      <small>Salvar</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 04</span>
+                      <small>Prévia rápida</small>
+                    </button>
+                  </div>
+
+                  <div class="mock-quick-actions" aria-label="Ações rápidas do protótipo">
+                    <button type="button">Adicionar à playlist</button>
+                    <button type="button">Enviar para fila</button>
+                    <button type="button" data-preview-toggle>Expandir prévia</button>
+                  </div>
+
+                  <div class="mock-progressive-preview" data-progressive-preview>
+                    <strong>Prévia rápida sem trocar de aba</strong>
+                    <span data-preview-copy>Mostra 4 faixas recentes e permite salvar sem quebrar o fluxo.</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <p class="prototype-impact">
-              Resultado esperado: leitura visual mais rápida, menor esforço para filtrar conteúdos e mais consistência
-              entre os cards exibidos.
+              Resultado esperado: leitura visual mais rápida, menor esforço para filtrar conteúdos, mais consistência
+              entre os cards exibidos e maior flexibilidade de uso sem poluir a tela.
             </p>
+          </article>
+        </section>
+
+        <section id="feedback-ciclo-2" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">2.2</p>
+            <h3>Teste com Usuário e Refinamento</h3>
+            <p>Síntese dos comentários recebidos e das decisões aplicadas no protótipo refinado.</p>
+          </div>
+
+          <div class="feedback-grid">
+            <article class="feedback-card">
+              <p class="problem-label">O que funcionou bem</p>
+              <h3>Menor carga cognitiva</h3>
+              <p>
+                A separação entre aleatório da playlist e rádio automática reduziu ambiguidade. A tela inicial com
+                agrupamento por tipo de conteúdo também ficou mais previsível e próxima do modelo mental do usuário.
+              </p>
+            </article>
+
+            <article class="feedback-card">
+              <p class="problem-label">Pontos de melhoria</p>
+              <h3>Estados e feedback</h3>
+              <p>
+                O primeiro protótipo mostrava a Rádio Automática apenas desligada e não deixava claro como ações
+                destrutivas, como remover faixas, poderiam ser revertidas.
+              </p>
+            </article>
+
+            <article class="feedback-card">
+              <p class="problem-label">Insight-chave</p>
+              <h3>Controle explícito sem perder flexibilidade</h3>
+              <p>
+                A solução refinada combina Constraint Design, feedback reversível, preferência por playlist e
+                divulgação progressiva para mostrar opções sem sobrecarregar a interface.
+              </p>
+            </article>
+          </div>
+
+          <article class="refinement-panel">
+            <h3>Ajustes aplicados após a avaliação</h3>
+            <ul>
+              <li>
+                <strong>Prevenção de erros (H5):</strong> ação de remover faixa ganhou feedback reversível com opção
+                "Desfazer".
+              </li>
+              <li>
+                <strong>Controle e liberdade (H3):</strong> a Rádio Automática passou a ter toggle explícito, estado
+                ligado/desligado e indicação de que a preferência vale para a playlist atual.
+              </li>
+              <li>
+                <strong>Visibilidade do status (H1):</strong> a fila mostra uma prévia semi-transparente das próximas
+                músicas antes do usuário ligar a Rádio.
+              </li>
+              <li>
+                <strong>Reconhecimento em vez de memorização (H6):</strong> o usuário não precisa lembrar o que a chave
+                faz, porque o próprio texto do controle explica o impacto.
+              </li>
+              <li>
+                <strong>Flexibilidade de uso (H7):</strong> as abas ganharam prévias próprias, ações rápidas e expansão
+                progressiva para consultar conteúdo sem quebrar o ritmo da navegação.
+              </li>
+            </ul>
           </article>
         </section>
       </main>
     </div>
 
-    <script src="src/js/script.js?v=20260517-prototipo"></script>
+    <script src="src/js/script.js?v=20260521-ciclo2-undo"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@ Mini site responsivo em HTML, CSS e JavaScript puro para documentar a Avaliaçã
 
 ## Objetivo
 
-Documentar o Ciclo 1 de Engenharia de Usabilidade aplicado ao YouTube Music, conectando contexto de uso, persona, diagnóstico heurístico, decisões de melhoria e protótipo de solução.
+Documentar os ciclos 1 e 2 de Engenharia de Usabilidade aplicados ao YouTube Music, conectando contexto de uso, persona, diagnóstico heurístico, decisões de melhoria, protótipo e refinamento após avaliação.
 
 O foco do trabalho é mostrar como problemas de interface impactam a experiência real do usuário. No caso analisado, os principais riscos são perda de controle sobre a fila de reprodução, aumento de esforço cognitivo e redução da previsibilidade da interface.
 
@@ -17,7 +17,7 @@ Fato: o site atualmente documenta dois problemas de usabilidade:
 
 Fato: o Problema P3 foi removido da página principal. A entrega ficou mais enxuta e mais coerente com a priorização do ciclo atual.
 
-Fato: o site agora inclui uma seção de protótipo com comparação Antes vs. Depois para P1 e P2.
+Fato: o site agora inclui o Ciclo 2, com protótipo refinado, síntese dos comentários recebidos e ajustes pós-avaliação.
 
 Inferência: a remoção do P3 ajuda a concentrar a narrativa nos problemas com maior impacto para a experiência de uso e evita que o diagnóstico fique disperso.
 
@@ -31,7 +31,8 @@ Opinião técnica: para uma apresentação acadêmica, essa versão está melhor
 - Diagnóstico heurístico com base nas heurísticas de Nielsen.
 - Prints em PNG para evidenciar os problemas encontrados.
 - Decisões de design para melhorar previsibilidade, controle e clareza.
-- Protótipo em HTML/CSS mostrando a solução proposta para a fila e para a tela inicial.
+- Protótipo em HTML/CSS/JS mostrando a solução proposta para a fila e para a tela inicial.
+- Ciclo 2 com refinamentos baseados nos comentários do teste.
 - Navegação lateral no estilo wiki.
 - Barra de progresso de leitura.
 - Efeitos leves de entrada e realce nos cards.
@@ -99,12 +100,31 @@ O arquivo `notificacao-rapida.png` ainda existe na pasta de imagens, mas não é
 
 A interface usa uma estética limpa, parecida com wiki ou documentação colaborativa. A paleta é neutra, com detalhes em vermelho e preto para manter relação visual com o YouTube Music.
 
-O protótipo reforça duas correções principais:
+O protótipo reforça as correções principais:
 
 - O botão de ordem aleatória atua somente sobre a playlist atual.
-- A rádio automática fica separada em um controle próprio.
+- A rádio automática fica separada em um controle próprio, com estado ligado e desligado.
+- A preferência da rádio é apresentada como específica da playlist, não como chave global.
+- A fila mostra uma prévia preventiva das próximas músicas caso a rádio seja ligada.
+- A remoção de faixa ganhou feedback reversível com opção de desfazer.
 - A tela inicial passa a agrupar conteúdos por intenção de uso e tipo de mídia.
-- Os cards do protótipo ficam mais consistentes para reduzir esforço visual.
+- As abas de Músicas, Álbuns, Vídeos e Playlists têm conteúdo próprio.
+- Ações rápidas e prévia progressiva reduzem rigidez sem poluir a interface.
+
+## Ciclo 2
+
+Os comentários apontaram que o primeiro protótipo melhorou a estética e reduziu a carga cognitiva, mas ainda deixava dúvidas sobre estados, feedback e flexibilidade.
+
+Ajustes aplicados:
+
+- Estado ligado/desligado da Rádio Automática.
+- Texto explicando que a Rádio Automática vale para a playlist atual.
+- Prévia semi-transparente das próximas músicas caso a rádio seja ativada.
+- Ação de remover faixa com feedback e opção `Desfazer`.
+- Abas funcionais para Músicas, Álbuns, Vídeos e Playlists.
+- Prévia progressiva para visualizar conteúdo sem trocar o contexto.
+
+Impacto esperado: menor risco de erro, mais previsibilidade, mais controle para o usuário e redução da sobrecarga cognitiva durante tarefas recorrentes.
 
 As interações foram mantidas sutis:
 
