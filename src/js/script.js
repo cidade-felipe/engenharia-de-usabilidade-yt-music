@@ -141,9 +141,13 @@ function prepareRadioPrototype() {
 
       if (preview) {
         const title = preview.querySelector('strong');
+        const status = preview.querySelector('[data-radio-preview-status]');
         const items = preview.querySelectorAll('span');
         if (title) {
           title.textContent = isOn ? 'Rádio ligada: próximas recomendações' : 'Próximas músicas se ligar a Rádio';
+        }
+        if (status) {
+          status.textContent = isOn ? 'Recomendações adicionadas pela rádio' : 'Não fazem parte da playlist ainda';
         }
         items.forEach((item, index) => {
           item.textContent = isOn
@@ -162,52 +166,140 @@ function prepareRadioPrototype() {
 }
 
 function prepareUndoFeedback() {
-  document.querySelectorAll('[data-remove-track]').forEach((button) => {
-    const item = button.closest('li');
-    const content = button.closest('.mock-content');
-    const block = button.closest('.prototype-block');
-    const toast = content?.querySelector('[data-undo-toast]');
-    const toastText = toast?.querySelector('span');
-    const undoButton = toast?.querySelector('button');
-    const resetButton = block?.querySelector('[data-reset-queue]');
-    let countdownId = null;
-    let secondsLeft = 5;
+  const contentGroups = Array.from(new Set(
+    Array.from(document.querySelectorAll('[data-remove-track]'))
+      .map((button) => button.closest('.mock-content'))
+      .filter(Boolean),
+  ));
 
-    function clearCountdown() {
-      if (countdownId) {
-        window.clearInterval(countdownId);
-        countdownId = null;
+  contentGroups.forEach((content) => {
+    const buttons = Array.from(content.querySelectorAll('[data-remove-track]'));
+    const screen = content.closest('.prototype-screen');
+    const block = content.closest('.prototype-block');
+    const toast = content.querySelector('[data-undo-toast]');
+    const toastText = toast?.querySelector('[data-undo-message]') ?? toast?.querySelector('span');
+    const toastProgress = toast?.querySelector('[data-undo-progress]');
+    const undoButton = toast?.querySelector('button');
+    const resetButton = screen?.querySelector('[data-reset-queue]') ?? block?.querySelector('[data-reset-queue]');
+    let pendingRemovals = [];
+    let activeRemoval = null;
+    let hideToastId = null;
+
+    function clearRemovalTimer(removal) {
+      if (removal?.countdownId) {
+        window.clearInterval(removal.countdownId);
+        removal.countdownId = null;
       }
     }
 
-    function updateCountdownText() {
+    function removePending(removal) {
+      pendingRemovals = pendingRemovals.filter((item) => item !== removal);
+    }
+
+    function getLatestPending() {
+      return pendingRemovals[pendingRemovals.length - 1] ?? null;
+    }
+
+    function clearToastHide() {
+      if (hideToastId) {
+        window.clearTimeout(hideToastId);
+        hideToastId = null;
+      }
+    }
+
+    function updateCountdownText(removal = activeRemoval) {
+      if (!removal) {
+        return;
+      }
+
       if (toastText) {
-        toastText.textContent = `Faixa removida da fila. Apagando em ${secondsLeft}s.`;
+        toastText.textContent = `Faixa removida da fila. Apagando em ${removal.secondsLeft}s.`;
+      }
+      if (toastProgress) {
+        toastProgress.style.transform = `scaleX(${removal.secondsLeft / 5})`;
       }
     }
 
     function hideToast() {
+      clearToastHide();
       toast?.classList.remove('is-visible');
       if (toastText) {
         toastText.textContent = '';
       }
+      if (toastProgress) {
+        toastProgress.style.transform = 'scaleX(1)';
+      }
     }
 
-    function restoreTrack() {
-      clearCountdown();
-      item?.classList.remove('is-removed');
-      button.disabled = false;
+    function setActiveRemoval(removal) {
+      activeRemoval = removal;
+
+      if (!activeRemoval) {
+        hideToast();
+        return;
+      }
+
+      clearToastHide();
+      toast?.classList.add('is-visible');
+      if (undoButton) {
+        undoButton.disabled = false;
+      }
+      updateCountdownText(activeRemoval);
+    }
+
+    function restoreActiveTrack() {
+      if (!activeRemoval) {
+        return;
+      }
+
+      const removal = activeRemoval;
+      clearRemovalTimer(removal);
+      removePending(removal);
+      removal.item?.classList.remove('is-removed');
+      removal.button.disabled = false;
+      if (undoButton) {
+        undoButton.disabled = false;
+      }
+      setActiveRemoval(getLatestPending());
+    }
+
+    function resetPrototype() {
+      pendingRemovals.forEach(clearRemovalTimer);
+      pendingRemovals = [];
+      activeRemoval = null;
+
+      buttons.forEach((button) => {
+        button.closest('li')?.classList.remove('is-removed');
+        button.disabled = false;
+      });
       if (undoButton) {
         undoButton.disabled = false;
       }
       hideToast();
+
+      const radioButton = content.querySelector('[data-radio-toggle]');
+      if (radioButton?.getAttribute('aria-pressed') === 'true') {
+        radioButton.click();
+      }
     }
 
-    function deleteTrackPermanently() {
-      clearCountdown();
-      item?.classList.add('is-removed');
-      button.disabled = true;
+    function deleteTrackPermanently(removal) {
+      clearRemovalTimer(removal);
+      removePending(removal);
+      removal.item?.classList.add('is-removed');
+      removal.button.disabled = true;
 
+      if (activeRemoval !== removal) {
+        return;
+      }
+
+      const nextRemoval = getLatestPending();
+      if (nextRemoval) {
+        setActiveRemoval(nextRemoval);
+        return;
+      }
+
+      activeRemoval = null;
       if (toastText) {
         toastText.textContent = 'Faixa apagada da fila.';
       }
@@ -215,42 +307,69 @@ function prepareUndoFeedback() {
       if (undoButton) {
         undoButton.disabled = true;
       }
-
-      window.setTimeout(hideToast, 900);
+      if (toastProgress) {
+        toastProgress.style.transform = 'scaleX(0)';
+      }
+      clearToastHide();
+      hideToastId = window.setTimeout(hideToast, 900);
     }
 
-    button.addEventListener('click', () => {
-      clearCountdown();
-      item?.classList.add('is-removed');
-      toast?.classList.add('is-visible');
-      button.disabled = true;
-      if (undoButton) {
-        undoButton.disabled = false;
+    function startRemoval(button) {
+      if (button.disabled) {
+        return;
       }
-      secondsLeft = 5;
-      updateCountdownText();
 
-      countdownId = window.setInterval(() => {
-        secondsLeft -= 1;
+      const removal = {
+        button,
+        item: button.closest('li'),
+        secondsLeft: 5,
+        countdownId: null,
+      };
 
-        if (secondsLeft <= 0) {
-          deleteTrackPermanently();
+      pendingRemovals.push(removal);
+      removal.item?.classList.add('is-removed');
+      removal.button.disabled = true;
+
+      if (toastProgress) {
+        toastProgress.style.transition = 'none';
+        toastProgress.style.transform = 'scaleX(1)';
+        toastProgress.getBoundingClientRect();
+        toastProgress.style.transition = 'transform 1s linear';
+      }
+
+      setActiveRemoval(removal);
+
+      removal.countdownId = window.setInterval(() => {
+        removal.secondsLeft -= 1;
+
+        if (removal.secondsLeft <= 0) {
+          deleteTrackPermanently(removal);
           return;
         }
 
-        updateCountdownText();
+        if (activeRemoval === removal) {
+          updateCountdownText(removal);
+        }
       }, 1000);
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => startRemoval(button));
     });
 
-    undoButton?.addEventListener('click', restoreTrack);
-    resetButton?.addEventListener('click', () => {
-      restoreTrack();
-      const radioButton = block?.querySelector('[data-radio-toggle]');
-      if (radioButton?.getAttribute('aria-pressed') === 'true') {
-        radioButton.click();
-      }
-    });
+    undoButton?.addEventListener('click', restoreActiveTrack);
+    resetButton?.addEventListener('click', resetPrototype);
   });
+}
+
+function setPreviewState(windowElement, isExpanded) {
+  const preview = windowElement?.querySelector('[data-progressive-preview]');
+  const previewButton = windowElement?.querySelector('[data-preview-toggle]');
+
+  preview?.classList.toggle('is-expanded', isExpanded);
+  if (previewButton) {
+    previewButton.textContent = isExpanded ? 'Recolher prévia' : 'Expandir prévia';
+  }
 }
 
 function renderTab(windowElement, tabName) {
@@ -277,7 +396,7 @@ function renderTab(windowElement, tabName) {
     previewCopy.textContent = content.preview;
   }
 
-  preview?.classList.remove('is-expanded');
+  setPreviewState(windowElement, false);
 
   if (!panel) {
     return;
@@ -303,6 +422,7 @@ function preparePrototypeTabs() {
   document.querySelectorAll('[data-tab-group]').forEach((group) => {
     const windowElement = group.closest('.mock-window');
     const tabs = Array.from(group.querySelectorAll('[data-tab]'));
+    const initialTab = tabContent[group.dataset.initialTab] ? group.dataset.initialTab : 'musicas';
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
@@ -312,7 +432,11 @@ function preparePrototypeTabs() {
     });
 
     if (windowElement) {
-      renderTab(windowElement, 'musicas');
+      tabs.forEach((item) => item.classList.toggle('is-selected', item.dataset.tab === initialTab));
+      renderTab(windowElement, initialTab);
+      if (group.dataset.initialPreview === 'expanded') {
+        setPreviewState(windowElement, true);
+      }
     }
   });
 }
@@ -323,8 +447,7 @@ function prepareProgressivePreview() {
     const preview = windowElement?.querySelector('[data-progressive-preview]');
 
     button.addEventListener('click', () => {
-      const isExpanded = preview?.classList.toggle('is-expanded');
-      button.textContent = isExpanded ? 'Recolher prévia' : 'Expandir prévia';
+      setPreviewState(windowElement, !preview?.classList.contains('is-expanded'));
     });
   });
 }

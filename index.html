@@ -8,7 +8,7 @@
       content="Wiki colaborativa da Avaliação 2 de Interface Humano-Computador sobre Engenharia de Usabilidade no YouTube Music."
     >
     <title>IHC | Engenharia de Usabilidade - YouTube Music</title>
-    <link rel="stylesheet" href="src/css/styles.css?v=20260521-ciclo2-countdown">
+    <link rel="stylesheet" href="src/css/styles.css?v=20260525-ciclo3-interactive">
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -33,6 +33,10 @@
         <nav class="toc" aria-label="Sumário">
           <a href="#prototipo">2.1 Protótipo refinado</a>
           <a href="#feedback-ciclo-2">2.2 Teste e refinamento</a>
+        </nav>
+        <h4>Ciclo 3</h4>
+        <nav class="toc" aria-label="Sumário">
+          <a href="#ciclo-3">3.1 Protótipo final</a>
         </nav>
       </aside>
 
@@ -560,9 +564,396 @@
             </ul>
           </article>
         </section>
+
+        <section id="ciclo-3" class="doc-section">
+          <div class="section-heading">
+            <h2 class="section-index">3 CICLO 3</h2>
+            <p class="section-index">3.1</p>
+            <h3>Protótipo Final e Ajustes de Microinteração</h3>
+            <p>Fechamento do ciclo com foco em estabilidade visual, contraste e consistência de ações.</p>
+          </div>
+
+          <article class="prototype-block">
+            <div class="prototype-block-header">
+              <div>
+                <p class="problem-label">Correção P1</p>
+                <h3>Fila de reprodução e ordem aleatória</h3>
+              </div>
+              <span class="severity severity--high">Impacto Alto</span>
+            </div>
+
+            <div class="prototype-comparison">
+              <div class="prototype-screen prototype-screen--before">
+                <div class="prototype-screen-title">
+                  <span>Antes</span>
+                  <strong>Ciclo 2: controle explícito, mas ainda inconsistente</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Buscar músicas, álbuns, artistas</span>
+                  </div>
+
+                  <div class="mock-layout">
+                    <div class="mock-sidebar" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+                    <div class="mock-content">
+                      <div class="mock-playlist-head">
+                        <div>
+                          <small>Playlist</small>
+                          <strong>Foco nos estudos</strong>
+                        </div>
+                        <span class="mock-button mock-button--safe">Aleatório da playlist</span>
+                      </div>
+
+                      <div class="mock-setting mock-setting--interactive" data-radio-control>
+                        <span>
+                          <strong>Rádio automática desta playlist</strong>
+                          <small data-radio-copy>Desligada por padrão para manter foco</small>
+                        </span>
+                        <button
+                          class="mock-switch-button"
+                          type="button"
+                          aria-pressed="false"
+                          aria-label="Alternar rádio automática desta playlist no estado do Ciclo 2"
+                          data-radio-toggle
+                        >
+                          <span class="mock-switch is-off" aria-hidden="true"></span>
+                        </button>
+                      </div>
+
+                      <ol class="mock-queue">
+                        <li>
+                          <span>Deep focus synth</span>
+                          <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                        </li>
+                        <li><span>Lo-fi study beat</span><small>Da playlist</small></li>
+                        <li><span>Ambient code flow</span><small>Da playlist</small></li>
+                        <li><span>Minimal piano loop</span><small>Da playlist</small></li>
+                      </ol>
+
+                      <div class="mock-next-preview" data-radio-preview>
+                        <strong>Próximas músicas se ligar a Rádio</strong>
+                        <span>Beat recomendado</span>
+                        <span>Focus discovery</span>
+                      </div>
+
+                      <div class="mock-toast" data-undo-toast aria-live="polite">
+                        <span></span>
+                        <button type="button">Desfazer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="prototype-reset-row">
+                  <button class="prototype-reset-button" type="button" data-reset-queue>
+                    Restaurar estado inicial do Ciclo 2
+                  </button>
+                </div>
+              </div>
+
+              <div class="prototype-screen prototype-screen--after">
+                <div class="prototype-screen-title">
+                  <span>Depois</span>
+                  <strong>Ciclo 3: ações consistentes e prévia diferenciada</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Buscar músicas, álbuns, artistas</span>
+                  </div>
+
+                  <div class="mock-layout">
+                    <div class="mock-sidebar" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+                    <div class="mock-content">
+                      <div class="mock-playlist-head">
+                        <div>
+                          <small>Playlist</small>
+                          <strong>Foco nos estudos</strong>
+                        </div>
+                        <span class="mock-button mock-button--safe">Aleatório da playlist</span>
+                      </div>
+
+                      <div class="mock-setting mock-setting--interactive" data-radio-control>
+                        <span>
+                          <strong>Rádio automática desta playlist</strong>
+                          <small data-radio-copy>Desligada por padrão para manter foco</small>
+                        </span>
+                        <button
+                          class="mock-switch-button"
+                          type="button"
+                          aria-pressed="false"
+                          aria-label="Alternar rádio automática desta playlist no estado do Ciclo 3"
+                          data-radio-toggle
+                        >
+                          <span class="mock-switch is-off" aria-hidden="true"></span>
+                        </button>
+                      </div>
+
+                      <ol class="mock-queue">
+                        <li>
+                          <span>Deep focus synth</span>
+                          <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                        </li>
+                        <li>
+                          <span>Lo-fi study beat</span>
+                          <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                        </li>
+                        <li>
+                          <span>Ambient code flow</span>
+                          <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                        </li>
+                        <li>
+                          <span>Minimal piano loop</span>
+                          <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                        </li>
+                      </ol>
+
+                      <div
+                        class="mock-next-preview mock-next-preview--final"
+                        aria-label="Sugestões futuras da rádio automática"
+                        data-radio-preview
+                      >
+                        <div class="mock-preview-heading">
+                          <strong>Sugestões futuras da Rádio</strong>
+                          <small data-radio-preview-status>Não fazem parte da playlist ainda</small>
+                        </div>
+                        <span>Beat recomendado</span>
+                        <span>Focus discovery</span>
+                      </div>
+
+                      <div class="mock-toast" data-undo-toast aria-live="polite">
+                        <div class="mock-toast-body">
+                          <span data-undo-message></span>
+                          <div class="mock-toast-progress" aria-hidden="true">
+                            <span data-undo-progress></span>
+                          </div>
+                        </div>
+                        <button type="button">Desfazer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="prototype-reset-row">
+                  <button class="prototype-reset-button" type="button" data-reset-queue>
+                    Restaurar estado inicial do Ciclo 3
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <p class="prototype-impact">
+              Resultado esperado: ações de remoção previsíveis em todas as faixas, diferenciação clara das sugestões
+              futuras e feedback temporal visível antes da exclusão definitiva.
+            </p>
+          </article>
+
+          <article class="prototype-block">
+            <div class="prototype-block-header">
+              <div>
+                <p class="problem-label">Correção P2</p>
+                <h3>Tela inicial e organização do conteúdo</h3>
+              </div>
+              <span class="severity severity--medium">Impacto Médio</span>
+            </div>
+
+            <div class="prototype-comparison">
+              <div class="prototype-screen prototype-screen--before">
+                <div class="prototype-screen-title">
+                  <span>Antes</span>
+                  <strong>Ciclo 2: conteúdo agrupado por intenção de uso</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Início</span>
+                  </div>
+
+                  <div class="mock-filter-row" aria-label="Filtros do protótipo" data-tab-group>
+                    <button class="mock-tab is-selected" type="button" data-tab="musicas">Músicas</button>
+                    <button class="mock-tab" type="button" data-tab="albuns">Álbuns</button>
+                    <button class="mock-tab" type="button" data-tab="videos">Vídeos</button>
+                    <button class="mock-tab" type="button" data-tab="playlists">Playlists</button>
+                  </div>
+
+                  <div class="mock-section-label">
+                    <strong data-tab-title>Continuar ouvindo</strong>
+                    <small data-tab-description>Faixas recentes, com tamanho consistente e ações rápidas.</small>
+                  </div>
+
+                  <div class="mock-home-grid mock-home-grid--organized" data-tab-panel>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 01</span>
+                      <small>Adicionar à playlist</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 02</span>
+                      <small>Enviar para fila</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 03</span>
+                      <small>Salvar</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Faixa foco 04</span>
+                      <small>Prévia rápida</small>
+                    </button>
+                  </div>
+
+                  <div class="mock-quick-actions" aria-label="Ações rápidas do protótipo">
+                    <button type="button">Adicionar à playlist</button>
+                    <button type="button">Enviar para fila</button>
+                    <button type="button" data-preview-toggle>Expandir prévia</button>
+                  </div>
+
+                  <div class="mock-progressive-preview" data-progressive-preview>
+                    <strong>Prévia rápida sem trocar de aba</strong>
+                    <span data-preview-copy>Mostra 4 faixas recentes e permite salvar sem quebrar o fluxo.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="prototype-screen prototype-screen--after">
+                <div class="prototype-screen-title">
+                  <span>Depois</span>
+                  <strong>Ciclo 3: estado final com prévia estável</strong>
+                </div>
+
+                <div class="mock-window">
+                  <div class="mock-topbar">
+                    <span class="mock-logo" aria-hidden="true"></span>
+                    <span class="mock-search">Início</span>
+                  </div>
+
+                  <div
+                    class="mock-filter-row"
+                    aria-label="Filtros do protótipo"
+                    data-tab-group
+                    data-initial-tab="playlists"
+                    data-initial-preview="expanded"
+                  >
+                    <button class="mock-tab" type="button" data-tab="musicas">Músicas</button>
+                    <button class="mock-tab" type="button" data-tab="albuns">Álbuns</button>
+                    <button class="mock-tab" type="button" data-tab="videos">Vídeos</button>
+                    <button class="mock-tab is-selected" type="button" data-tab="playlists">Playlists</button>
+                  </div>
+
+                  <div class="mock-section-label">
+                    <strong data-tab-title>Playlists recomendadas</strong>
+                    <small data-tab-description>Playlists ficam agrupadas e mantêm cards consistentes.</small>
+                  </div>
+
+                  <div class="mock-home-grid mock-home-grid--organized" data-tab-panel>
+                    <button class="mock-media-card" type="button">
+                      <span>Foco total</span>
+                      <small>Fixar</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Academia leve</span>
+                      <small>Reproduzir</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Descoberta controlada</span>
+                      <small>Ver prévia</small>
+                    </button>
+                    <button class="mock-media-card" type="button">
+                      <span>Estudo noturno</span>
+                      <small>Salvar</small>
+                    </button>
+                  </div>
+
+                  <div class="mock-quick-actions" aria-label="Ações rápidas do protótipo">
+                    <button type="button">Adicionar à playlist</button>
+                    <button type="button">Enviar para fila</button>
+                    <button type="button" data-preview-toggle>Recolher prévia</button>
+                  </div>
+
+                  <div class="mock-progressive-preview is-expanded" data-progressive-preview>
+                    <strong>Prévia rápida sem trocar de aba</strong>
+                    <span data-preview-copy>Mostra as primeiras músicas da playlist antes de abrir a página completa.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="prototype-impact">
+              Resultado esperado: o Ciclo 3 mantém o agrupamento do Ciclo 2, mas explicita melhor os estados finais e
+              evita saltos visuais durante a divulgação progressiva.
+            </p>
+          </article>
+
+          <div class="feedback-grid">
+            <article class="feedback-card">
+              <p class="problem-label">Feedback recebido</p>
+              <h3>Contraste da prévia</h3>
+              <p>
+                A prévia da Rádio Automática poderia gerar ruído visual se parecesse parte da playlist. No protótipo
+                final, ela ganhou rótulo explícito, contraste maior e indicação de que ainda é sugestão futura.
+              </p>
+            </article>
+
+            <article class="feedback-card">
+              <p class="problem-label">Feedback recebido</p>
+              <h3>Tempo para desfazer</h3>
+              <p>
+                O aviso de remoção agora exibe uma barra regressiva de 5 segundos. Isso torna o tempo de reversão visível
+                e reduz a ansiedade do usuário sobre quando a ação será confirmada.
+              </p>
+            </article>
+
+            <article class="feedback-card">
+              <p class="problem-label">Feedback recebido</p>
+              <h3>Consistência de remoção</h3>
+              <p>
+                Todas as faixas da playlist passaram a exibir o botão Remover, evitando a dúvida sobre quais itens podem
+                ser excluídos e reforçando consistência operacional.
+              </p>
+            </article>
+          </div>
+
+          <article class="refinement-panel">
+            <h3>Decisão final do ciclo</h3>
+            <ul>
+              <li>
+                <strong>Microinterações estáveis:</strong> o toast usa transição suave e área controlada para evitar
+                saltos bruscos na interface.
+              </li>
+              <li>
+                <strong>Feedback temporal claro:</strong> a barra de progresso diminui durante os 5 segundos disponíveis
+                para desfazer a remoção.
+              </li>
+              <li>
+                <strong>Diferenciação visual:</strong> sugestões da rádio usam bloco separado, texto explicativo e
+                contraste próprio para não serem confundidas com músicas já presentes na playlist.
+              </li>
+              <li>
+                <strong>Consistência:</strong> todas as músicas da fila têm a mesma ação de remoção disponível.
+              </li>
+            </ul>
+          </article>
+        </section>
       </main>
     </div>
 
-    <script src="src/js/script.js?v=20260521-ciclo2-countdown"></script>
+    <script src="src/js/script.js?v=20260525-ciclo3-multi-remove"></script>
   </body>
 </html>
