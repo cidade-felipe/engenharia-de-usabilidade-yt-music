@@ -8,7 +8,7 @@
       content="Wiki colaborativa da Avaliação 2 de Interface Humano-Computador sobre Engenharia de Usabilidade no YouTube Music."
     >
     <title>IHC | Engenharia de Usabilidade - YouTube Music</title>
-    <link rel="stylesheet" href="src/css/styles.css?v=20260525-ciclo3-interactive">
+    <link rel="stylesheet" href="src/css/styles.css?v=20260527-ciclo2-theo">
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -22,21 +22,22 @@
             <a href="#top"><strong>YouTube Music</strong></a>
           </div>
         </div>
+        <h4>Contexto e Persona</h4>
+        <nav class="toc" aria-label="Sumário">
+          <a href="#contexto">Contexto</a>
+          <a href="#persona">Persona</a>
+          <a href="#diagnostico">Diagnóstico</a>
+          <a href="#decisoes">Decisões</a>
+        </nav>
         <h4>Ciclo 1</h4>
         <nav class="toc" aria-label="Sumário">
-          <a href="#contexto">1.1 Contexto</a>
-          <a href="#persona">1.2 Persona</a>
-          <a href="#diagnostico">1.3 Diagnóstico</a>
-          <a href="#decisoes">1.4 Decisões</a>
+          <a href="#prototipo">1.1 Protótipo inicial</a>
+          <a href="#feedback-ciclo-1">1.2 Teste e refinamento</a>
         </nav>
         <h4>Ciclo 2</h4>
         <nav class="toc" aria-label="Sumário">
-          <a href="#prototipo">2.1 Protótipo refinado</a>
-          <a href="#feedback-ciclo-2">2.2 Teste e refinamento</a>
-        </nav>
-        <h4>Ciclo 3</h4>
-        <nav class="toc" aria-label="Sumário">
-          <a href="#ciclo-3">3.1 Protótipo final</a>
+          <a href="#ciclo-2">2.1 Protótipo final</a>
+          <a href="#feedback-ciclo-2">2.2 Comentários finais</a>
         </nav>
       </aside>
 
@@ -74,9 +75,8 @@
 
         <section id="contexto" class="doc-section">
           <div class="section-heading">
-            <h2 class="section-index">1 CICLO 1</h2>
-            <p class="section-index">1.1</p>
-            <h3>Contexto e Diagnóstico Inicial</h3>
+            <h2 class="section-index">Contexto e Persona</h2>
+            <p class="section-index">Contexto</p>
             <p>Primeira leitura do sistema, do usuário principal e dos problemas de usabilidade mais relevantes.</p>
           </div>
 
@@ -92,8 +92,7 @@
 
         <section id="persona" class="doc-section">
           <div class="section-heading">
-            <p class="section-index">1.2</p>
-            <h3>Persona</h3>
+            <p class="section-index">Persona</p>
             <p>Representação do usuário usado para orientar o diagnóstico e as decisões de design.</p>
           </div>
 
@@ -130,15 +129,14 @@
         
         <section id="diagnostico" class="doc-section">
           <div class="section-heading">
-            <p class="section-index">1.3</p>
-            <h3>Avaliação Heurística e Diagnóstico</h3>
+            <h2 class="section-index">Avaliação Heurística e Diagnóstico</h2>
             <p>Problemas identificados a partir das heurísticas de Nielsen, com severidade e evidências visuais.</p>
           </div>
 
           <article class="problem-card problem-card--critical">
             <div class="problem-header">
               <div>
-                <p class="problem-label">Problema P1</p>
+                <p class="section-index">Problema P1</p>
                 <h3>Quebra de Controle Explícito e Compatibilidade</h3>
               </div>
               <span class="severity severity--high">Severidade Alta</span>
@@ -186,7 +184,7 @@
           <article class="problem-card">
             <div class="problem-header">
               <div>
-                <p class="problem-label">Problema P2</p>
+                <p class="section-index">Problema P2</p>
                 <h3>Sobrecarga Cognitiva na Tela Inicial</h3>
               </div>
               <span class="severity severity--medium">Severidade Média</span>
@@ -221,8 +219,7 @@
 
         <section id="decisoes" class="doc-section">
           <div class="section-heading">
-            <p class="section-index">1.4</p>
-            <h3>Decisões de Design</h3>
+            <p class="section-index">Decisões de Design</p>
             <p>Próximos passos para devolver previsibilidade, autonomia e clareza ao usuário.</p>
           </div>
 
@@ -256,18 +253,15 @@
         </section>
         <section id="prototipo" class="doc-section">
           <div class="section-heading">
-            <h2 class="section-index">2 CICLO 2</h2>
-          </div>
-          <div class="section-heading">
-            <p class="section-index">2.1</p>
-            <h3>Protótipo Refinado - Antes vs. Depois</h3>
-            <p>Representação visual das correções priorizadas após os comentários do ciclo 2.</p>
+            <h2 class="section-index">CICLO 1</h2>
+            <p class="section-index">Protótipo Inicial</p>
+            <p>Primeiro ciclo de solução, transformando o diagnóstico anterior em um protótipo navegável.</p>
           </div>
 
           <article class="prototype-summary">
             <h3>Objetivo do protótipo</h3>
             <p>
-              O protótipo refinado mantém os ganhos do primeiro ciclo, mas resolve as lacunas apontadas na avaliação:
+              O protótipo do Ciclo 1 transforma o diagnóstico em uma proposta navegável:
               mostra estados ligados e desligados da Rádio Automática, adiciona feedback reversível para ações críticas
               e prova que as abas da tela inicial têm conteúdo próprio, ações rápidas e divulgação progressiva.
             </p>
@@ -276,7 +270,7 @@
           <article class="prototype-block">
             <div class="prototype-block-header">
               <div>
-                <p class="problem-label">Correção P1</p>
+                <p class="section-index">Correção P1</p>
                 <h3>Fila de reprodução e ordem aleatória</h3>
               </div>
               <span class="severity severity--high">Impacto Alto</span>
@@ -289,39 +283,14 @@
                   <strong>Aleatório mistura playlist com sugestões</strong>
                 </div>
 
-                <div class="mock-window">
-                  <div class="mock-topbar">
-                    <span class="mock-logo" aria-hidden="true"></span>
-                    <span class="mock-search">Buscar músicas, álbuns, artistas</span>
-                  </div>
-
-                  <div class="mock-layout">
-                    <div class="mock-sidebar" aria-hidden="true">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-
-                    <div class="mock-content">
-                      <div class="mock-playlist-head">
-                        <div>
-                          <small>Playlist</small>
-                          <strong>Foco nos estudos</strong>
-                        </div>
-                        <span class="mock-button mock-button--danger">Aleatório</span>
-                      </div>
-
-                      <ol class="mock-queue">
-                        <li><span>Lo-fi study beat</span><small>Da playlist</small></li>
-                        <li><span>Deep focus synth</span><small>Da playlist</small></li>
-                        <li class="is-intruder"><span>Mix automático</span><small>Sugerida pelo algoritmo</small></li>
-                        <li class="is-intruder"><span>Clipe recomendado</span><small>Fora da playlist</small></li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
+              <figure class="prototype-screen-figure">
+                <img
+                  src="src/img/fila-antes.png"
+                  alt="Fila antes do clique"
+                  loading="lazy"
+                >
+              </figure>
               </div>
-
               <div class="prototype-screen prototype-screen--after">
                 <div class="prototype-screen-title">
                   <span>Depois</span>
@@ -368,19 +337,17 @@
 
                       <ol class="mock-queue">
                         <li>
-                          <span>Deep focus synth</span>
+                          <span>Linkin Park - Points of Authority</span>
                           <small>Da playlist</small>
                           <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
                         </li>
-                        <li><span>Lo-fi study beat</span><small>Da playlist</small></li>
-                        <li><span>Ambient code flow</span><small>Da playlist</small></li>
-                        <li><span>Minimal piano loop</span><small>Da playlist</small></li>
+                        <li><span>Creep</span><small>Da playlist</small></li>
                       </ol>
 
                       <div class="mock-next-preview" data-radio-preview>
                         <strong>Próximas músicas se ligar a Rádio</strong>
-                        <span>Beat recomendado</span>
-                        <span>Focus discovery</span>
+                        <span>Californication</span>
+                        <span>Hotel California</span>
                       </div>
 
                       <div class="mock-toast" data-undo-toast aria-live="polite">
@@ -408,7 +375,7 @@
           <article class="prototype-block">
             <div class="prototype-block-header">
               <div>
-                <p class="problem-label">Correção P2</p>
+                <p class="section-index">Correção P2</p>
                 <h3>Tela inicial e organização do conteúdo</h3>
               </div>
               <span class="severity severity--medium">Impacto Médio</span>
@@ -502,39 +469,106 @@
           </article>
         </section>
 
-        <section id="feedback-ciclo-2" class="doc-section">
+        <section id="feedback-ciclo-1" class="doc-section">
           <div class="section-heading">
-            <p class="section-index">2.2</p>
-            <h3>Teste com Usuário e Refinamento</h3>
-            <p>Síntese dos comentários recebidos e das decisões aplicadas no protótipo refinado.</p>
+            <p class="section-index">Teste com Usuário e Refinamento</p>
+            <p>Comentários íntegros recebidos no Ciclo 1 e decisões aplicadas no protótipo refinado.</p>
           </div>
 
-          <div class="feedback-grid">
-            <article class="feedback-card">
-              <p class="problem-label">O que funcionou bem</p>
-              <h3>Menor carga cognitiva</h3>
-              <p>
-                A separação entre aleatório da playlist e rádio automática reduziu ambiguidade. A tela inicial com
-                agrupamento por tipo de conteúdo também ficou mais previsível e próxima do modelo mental do usuário.
-              </p>
+          <div class="feedback-grid feedback-grid--comments">
+            <article class="feedback-card feedback-card--comment">
+              <p class="classmate-label">Arthur Silveira Sampaio</p>
+              <div class="feedback-comment">
+                <p>
+                  <strong>O que funcionou bem:</strong> As duas correções resolvem os problemas diagnosticados com
+                  decisões visuais limpas. Em P1, o botão virou "Aleatório da playlist" (modelo mental claro), as
+                  músicas intrusas sumiram da fila e a "Rádio automática" foi isolada como toggle independente. Em P2,
+                  o grid caótico deu lugar a tabs categorizadas + cards uniformes.
+                </p>
+                <p>
+                  <strong>Pontos de melhoria:</strong> O toggle "Rádio automática" em P1 só aparece desligado, falta o
+                  estado ligado para provar visualmente que a separação funciona. Em P2, só a tab "Músicas" tem preview,
+                  as demais (Álbuns, Vídeos, Playlists) ficam sem evidência de que o agrupamento entrega o prometido.
+                </p>
+                <p>
+                  <strong>Insight-chave:</strong> Quando o protótipo introduz um toggle ou tab como solução, o avaliador
+                  espera ver os estados que comprovam o comportamento, conecta com Visibilidade do Status (H1 de Nielsen)
+                  e Critério 1 - Condução / Feedback Imediato. Sugestão: deixar o protótipo funcional com correção
+                  (Antes / Depois) para demonstrar qual seria o comportamento esperado de cada nova funcionalidade em
+                  diferentes estados. Assim o protótipo realmente teria um fluxo funcional.
+                </p>
+              </div>
             </article>
 
-            <article class="feedback-card">
-              <p class="problem-label">Pontos de melhoria</p>
-              <h3>Estados e feedback</h3>
-              <p>
-                O primeiro protótipo mostrava a Rádio Automática apenas desligada e não deixava claro como ações
-                destrutivas, como remover faixas, poderiam ser revertidas.
-              </p>
+            <article class="feedback-card feedback-card--comment">
+              <p class="classmate-label">Theo de Souza Gerhardt</p>
+              <div class="feedback-comment">
+                <p>
+                  <strong>Pontos positivos:</strong> A conexão entre a dor da persona e a violação da heurística faz
+                  sentido. Na correção P2, a padronização do tamanho e formato dos cards é uma aplicação de consistência
+                  visual que agrada, sendo capaz de reduzir drasticamente a carga cognitiva e atende à H8, de estética e
+                  design minimalista.
+                </p>
+                <p>
+                  <strong>Pontos de melhoria:</strong> Na correção P1, não ficou claro qual é o estado padrão dessa
+                  função de "Rádio automática". Se vier ativada por padrão, o usuário vai continuar sendo surpreendido
+                  até perceber a chave. Faltou prever como seria a comunicação dessa mudança na interface para garantir
+                  a prevenção de erros (H5) e reeducar o modelo mental de quem já usa o app.
+                </p>
+                <p>
+                  <strong>Insight-chave:</strong> Falando sobre o conflito entre liberdade do usuário (H3) e o modelo de
+                  negócios do próprio YouTube em si (que foca em retenção via recomendação algorítmica), como sugestão de
+                  evolução, o sistema poderia gravar a preferência do toggle por playlist específica em vez de ser uma
+                  chave global. Isso traz a heurística de reconhecimento em vez de memorização (H6), garantindo que
+                  playlists de "Foco" fiquem sempre isoladas, enquanto playlists de "Descoberta" já carreguem a rádio
+                  ativada, trazendo essa autonomia sem prejudicar também o respectivo objetivo.
+                </p>
+              </div>
             </article>
 
-            <article class="feedback-card">
-              <p class="problem-label">Insight-chave</p>
-              <h3>Controle explícito sem perder flexibilidade</h3>
-              <p>
-                A solução refinada combina Constraint Design, feedback reversível, preferência por playlist e
-                divulgação progressiva para mostrar opções sem sobrecarregar a interface.
-              </p>
+            <article class="feedback-card feedback-card--comment">
+              <p class="classmate-label">Luis Antonio Scarabelot Fiabani</p>
+              <div class="feedback-comment">
+                <p>
+                  Gostei muito das análises sobre o controle do utilizador e a visibilidade dos estados. O ponto forte do
+                  protótipo foi aproximar o app dos padrões de mercado (H4), o que reduz muito o esforço cognitivo
+                  initial.
+                </p>
+                <p>
+                  Por outro lado, pensando na flexibilidade de uso (H7), a nova divisão por abas me pareceu um pouco
+                  rígida. Senti falta de atalhos rápidos para interagir entre elas, como adicionar uma música a uma
+                  playlist sem ter de mudar de aba e quebrar o ritmo da navegação.
+                </p>
+                <p>
+                  Para evoluir a ideia, podíamos aplicar o conceito de divulgação progressiva. Nas abas de Álbuns ou
+                  Vídeos (que o Theo mencionou estarem sem preview), um comando simples para expandir e visualizar o
+                  conteúdo resolveria o problema sem poluir o visual. Além disso, no fim da fila de reprodução, podíamos
+                  ter uma seção semi-transparente mostrando "Próximas músicas se ligar a Rádio". Isso daria um feedback
+                  preventivo visual excelente, ajudando o utilizador a decidir se ativa ou não o toggle antes de ser
+                  surpreendido.
+                </p>
+              </div>
+            </article>
+
+            <article class="feedback-card feedback-card--comment">
+              <p class="classmate-label">Karolini Roncani Pedrozo</p>
+              <div class="feedback-comment">
+                <p>
+                  <strong>Pontos positivos:</strong> A análise foca-se muito bem na ergonomia cognitiva. O protótipo
+                  melhorou a H8 (Estética e Minimalismo) e a H1 (Visibilidade do Status) ao reduzir a carga de trabalho
+                  na gestão de playlists.
+                </p>
+                <p>
+                  <strong>Pontos de Melhoria:</strong> há uma quebra de expectativa no feedback de ações críticas (como
+                  excluir faixas). A falta de um aviso reversível prejudica o modelo mental de segurança e afeta a H5
+                  (Prevenção de Erros).
+                </p>
+                <p>
+                  <strong>Insight-Chave:</strong> Sugiro aplicar Constraint Design por meio de controles explícitos para
+                  ações destrutivas. Notificações temporárias (toasts) com a opção de "desfazer" garantiriam uma maior
+                  sensação de controle e liberdade ao utilizador (H3).
+                </p>
+              </div>
             </article>
           </div>
 
@@ -565,12 +599,12 @@
           </article>
         </section>
 
-        <section id="ciclo-3" class="doc-section">
+        <section id="ciclo-2" class="doc-section">
           <div class="section-heading">
-            <h2 class="section-index">3 CICLO 3</h2>
-            <p class="section-index">3.1</p>
+            <h2 class="section-index">2 CICLO 2</h2>
+            <p class="section-index">2.1</p>
             <h3>Protótipo Final e Ajustes de Microinteração</h3>
-            <p>Fechamento do ciclo com foco em estabilidade visual, contraste e consistência de ações.</p>
+            <p>Segundo ciclo com foco em estabilidade visual, contraste e consistência de ações.</p>
           </div>
 
           <article class="prototype-block">
@@ -586,7 +620,7 @@
               <div class="prototype-screen prototype-screen--before">
                 <div class="prototype-screen-title">
                   <span>Antes</span>
-                  <strong>Ciclo 2: controle explícito, mas ainda inconsistente</strong>
+                  <strong>Ciclo 1: controle explícito, mas ainda inconsistente</strong>
                 </div>
 
                 <div class="mock-window">
@@ -620,7 +654,7 @@
                           class="mock-switch-button"
                           type="button"
                           aria-pressed="false"
-                          aria-label="Alternar rádio automática desta playlist no estado do Ciclo 2"
+                          aria-label="Alternar rádio automática desta playlist no estado do Ciclo 1"
                           data-radio-toggle
                         >
                           <span class="mock-switch is-off" aria-hidden="true"></span>
@@ -654,7 +688,7 @@
 
                 <div class="prototype-reset-row">
                   <button class="prototype-reset-button" type="button" data-reset-queue>
-                    Restaurar estado inicial do Ciclo 2
+                    Restaurar estado inicial do Ciclo 1
                   </button>
                 </div>
               </div>
@@ -662,7 +696,7 @@
               <div class="prototype-screen prototype-screen--after">
                 <div class="prototype-screen-title">
                   <span>Depois</span>
-                  <strong>Ciclo 3: ações consistentes e prévia diferenciada</strong>
+                  <strong>Ciclo 2: ações consistentes e prévia diferenciada</strong>
                 </div>
 
                 <div class="mock-window">
@@ -678,7 +712,7 @@
                       <span></span>
                     </div>
 
-                    <div class="mock-content">
+                    <div class="mock-content" data-restore-mode="inline">
                       <div class="mock-playlist-head">
                         <div>
                           <small>Playlist</small>
@@ -696,7 +730,7 @@
                           class="mock-switch-button"
                           type="button"
                           aria-pressed="false"
-                          aria-label="Alternar rádio automática desta playlist no estado do Ciclo 3"
+                          aria-label="Alternar rádio automática desta playlist no estado do Ciclo 2"
                           data-radio-toggle
                         >
                           <span class="mock-switch is-off" aria-hidden="true"></span>
@@ -739,22 +773,13 @@
                         <span>Focus discovery</span>
                       </div>
 
-                      <div class="mock-toast" data-undo-toast aria-live="polite">
-                        <div class="mock-toast-body">
-                          <span data-undo-message></span>
-                          <div class="mock-toast-progress" aria-hidden="true">
-                            <span data-undo-progress></span>
-                          </div>
-                        </div>
-                        <button type="button">Desfazer</button>
-                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div class="prototype-reset-row">
                   <button class="prototype-reset-button" type="button" data-reset-queue>
-                    Restaurar estado inicial do Ciclo 3
+                    Restaurar estado inicial do Ciclo 2
                   </button>
                 </div>
               </div>
@@ -762,7 +787,7 @@
 
             <p class="prototype-impact">
               Resultado esperado: ações de remoção previsíveis em todas as faixas, diferenciação clara das sugestões
-              futuras e feedback temporal visível antes da exclusão definitiva.
+              futuras e reversão persistente sem pressão de tempo.
             </p>
           </article>
 
@@ -779,7 +804,7 @@
               <div class="prototype-screen prototype-screen--before">
                 <div class="prototype-screen-title">
                   <span>Antes</span>
-                  <strong>Ciclo 2: conteúdo agrupado por intenção de uso</strong>
+                  <strong>Ciclo 1: conteúdo agrupado por intenção de uso</strong>
                 </div>
 
                 <div class="mock-window">
@@ -835,7 +860,7 @@
               <div class="prototype-screen prototype-screen--after">
                 <div class="prototype-screen-title">
                   <span>Depois</span>
-                  <strong>Ciclo 3: estado final com prévia estável</strong>
+                  <strong>Ciclo 2: estado final com prévia estável</strong>
                 </div>
 
                 <div class="mock-window">
@@ -896,37 +921,98 @@
             </div>
 
             <p class="prototype-impact">
-              Resultado esperado: o Ciclo 3 mantém o agrupamento do Ciclo 2, mas explicita melhor os estados finais e
+              Resultado esperado: o Ciclo 2 mantém o agrupamento do Ciclo 1, mas explicita melhor os estados finais e
               evita saltos visuais durante a divulgação progressiva.
             </p>
           </article>
 
-          <div class="feedback-grid">
-            <article class="feedback-card">
-              <p class="problem-label">Feedback recebido</p>
-              <h3>Contraste da prévia</h3>
-              <p>
-                A prévia da Rádio Automática poderia gerar ruído visual se parecesse parte da playlist. No protótipo
-                final, ela ganhou rótulo explícito, contraste maior e indicação de que ainda é sugestão futura.
-              </p>
+        </section>
+
+        <section id="feedback-ciclo-2" class="doc-section">
+          <div class="section-heading">
+            <p class="section-index">2.2</p>
+            <h3>Comentários do Ciclo 2 e Ajuste Final</h3>
+            <p>Comentários íntegros recebidos no Ciclo 2 e correção final priorizando o feedback mais recente.</p>
+          </div>
+
+          <div class="feedback-grid feedback-grid--comments">
+            <article class="feedback-card feedback-card--comment">
+              <p class="problem-label">Karolini Roncani Pedrozo</p>
+              <div class="feedback-comment">
+                <p>
+                  <strong>Ciclo 2</strong>
+                </p>
+                <p>
+                  <strong>Pontos Positivos:</strong> Excelente evolução. A inclusão do botão da Rádio Automática e da
+                  opção "Desfazer" melhorou substancialmente o controle do utilizador e a prevenção de erros (H3 e H5).
+                  O novo ecrã inicial, organizado por intenção de uso, reduz a sobrecarga cognitiva (H7).
+                </p>
+                <p>
+                  <strong>Pontos de Melhoria:</strong> A pré-visualização semitransparente das músicas da rádio pode
+                  gerar ruído visual se não tiver um bom contraste. Além disso, o tempo para "Desfazer" precisa de um
+                  indicador visual mais claro (como uma barra de progresso a diminuir).
+                </p>
+                <p>
+                  <strong>Insight-Chave:</strong> O modelo está muito previsível graças à divulgação progressiva e ao
+                  design de restrições. O foco agora deve ser afinar as microinterações (transições suaves, sem saltos
+                  visuais) para reforçar a sensação de estabilidade do sistema.
+                </p>
+              </div>
             </article>
 
-            <article class="feedback-card">
-              <p class="problem-label">Feedback recebido</p>
-              <h3>Tempo para desfazer</h3>
-              <p>
-                O aviso de remoção agora exibe uma barra regressiva de 5 segundos. Isso torna o tempo de reversão visível
-                e reduz a ansiedade do usuário sobre quando a ação será confirmada.
-              </p>
+            <article class="feedback-card feedback-card--comment">
+              <p class="problem-label">Luis Antonio Scarabelot Fiabani</p>
+              <div class="feedback-comment">
+                <p>
+                  <strong>Ciclo 2</strong>
+                </p>
+                <p>
+                  <strong>Pontos Positivos:</strong> A playlist "Foco nos estudos" está bem estruturada, com uma
+                  organização clara das músicas e a seção de rádio automática bem posicionada. A opção de remover músicas
+                  já existe para alguns itens, o que mostra atenção ao controle do utilizador.
+                </p>
+                <p>
+                  <strong>Pontos de Melhoria:</strong> Reparei que os itens como "Lo-fi study beat", "Ambient code flow"
+                  e "Minimal piano loop" não têm o botão de remover visível, ao contrário do "Deep focus synth" que já
+                  apresenta essa opção. Isso cria uma inconsistência, o utilizador pode ficar sem saber como excluir
+                  essas faixas. Já as "Próximas músicas se ligar a Rádio", não está suficientemente diferenciada
+                  visualmente do restante da lista, o que pode gerar confusão sobre se essas músicas já fazem parte da
+                  playlist ou são apenas sugestões futuras.
+                </p>
+              </div>
             </article>
 
-            <article class="feedback-card">
-              <p class="problem-label">Feedback recebido</p>
-              <h3>Consistência de remoção</h3>
-              <p>
-                Todas as faixas da playlist passaram a exibir o botão Remover, evitando a dúvida sobre quais itens podem
-                ser excluídos e reforçando consistência operacional.
-              </p>
+            <article class="feedback-card feedback-card--comment">
+              <p class="problem-label">Theo de Souza Gerhardt</p>
+              <div class="feedback-comment">
+                <p>
+                  <strong>Avaliação de ciclo 2:</strong>
+                </p>
+                <p>
+                  <strong>Pontos positivos:</strong> muito legal ver como o feedback do ciclo 1 foi totalmente
+                  absorvido. A sacada de mudar o texto para "Rádio automática desta playlist" e explicitar a regra
+                  "Desligada por padrão para manter foco" resolveu cirurgicamente o embate da heurística de
+                  reconhecimento (H6) e prevenção de erros (H5). Outro acerto em cheio foi a prévia em ghost
+                  (semi-transparente) das "Próximas músicas se ligar a Rádio", entregando uma excelente Visibilidade do
+                  Status do Sistema (H1) antes mesmo de o usuário tomar a ação de ativar a chave.
+                </p>
+                <p>
+                  <strong>Pontos de melhoria:</strong> sobre o toast de "Desfazer" criado para reverter exclusões de
+                  faixas: a intenção de aplicar a H5 para mitigar o erro foi ótima, mas um cronômetro de 5 segundos pode
+                  ser uma janela muito curta considerando a dor da persona, que frequentemente usa o sistema em segundo
+                  plano com a atenção focada nos estudos. Como alternativa, a faixa excluída poderia permanecer na lista
+                  com um feedback visual de "desabilitada/riscada" e um botão de "restaurar" fixo, garantindo a reversão
+                  sem a pressão do tempo de um aviso temporário.
+                </p>
+                <p>
+                  <strong>Insight-chave:</strong> o protótipo refinado encerra o ciclo provando de forma muito madura
+                  que é possível alinhar a experiência do usuário com os interesses de retenção da plataforma. Posicionar
+                  as faixas recomendadas de forma inativa logo abaixo da fila principal atua como um gatilho para a
+                  descoberta de novos conteúdos (o que o YouTube deseja) sem sequestrar a autonomia da reprodução
+                  contínua (o que a persona exige). É uma aula de como utilizar a divulgação progressiva e a
+                  flexibilidade (H7) para respeitar o Controle e Liberdade (H3) sem prejudicar o negócio.
+                </p>
+              </div>
             </article>
           </div>
 
@@ -934,12 +1020,12 @@
             <h3>Decisão final do ciclo</h3>
             <ul>
               <li>
-                <strong>Microinterações estáveis:</strong> o toast usa transição suave e área controlada para evitar
-                saltos bruscos na interface.
+                <strong>Microinterações estáveis:</strong> a remoção mantém a faixa no mesmo lugar, com estado riscado e
+                desabilitado, evitando saltos bruscos na interface.
               </li>
               <li>
-                <strong>Feedback temporal claro:</strong> a barra de progresso diminui durante os 5 segundos disponíveis
-                para desfazer a remoção.
+                <strong>Reversão sem pressão:</strong> o botão da própria faixa vira "Restaurar", garantindo controle
+                sem depender de um aviso temporário.
               </li>
               <li>
                 <strong>Diferenciação visual:</strong> sugestões da rádio usam bloco separado, texto explicativo e
@@ -954,6 +1040,6 @@
       </main>
     </div>
 
-    <script src="src/js/script.js?v=20260525-ciclo3-multi-remove"></script>
+    <script src="src/js/script.js?v=20260527-ciclo2-theo"></script>
   </body>
 </html>

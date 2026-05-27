@@ -51,43 +51,43 @@ O impacto pratico das melhorias e reduzir atrito em tarefas recorrentes. Em term
 
 `src/css/styles.css` concentra a identidade visual, layout responsivo, comparacoes Antes/Depois, mockups do YouTube Music, estados de radio automatica, toasts, barra de progresso e animacoes sutis.
 
-`src/js/script.js` concentra comportamento progressivo: menu lateral, progresso de leitura, efeitos de revelacao, brilho leve nos cards, toggle da Radio Automatica, remocao com desfazer, remocoes multiplas em sequencia, restauracao de estado, abas do prototipo e previa progressiva.
+`src/js/script.js` concentra comportamento progressivo: menu lateral, progresso de leitura, efeitos de revelacao, brilho leve nos cards, toggle da Radio Automatica, remocao com desfazer no primeiro prototipo, restauracao fixa no prototipo final, restauracao de estado, abas do prototipo e previa progressiva.
 
 `README.md` explica objetivo, execucao e principais decisoes do projeto para quem vai abrir ou avaliar a entrega.
 
 `codex.md` serve como memoria tecnica para futuras alteracoes feitas por agentes ou pessoas desenvolvedoras.
 
-## Ciclos documentados
+## Etapas documentadas
+
+### Etapa anterior aos ciclos
+
+A etapa anterior aos ciclos apresenta o contexto, a persona, o diagnostico inicial e as decisoes de design. Ela conecta prints reais em PNG aos problemas de usabilidade e usa heuristicas de Nielsen para justificar por que cada problema prejudica a experiencia.
 
 ### Ciclo 1
 
-O Ciclo 1 apresenta o diagnostico inicial, conectando prints reais em PNG aos problemas de usabilidade. A narrativa usa heuristicas de Nielsen para justificar por que cada problema prejudica a experiencia.
+O Ciclo 1 comeca no prototipo inicial Antes/Depois. Ele transforma o diagnostico anterior em uma proposta navegavel e registra o teste com comentarios integros dos colegas. A secao 1.2 usa apenas nome e sobrenome dos autores no rotulo superior de cada card, sem matricula.
 
 ### Ciclo 2
 
-O Ciclo 2 adiciona o primeiro prototipo corrigido. Ele melhora a previsibilidade ao separar a Radio Automatica do aleatorio da playlist, adiciona controle explicito e organiza a tela inicial por categorias. Ele permanece no site como registro historico e nao deve ser sobrescrito por melhorias do Ciclo 3.
+O Ciclo 2 e o fechamento. Ele repete os dois comparativos la embaixo e registra, na secao 2.2, os comentarios integros de Karolini, Luis e Theo sobre esse ciclo:
 
-### Ciclo 3
-
-O Ciclo 3 e o fechamento. Ele repete os dois comparativos la embaixo:
-
-- `Antes`, representando o estado do Ciclo 2.
-- `Depois`, representando o refinamento final do Ciclo 3.
+- `Antes`, representando o estado do Ciclo 1.
+- `Depois`, representando o refinamento final do Ciclo 2.
 
 Essa separacao e importante porque evita confundir evolucao historica com estado final. O avaliador consegue ver o que existia no ciclo anterior e o que mudou apos os feedbacks.
 
-## Interacoes atuais do Ciclo 3
+## Interacoes atuais do Ciclo 2
 
-No P1 do Ciclo 3, os dois lados sao interativos:
+No P1 do Ciclo 2, os dois lados sao interativos:
 
-- O lado `Antes` simula o estado do Ciclo 2, com toggle de Radio Automatica, preview semitransparente e remocao com desfazer em uma faixa.
-- O lado `Depois` simula o estado final, com toggle de Radio Automatica, todos os botoes `Remover`, preview final mais contrastada, toast com cronometro de 5 segundos e barra regressiva.
-- Os botoes `Remover` podem ser clicados um por um. Cada faixa permanece removida, enquanto o botao `Desfazer` continua atuando sobre a ultima remocao pendente.
+- O lado `Antes` simula o estado do Ciclo 1, com toggle de Radio Automatica, preview semitransparente e remocao com desfazer em uma faixa.
+- O lado `Depois` simula o estado final do Ciclo 2, com toggle de Radio Automatica, todos os botoes `Remover`, preview final mais contrastada e restauracao fixa por faixa.
+- Os botoes `Remover` podem ser clicados um por um. Cada faixa permanece na lista com estado riscado/desabilitado, e o botao da propria faixa vira `Restaurar`.
 - Cada lado possui um botao de restaurar estado inicial abaixo da imagem, fora do mockup, para deixar claro que e uma acao de reset da demonstracao.
 
-No P2 do Ciclo 3, os dois lados tambem sao interativos:
+No P2 do Ciclo 2, os dois lados tambem sao interativos:
 
-- O lado `Antes` mostra o comportamento do Ciclo 2, com abas funcionais e previa progressiva.
+- O lado `Antes` mostra o comportamento do Ciclo 1, com abas funcionais e previa progressiva.
 - O lado `Depois` inicia em `Playlists`, porque esse e o estado final mais relevante para provar que o agrupamento ficou consistente.
 - As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, descricao, cards e texto da previa.
 
@@ -108,7 +108,7 @@ Os controles interativos usam atributos `data-*`, como `data-radio-toggle`, `dat
 O JS foi escrito em funcoes pequenas:
 
 - `prepareRadioPrototype`, controla estado da Radio Automatica e atualiza copy da preview.
-- `prepareUndoFeedback`, controla remocao, multiplas remocoes em sequencia, desfazer da ultima acao, countdown e reset.
+- `prepareUndoFeedback`, controla remocao temporaria com desfazer no Ciclo 1, restauracao fixa por faixa no Ciclo 2 e reset dos prototipos.
 - `renderTab`, troca conteudo das abas.
 - `preparePrototypeTabs`, conecta botoes de aba ao conteudo.
 - `prepareProgressivePreview`, alterna expansao da previa.
@@ -121,7 +121,7 @@ Evite transformar o projeto em aplicacao com build, a menos que exista uma neces
 
 Ao alterar arquivos existentes, siga a regra de backup do projeto: criar pasta diaria em `Backup`, copiar a versao anterior dos arquivos e preservar subpastas quando necessario.
 
-O Ciclo 2 deve permanecer como registro historico. Melhorias finais devem ser aplicadas no Ciclo 3, especialmente nos blocos em que `Antes` representa Ciclo 2 e `Depois` representa Ciclo 3.
+O Ciclo 1 deve permanecer como registro historico. Melhorias finais devem ser aplicadas no Ciclo 2, especialmente nos blocos em que `Antes` representa Ciclo 1 e `Depois` representa Ciclo 2.
 
 ## Validacao recomendada
 
@@ -131,8 +131,8 @@ Depois de qualquer alteracao, validar:
 - `git diff --check`, para detectar espacos problematicos.
 - Abertura local do `index.html`, conferindo se CSS e JS carregam.
 - Publicacao no GitHub Pages, conferindo se os caminhos relativos funcionam.
-- Ciclo 3 P1, testar Radio Automatica, Remover, Desfazer, countdown e restauracao.
-- Ciclo 3 P2, testar todas as abas e a previa progressiva nos dois lados.
+- Ciclo 2 P1, testar Radio Automatica, Remover, estado riscado/desabilitado, Restaurar por faixa e restauracao geral.
+- Ciclo 2 P2, testar todas as abas e a previa progressiva nos dois lados.
 
 ## Criterio de qualidade
 

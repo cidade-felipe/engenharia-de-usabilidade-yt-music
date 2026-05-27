@@ -151,8 +151,8 @@ function prepareRadioPrototype() {
         }
         items.forEach((item, index) => {
           item.textContent = isOn
-            ? ['Beat recomendado entrou na fila', 'Focus discovery entrou na fila'][index]
-            : ['Beat recomendado', 'Focus discovery'][index];
+            ? ['Californication entrou na fila', 'Focus discovery entrou na fila'][index]
+            : ['Californication', 'Focus discovery'][index];
         });
       }
     }
@@ -181,9 +181,48 @@ function prepareUndoFeedback() {
     const toastProgress = toast?.querySelector('[data-undo-progress]');
     const undoButton = toast?.querySelector('button');
     const resetButton = screen?.querySelector('[data-reset-queue]') ?? block?.querySelector('[data-reset-queue]');
+    const usesInlineRestore = content.dataset.restoreMode === 'inline';
     let pendingRemovals = [];
     let activeRemoval = null;
     let hideToastId = null;
+
+    function resetRadio() {
+      const radioButton = content.querySelector('[data-radio-toggle]');
+      if (radioButton?.getAttribute('aria-pressed') === 'true') {
+        radioButton.click();
+      }
+    }
+
+    function getTrackName(button) {
+      return button.closest('li')?.querySelector('span')?.textContent?.trim() ?? 'faixa';
+    }
+
+    function setInlineRemovalState(button, isRemoved) {
+      const item = button.closest('li');
+      item?.classList.toggle('is-soft-removed', isRemoved);
+      button.classList.toggle('is-restore-action', isRemoved);
+      button.textContent = isRemoved ? 'Restaurar' : 'Remover';
+      button.setAttribute(
+        'aria-label',
+        isRemoved ? `Restaurar ${getTrackName(button)}` : `Remover ${getTrackName(button)}`,
+      );
+    }
+
+    if (usesInlineRestore) {
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const isRemoved = button.closest('li')?.classList.contains('is-soft-removed') ?? false;
+          setInlineRemovalState(button, !isRemoved);
+        });
+      });
+
+      resetButton?.addEventListener('click', () => {
+        buttons.forEach((button) => setInlineRemovalState(button, false));
+        resetRadio();
+      });
+
+      return;
+    }
 
     function clearRemovalTimer(removal) {
       if (removal?.countdownId) {
@@ -277,10 +316,7 @@ function prepareUndoFeedback() {
       }
       hideToast();
 
-      const radioButton = content.querySelector('[data-radio-toggle]');
-      if (radioButton?.getAttribute('aria-pressed') === 'true') {
-        radioButton.click();
-      }
+      resetRadio();
     }
 
     function deleteTrackPermanently(removal) {
