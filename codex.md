@@ -74,7 +74,7 @@ O Ciclo 2 e o fechamento. Ele repete os dois comparativos la embaixo e registra,
 - `Antes`, representando o estado do Ciclo 1.
 - `Depois`, representando o refinamento final do Ciclo 2.
 
-Essa separacao e importante porque evita confundir evolucao historica com estado final. O avaliador consegue ver o que existia no ciclo anterior e o que mudou apos os feedbacks.
+Essa separacao e importante porque evita confundir evolucao historica com estado final. O avaliador consegue ver o que existia no ciclo anterior e o que mudou apos os feedbacks. Sempre que o `Depois` do Ciclo 1 mudar, o `Antes` do Ciclo 2 deve espelhar esse estado atualizado.
 
 ## Interacoes atuais do Ciclo 2
 
