@@ -480,6 +480,7 @@ button {
 .home-p2-tabs button:hover {
   transform: translateY(-2px);
   background: #4d4b4b;
+  color: #ffffff;
 }
 
 .home-p2-tabs button.is-selected:hover {
@@ -540,6 +541,7 @@ button {
 
 .home-p2-card:hover {
   transform: translateY(-2px);
+  background: #4d4b4b;
 }
 
 .home-p2-card strong,
