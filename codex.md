@@ -62,15 +62,21 @@ Na tela expandida do prototipo final, o player de video deve respeitar a largura
 
 `src/js/script.js` concentra comportamento progressivo: menu lateral, progresso de leitura, efeitos de revelacao, brilho leve nos cards, toggle da Radio Automatica, remocao com desfazer no primeiro prototipo, restauracao fixa no prototipo final, restauracao de estado, abas do prototipo e previa progressiva.
 
-`src/js/prototipo-final.js` controla o prototipo final em tela cheia: alternancia entre home e player expandido, estado da Radio Automatica no player inferior e remocao/restauracao fixa das faixas da fila.
+`src/js/prototipo-final.js` controla o prototipo final em tela cheia: alternancia entre home e player expandido, abas da home final, estado da Radio Automatica no player inferior, aleatorio contextual, selecao da faixa atual e remocao pendente das faixas da fila.
 
 O prototipo final tambem demonstra a correcao do aleatorio. O botao com icone de aleatorio fica ao lado do chip de escopo da fila. Com `Radio off`, ele embaralha apenas as faixas ja presentes na playlist atual. Com `Radio on`, o chip muda para `Playlist + Radio rock` e cada clique no aleatorio troca a fila por recomendacoes de rock nacional e internacional. Nessa acao, o bloco `Sugestoes futuras da Radio` tambem muda: as duas sugestoes exibidas ali sao sempre promovidas para as duas primeiras posicoes da fila, preservando a relacao entre preview e resultado.
 
-Na fila expandida do prototipo final, cada faixa e clicavel e passa a ser a musica atual. O titulo do player grande e o texto do player inferior devem acompanhar essa selecao. O botao `Remover` continua separado da selecao para manter controle do usuario sem acao acidental.
+Na fila expandida do prototipo final, cada faixa e clicavel e passa a ser a musica atual. O titulo do player grande e o texto do player inferior devem acompanhar essa selecao. O botao `Remover` continua separado da selecao para manter controle do usuario sem acao acidental. Ao remover uma faixa, ela entra em estado pendente por 3 segundos: fica riscada, o botao vira `Restaurar` e um preenchimento vermelho progride pela linha. Se o usuario nao restaurar dentro desse intervalo, a faixa e removida definitivamente da fila.
 
 O botao de aleatorio do prototipo final deve expor estado selecionado. Ao clicar, ele alterna `aria-pressed` e recebe destaque visual persistente, reforcando visibilidade do status.
 
-A home do `prototipo-final.html` deve espelhar o `Depois` do P2 no Ciclo 2: abas `Musicas`, `Albuns`, `Videos` e `Playlists`, cards consistentes e painel de previa contextual. No prototipo em tela cheia, apenas o conteudo util desse P2 deve ocupar o palco principal; nao use uma moldura interna ou uma miniatura do mockup, porque isso desperdiça o espaco da tela e enfraquece a demonstracao. A faixa de titulo da home final deve usar a largura util inteira, sem texto explicativo secundario ao lado e sem grandes vazios laterais. As abas superiores devem ter o mesmo tamanho, usando quatro colunas iguais, para manter consistencia visual entre os controles de categoria. No corpo da home, os cards principais devem ocupar a largura equivalente aos tres primeiros tabs, enquanto o painel lateral de informacoes ocupa apenas a largura equivalente ao quarto tab.
+A home do `prototipo-final.html` deve espelhar o `Depois` do P2 no Ciclo 2: ela abre com o titulo `Escolha a dedo`, seguido pelas abas `Musicas`, `Albuns`, `Videos` e `Playlists`. Cada aba apresenta 6 itens, e o JavaScript substitui os placeholders do HTML inicial pelos dados atuais de `homeTabContent`. Em `Musicas`, `Albuns` e `Videos`, o recorte atual usa conteudos ligados ao universo Linkin Park para manter coerencia entre cards e informacoes. Em `Playlists`, o recorte mostra listas de uso comum, como estudos, academia, dormir, rock e MPB.
+
+No prototipo em tela cheia, apenas o conteudo util desse P2 deve ocupar o palco principal; nao use uma moldura interna ou uma miniatura do mockup, porque isso desperdiça o espaco da tela e enfraquece a demonstracao. A faixa de titulo da home final deve usar a largura util inteira, sem texto explicativo secundario ao lado e sem grandes vazios laterais. As abas superiores devem ter o mesmo tamanho, usando quatro colunas iguais, para manter consistencia visual entre os controles de categoria. No corpo da home, os cards principais devem ocupar a largura equivalente aos tres primeiros tabs, enquanto o painel lateral de informacoes ocupa apenas a largura equivalente ao quarto tab. Essa decisao reforca a hierarquia: os cards sao a area de exploracao principal, e o painel lateral funciona como uma camada de detalhe sem competir com a lista.
+
+O CSS atual do P2 final usa `--home-p2-gap` para manter o mesmo espacamento entre titulo, tabs, cards e painel. A grade principal da home usa `repeat(4, minmax(0, 1fr))`; `.home-p2-grid` ocupa `grid-column: 1 / 4` e renderiza 6 cards em 3 colunas, enquanto `.home-p2-preview` ocupa `grid-column: 4 / 5`. Em telas menores, esse posicionamento e resetado para uma coluna, evitando overflow lateral.
+
+As microinteracoes atuais da home final incluem hover nos tabs, hover nos cards e hover nos itens do painel lateral. Esses efeitos sao discretos e servem para comunicar clicabilidade sem transformar o prototipo em uma experiencia visual exagerada.
 
 `README.md` explica objetivo, execucao e principais decisoes do projeto para quem vai abrir ou avaliar a entrega.
 
@@ -109,9 +115,10 @@ No P1 do Ciclo 2, os dois lados sao interativos:
 No P2 do Ciclo 2, os dois lados tambem sao interativos:
 
 - O lado `Antes` mostra o comportamento do Ciclo 1, com abas funcionais e previa progressiva.
-- O lado `Depois` inicia em `Playlists`, porque esse e o estado final mais relevante para provar que o agrupamento ficou consistente.
-- O lado `Depois` usa um painel fixo de previa contextual, separado dos cards principais. Isso diferencia claramente o Ciclo 2 do Ciclo 1 e mostra que `Musicas`, `Albuns`, `Videos` e `Playlists` possuem evidencia propria sem abrir outra tela.
-- As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, descricao, cards e itens do painel de previa.
+- O lado `Depois` demonstra o agrupamento por intencao de uso com tabs equivalentes em tamanho e cards consistentes.
+- No prototipo final em tela cheia, o P2 inicia em `Musicas`, com o titulo `Escolha a dedo`, 6 cards e um painel lateral chamado `Informacoes das musicas`.
+- O painel lateral substitui a descricao solta por informacoes objetivas sobre os itens da aba ativa, como duracao de musicas, quantidade de faixas em albuns e quantidade de faixas em playlists.
+- As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, cards e itens do painel de informacoes. Nao ha mais descricao textual secundaria ao lado do titulo.
 
 ## Decisoes de design
 
@@ -125,7 +132,7 @@ Os cards e paineis mantem raio pequeno, seguindo uma linguagem mais documental e
 
 O projeto usa HTML, CSS e JavaScript puro. Essa escolha reduz custo de manutencao, elimina build, evita dependencias externas e facilita publicacao via GitHub Pages.
 
-Os controles interativos usam atributos `data-*`, como `data-radio-toggle`, `data-remove-track`, `data-undo-toast`, `data-tab-group`, `data-tab-panel` e `data-progressive-preview`. Essa abordagem mantem o JavaScript desacoplado da ordem visual e dos textos.
+Os controles interativos usam atributos `data-*`, como `data-radio-toggle`, `data-remove-track`, `data-undo-toast`, `data-tab-group`, `data-tab-panel`, `data-progressive-preview`, `data-home-tab`, `data-home-card-panel`, `data-home-preview-list`, `data-queue-list`, `data-shuffle-button` e `data-radio-button`. Essa abordagem mantem o JavaScript desacoplado da ordem visual e dos textos.
 
 O JS foi escrito em funcoes pequenas:
 
@@ -134,10 +141,17 @@ O JS foi escrito em funcoes pequenas:
 - `renderTab`, troca conteudo das abas.
 - `preparePrototypeTabs`, conecta botoes de aba ao conteudo.
 - `prepareProgressivePreview`, alterna expansao da previa.
+- `renderHomeTab`, no `prototipo-final.js`, troca os dados da home final entre musicas, albuns, videos e playlists.
+- `renderQueue`, no `prototipo-final.js`, reconstrui a fila expandida com faixa atual, capa, artista, duracao e botao de remocao.
+- `shuffleQueue`, no `prototipo-final.js`, alterna o estado visual do aleatorio e muda a fila conforme a Radio Automatica esteja ligada ou desligada.
+- `selectTrack`, no `prototipo-final.js`, permite clicar em uma faixa da fila para torna-la a musica atual no player grande e no player inferior.
+- `toggleTrackState`, `restorePendingRemoval` e `finalizeTrackRemoval`, no `prototipo-final.js`, formam o fluxo de exclusao pendente: remover inicia a contagem visual de 3 segundos, restaurar cancela o timer e finalizar retira a faixa da fila.
 
 ## Pontos de atencao
 
 O site deve continuar funcionando abrindo `index.html` diretamente no navegador. Por isso, links para CSS, JS e imagens devem ser relativos e respeitar caixa de letras. Isso e essencial para GitHub Pages.
+
+Sempre que `src/css/prototipo-final.css` ou `src/js/prototipo-final.js` forem alterados, atualize tambem a query string no `prototipo-final.html`. Isso reduz risco de o GitHub Pages ou o navegador manterem uma versao antiga em cache. No estado atualizado em 30/05/2026, CSS e JS do prototipo final usam `v=20260530-remove-progress`.
 
 Evite transformar o projeto em aplicacao com build, a menos que exista uma necessidade real. Para esta entrega, simplicidade e portabilidade sao vantagens.
 
@@ -150,8 +164,10 @@ O Ciclo 1 deve permanecer como registro historico. Melhorias finais devem ser ap
 Depois de qualquer alteracao, validar:
 
 - `node --check src/js/script.js`, para garantir que o JavaScript nao tem erro de sintaxe.
+- `node --check src/js/prototipo-final.js`, para garantir que o prototipo final navegavel continua sem erro de sintaxe.
 - `git diff --check`, para detectar espacos problematicos.
 - Abertura local do `index.html`, conferindo se CSS e JS carregam.
+- Abertura local do `prototipo-final.html`, conferindo a home final com 6 cards por aba, o painel lateral e a alternancia para a fila expandida.
 - Publicacao no GitHub Pages, conferindo se os caminhos relativos funcionam.
 - Ciclo 2 P1, testar Radio Automatica, Remover, estado riscado/desabilitado, Restaurar por faixa e restauracao geral.
 - Ciclo 2 P2, testar todas as abas e a previa progressiva nos dois lados.

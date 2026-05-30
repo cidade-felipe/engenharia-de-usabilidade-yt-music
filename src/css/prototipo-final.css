@@ -1012,13 +1012,32 @@ button {
 }
 
 .queue-list li {
+  position: relative;
   grid-template-columns: 44px minmax(0, 1fr) auto auto;
   gap: 12px;
   padding: 10px;
   border-bottom: 1px solid var(--line);
   background: transparent;
   cursor: pointer;
+  overflow: hidden;
   transition: opacity 0.18s ease, background 0.18s ease;
+}
+
+.queue-list li > * {
+  position: relative;
+  z-index: 1;
+}
+
+.queue-list li::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(255, 0, 51, 0.48), rgba(255, 0, 51, 0.14));
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
 }
 
 .queue-list li:hover,
@@ -1036,13 +1055,19 @@ button {
   color: #ffffff;
 }
 
-.queue-list li.is-removed {
-  background: rgba(255, 255, 255, 0.06);
-  opacity: 0.7;
+.queue-list li.is-removing {
+  background: rgba(255, 0, 51, 0.08);
+  opacity: 0.86;
+  cursor: default;
 }
 
-.queue-list li.is-removed strong,
-.queue-list li.is-removed small {
+.queue-list li.is-removing::before {
+  opacity: 1;
+  animation: queueRemoveFill 3s linear forwards;
+}
+
+.queue-list li.is-removing strong,
+.queue-list li.is-removing small {
   text-decoration: line-through;
 }
 
@@ -1067,9 +1092,19 @@ button {
   color: #ffffff;
 }
 
-.queue-list li.is-removed button {
+.queue-list li.is-removing button {
   background: #ffffff;
   color: #111111;
+}
+
+@keyframes queueRemoveFill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .future-radio {

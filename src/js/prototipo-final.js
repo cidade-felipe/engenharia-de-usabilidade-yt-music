@@ -19,6 +19,7 @@ const homeTabTitle = document.querySelector('[data-home-tab-title]');
 const homeCardPanel = document.querySelector('[data-home-card-panel]');
 const homePreviewTitle = document.querySelector('[data-home-preview-title]');
 const homePreviewList = document.querySelector('[data-home-preview-list]');
+const REMOVAL_DELAY_MS = 3000;
 
 const homeTabContent = {
   musicas: {
@@ -210,6 +211,7 @@ let currentQueue = [...playlistTracks];
 let currentTrack = currentQueue[0];
 let radioQueueIndex = 0;
 let currentRadioPriorityPair = radioPriorityPairs[0];
+const pendingRemovalTimers = new Map();
 
 function isRadioOn() {
   return radioButton?.getAttribute('aria-pressed') === 'true';
@@ -243,6 +245,15 @@ function shuffleTracks(tracks) {
   }
 
   return shuffled;
+}
+
+function getTrackKey(track) {
+  return `${track.title}|${track.artist}|${track.duration}`;
+}
+
+function clearPendingRemovals() {
+  pendingRemovalTimers.forEach((timer) => window.clearTimeout(timer));
+  pendingRemovalTimers.clear();
 }
 
 function renderHomeTab(tabName) {
@@ -293,19 +304,22 @@ function renderQueue(tracks) {
     const artist = document.createElement('small');
     const duration = document.createElement('span');
     const action = document.createElement('button');
+    const key = getTrackKey(track);
 
+    item.dataset.trackKey = key;
     item.dataset.trackIndex = String(index);
     item.tabIndex = 0;
     item.setAttribute('role', 'button');
     item.setAttribute('aria-label', `Tocar ${track.title}`);
     item.classList.toggle('is-current-track', track === currentTrack);
+    item.classList.toggle('is-removing', pendingRemovalTimers.has(key));
     cover.className = `album-cover ${track.cover}`;
     title.textContent = track.title;
     artist.textContent = track.artist;
     duration.textContent = track.duration;
     action.type = 'button';
     action.dataset.trackAction = '';
-    action.textContent = 'Remover';
+    action.textContent = pendingRemovalTimers.has(key) ? 'Restaurar' : 'Remover';
 
     info.append(title, artist);
     item.append(cover, info, duration, action);
@@ -344,6 +358,23 @@ function updateRadioCopy() {
 function updateNowPlaying() {
   const selectedTrack = currentTrack ?? currentQueue[0];
 
+  if (!selectedTrack) {
+    if (nowTitle) {
+      nowTitle.textContent = 'Fila vazia';
+    }
+
+    if (videoTitle) {
+      videoTitle.textContent = 'Fila vazia';
+    }
+
+    if (videoSubtitle) {
+      videoSubtitle.textContent = 'Nenhuma faixa selecionada';
+    }
+
+    updateRadioCopy();
+    return;
+  }
+
   if (nowTitle && selectedTrack) {
     nowTitle.textContent = selectedTrack.title;
   }
@@ -362,7 +393,7 @@ function updateNowPlaying() {
 function selectTrack(index) {
   const selectedTrack = currentQueue[index];
 
-  if (!selectedTrack) {
+  if (!selectedTrack || pendingRemovalTimers.has(getTrackKey(selectedTrack))) {
     return;
   }
 
@@ -376,6 +407,7 @@ function selectTrack(index) {
 function toggleRadio() {
   const radioOn = !isRadioOn();
 
+  clearPendingRemovals();
   radioButton?.setAttribute('aria-pressed', String(radioOn));
   radioButton?.classList.toggle('is-on', radioOn);
   if (radioButton) {
@@ -395,6 +427,7 @@ function toggleRadio() {
 function shuffleQueue() {
   const shuffleIsOn = shuffleButton?.getAttribute('aria-pressed') !== 'true';
 
+  clearPendingRemovals();
   shuffleButton?.setAttribute('aria-pressed', String(shuffleIsOn));
   shuffleButton?.classList.toggle('is-selected', shuffleIsOn);
 
@@ -418,12 +451,49 @@ function shuffleQueue() {
   window.setTimeout(() => shuffleButton?.classList.remove('is-shuffling'), 260);
 }
 
+function finalizeTrackRemoval(key) {
+  pendingRemovalTimers.delete(key);
+  currentQueue = currentQueue.filter((track) => getTrackKey(track) !== key);
+
+  if (currentTrack && getTrackKey(currentTrack) === key) {
+    currentTrack = currentQueue[0] ?? null;
+  }
+
+  renderQueue(currentQueue);
+}
+
+function restorePendingRemoval(row, key, button) {
+  const timer = pendingRemovalTimers.get(key);
+
+  if (timer) {
+    window.clearTimeout(timer);
+  }
+
+  pendingRemovalTimers.delete(key);
+  row?.classList.remove('is-removing');
+  if (button) {
+    button.textContent = 'Remover';
+  }
+}
+
 function toggleTrackState(button) {
   const row = button.closest('li');
-  const isRemoved = !row?.classList.contains('is-removed');
+  const key = row?.dataset.trackKey;
 
-  row?.classList.toggle('is-removed', isRemoved);
-  button.textContent = isRemoved ? 'Restaurar' : 'Remover';
+  if (!row || !key) {
+    return;
+  }
+
+  if (pendingRemovalTimers.has(key)) {
+    restorePendingRemoval(row, key, button);
+    return;
+  }
+
+  row.classList.add('is-removing');
+  button.textContent = 'Restaurar';
+
+  const timer = window.setTimeout(() => finalizeTrackRemoval(key), REMOVAL_DELAY_MS);
+  pendingRemovalTimers.set(key, timer);
 }
 
 openPlayerButton?.addEventListener('click', () => setPlayerOpen(true));
