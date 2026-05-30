@@ -477,6 +477,16 @@ button {
   box-shadow: inset 0 -3px 0 var(--red);
 }
 
+.home-p2-tabs button:hover {
+  transform: translateY(-2px);
+  background: #4d4b4b;
+}
+
+.home-p2-tabs button.is-selected:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+}
+
 .home-p2-tabs button.is-selected small {
   color: rgba(17, 17, 17, 0.62);
 }
@@ -567,8 +577,12 @@ button {
 }
 
 .home-p2-preview-list {
-  display: grid;
+  display: grid;  
   gap: 10px;
+}
+
+.home-p2-preview-list:hover {
+  transform: translateY(-2px);
 }
 
 .home-p2-preview span {
