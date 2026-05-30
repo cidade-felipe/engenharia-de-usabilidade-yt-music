@@ -8,7 +8,7 @@
       content="Wiki colaborativa da Avaliação 2 de Interface Humano-Computador sobre Engenharia de Usabilidade no YouTube Music."
     >
     <title>IHC | Engenharia de Usabilidade - YouTube Music</title>
-    <link rel="stylesheet" href="src/css/styles.css?v=20260527-ciclo2-theo">
+    <link rel="stylesheet" href="src/css/styles.css?v=20260530-prototipo-final">
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -38,6 +38,7 @@
         <nav class="toc" aria-label="Sumário">
           <a href="#ciclo-2">2.1 Protótipo final</a>
           <a href="#feedback-ciclo-2">2.2 Comentários finais</a>
+          <a href="#prototipo-navegavel">Protótipo navegável</a>
         </nav>
       </aside>
 
@@ -798,7 +799,7 @@
               <div class="prototype-screen prototype-screen--before">
                 <div class="prototype-screen-title">
                   <span>Antes</span>
-                  <strong>Ciclo 1: conteúdo agrupado por intenção de uso</strong>
+                  <strong>Ciclo 1: abas com prévia limitada</strong>
                 </div>
 
                 <div class="mock-window">
@@ -854,69 +855,93 @@
               <div class="prototype-screen prototype-screen--after">
                 <div class="prototype-screen-title">
                   <span>Depois</span>
-                  <strong>Ciclo 2: estado final com prévia estável</strong>
+                  <strong>Ciclo 2: prévias próprias em todas as abas</strong>
                 </div>
 
-                <div class="mock-window">
+                <div class="mock-window mock-window--final-p2">
                   <div class="mock-topbar">
                     <span class="mock-logo" aria-hidden="true"></span>
                     <span class="mock-search">Início</span>
                   </div>
 
                   <div
-                    class="mock-filter-row"
+                    class="mock-filter-row mock-filter-row--stateful"
                     aria-label="Filtros do protótipo"
                     data-tab-group
                     data-initial-tab="playlists"
-                    data-initial-preview="expanded"
                   >
-                    <button class="mock-tab" type="button" data-tab="musicas">Músicas</button>
-                    <button class="mock-tab" type="button" data-tab="albuns">Álbuns</button>
-                    <button class="mock-tab" type="button" data-tab="videos">Vídeos</button>
-                    <button class="mock-tab is-selected" type="button" data-tab="playlists">Playlists</button>
+                    <button class="mock-tab" type="button" data-tab="musicas">
+                      <span>Músicas</span>
+                      <small>4 itens</small>
+                    </button>
+                    <button class="mock-tab" type="button" data-tab="albuns">
+                      <span>Álbuns</span>
+                      <small>4 itens</small>
+                    </button>
+                    <button class="mock-tab" type="button" data-tab="videos">
+                      <span>Vídeos</span>
+                      <small>4 itens</small>
+                    </button>
+                    <button class="mock-tab is-selected" type="button" data-tab="playlists">
+                      <span>Playlists</span>
+                      <small>4 itens</small>
+                    </button>
                   </div>
 
-                  <div class="mock-section-label">
+                  <div class="mock-section-label mock-section-label--final">
                     <strong data-tab-title>Playlists recomendadas</strong>
                     <small data-tab-description>Playlists ficam agrupadas e mantêm cards consistentes.</small>
                   </div>
 
-                  <div class="mock-home-grid mock-home-grid--organized" data-tab-panel>
-                    <button class="mock-media-card" type="button">
-                      <span>Foco total</span>
-                      <small>Fixar</small>
-                    </button>
-                    <button class="mock-media-card" type="button">
-                      <span>Academia leve</span>
-                      <small>Reproduzir</small>
-                    </button>
-                    <button class="mock-media-card" type="button">
-                      <span>Descoberta controlada</span>
-                      <small>Ver prévia</small>
-                    </button>
-                    <button class="mock-media-card" type="button">
-                      <span>Estudo noturno</span>
-                      <small>Salvar</small>
-                    </button>
+                  <div class="mock-home-shell">
+                    <div
+                      class="mock-home-grid mock-home-grid--organized mock-home-grid--compact"
+                      data-tab-panel
+                      data-card-mode="final"
+                    >
+                      <button class="mock-media-card mock-media-card--final" type="button">
+                        <span>Foco total</span>
+                        <small>Fixar</small>
+                      </button>
+                      <button class="mock-media-card mock-media-card--final" type="button">
+                        <span>Academia leve</span>
+                        <small>Reproduzir</small>
+                      </button>
+                      <button class="mock-media-card mock-media-card--final" type="button">
+                        <span>Descoberta controlada</span>
+                        <small>Ver prévia</small>
+                      </button>
+                      <button class="mock-media-card mock-media-card--final" type="button">
+                        <span>Estudo noturno</span>
+                        <small>Salvar</small>
+                      </button>
+                    </div>
+
+                    <div class="mock-preview-panel" data-preview-panel>
+                      <div class="mock-preview-heading">
+                        <strong data-preview-title>Prévia de playlists</strong>
+                        <small>Sem abrir a página completa</small>
+                      </div>
+                      <div class="mock-preview-list" data-preview-list>
+                        <span>Foco total: 3 primeiras faixas</span>
+                        <span>Academia leve: 28 min</span>
+                        <span>Descoberta controlada: recomendações separadas</span>
+                      </div>
+                    </div>
                   </div>
 
-                  <div class="mock-quick-actions" aria-label="Ações rápidas do protótipo">
+                  <div class="mock-quick-actions mock-quick-actions--final" aria-label="Ações rápidas do protótipo">
                     <button type="button">Adicionar à playlist</button>
                     <button type="button">Enviar para fila</button>
-                    <button type="button" data-preview-toggle>Recolher prévia</button>
-                  </div>
-
-                  <div class="mock-progressive-preview is-expanded" data-progressive-preview>
-                    <strong>Prévia rápida sem trocar de aba</strong>
-                    <span data-preview-copy>Mostra as primeiras músicas da playlist antes de abrir a página completa.</span>
+                    <button type="button">Abrir prévia completa</button>
                   </div>
                 </div>
               </div>
             </div>
 
             <p class="prototype-impact">
-              Resultado esperado: o Ciclo 2 mantém o agrupamento do Ciclo 1, mas explicita melhor os estados finais e
-              evita saltos visuais durante a divulgação progressiva.
+              Resultado esperado: o Ciclo 2 mantém o agrupamento do Ciclo 1, mas diferencia o estado final com prévia
+              contextual por aba, ações rápidas visíveis e menos dúvida entre itens da aba e prévia complementar.
             </p>
           </article>
 
@@ -928,7 +953,7 @@
             <p>Comentários íntegros recebidos no Ciclo 2 e correção final priorizando o feedback mais recente.</p>
           </div>
 
-          <div class="feedback-grid feedback-grid--comments">
+          <div class="feedback-grid feedback-grid--comments feedback-grid--cycle2">
             <article class="feedback-card feedback-card--comment">
               <p class="problem-label">Karolini Roncani Pedrozo</p>
               <div class="feedback-comment">
@@ -975,7 +1000,7 @@
               </div>
             </article>
 
-            <article class="feedback-card feedback-card--comment">
+            <article class="feedback-card feedback-card--comment feedback-card--featured">
               <p class="problem-label">Theo de Souza Gerhardt</p>
               <div class="feedback-comment">
                 <p>
@@ -1030,9 +1055,25 @@
             </ul>
           </article>
         </section>
+
+        <section id="prototipo-navegavel" class="doc-section">
+          <article class="final-prototype-cta">
+            <div>
+              <p class="section-index">Protótipo Final Navegável</p>
+              <h2>Cópia funcional das telas finais</h2>
+              <p>
+                Versão em tela cheia com a home e a fila expandida, já incorporando os ajustes do último ciclo:
+                organização por intenção de uso, rádio automática explícita, sugestões separadas e remoção reversível.
+              </p>
+            </div>
+            <a class="prototype-launch-button" href="prototipo-final.html">
+              Abrir protótipo final
+            </a>
+          </article>
+        </section>
       </main>
     </div>
 
-    <script src="src/js/script.js?v=20260527-ciclo2-theo"></script>
+    <script src="src/js/script.js?v=20260530-prototipo-final"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 # Mapa detalhado do projeto
 
-Ultima atualizacao: 25/05/2026.
+Ultima atualizacao: 30/05/2026.
 
 ## Visao geral
 
@@ -28,18 +28,21 @@ O impacto pratico das melhorias e reduzir atrito em tarefas recorrentes. Em term
 ```text
 .
 |-- index.html
+|-- prototipo-final.html
 |-- README.md
 |-- codex.md
 |-- src
 |   |-- css
-|   |   `-- styles.css
+|   |   |-- styles.css
+|   |   `-- prototipo-final.css
 |   |-- img
 |   |   |-- fila-antes.png
 |   |   |-- fila-depois.png
 |   |   |-- notificacao-rapida.png
 |   |   `-- tela-inicial-poluida.png
 |   `-- js
-|       `-- script.js
+|       |-- script.js
+|       `-- prototipo-final.js
 |-- conteudo_aula.md
 |-- instrucoes_agente.md
 `-- instrucoes_trabalho.md
@@ -49,9 +52,25 @@ O impacto pratico das melhorias e reduzir atrito em tarefas recorrentes. Em term
 
 `index.html` concentra o conteudo da entrega e a estrutura dos prototipos. Ele tambem define os atributos `data-*` usados pelo JavaScript para ativar interacoes sem acoplar comportamento a textos visiveis.
 
+`prototipo-final.html` e a copia navegavel em tela cheia das duas telas finais inspiradas nos prints do YouTube Music. A primeira tela representa a home com organizacao resolvida e acesso ao player expandido pelo botao do canto inferior direito. A segunda tela representa o player/fila expandido e volta para a home pelo botao equivalente no canto inferior direito.
+
 `src/css/styles.css` concentra a identidade visual, layout responsivo, comparacoes Antes/Depois, mockups do YouTube Music, estados de radio automatica, toasts, barra de progresso e animacoes sutis.
 
+`src/css/prototipo-final.css` isola a interface de tela cheia do prototipo final. Isso evita que estilos do relatorio academico vazem para a copia visual do YouTube Music e reduz risco de regressao no restante da entrega.
+
+Na tela expandida do prototipo final, o player de video deve respeitar a largura da propria coluna (`width: min(100%, 760px)`) para nao invadir a fila lateral. A lista fica em uma coluna separada e com `z-index` local, preservando legibilidade mesmo em telas largas ou com zoom do navegador.
+
 `src/js/script.js` concentra comportamento progressivo: menu lateral, progresso de leitura, efeitos de revelacao, brilho leve nos cards, toggle da Radio Automatica, remocao com desfazer no primeiro prototipo, restauracao fixa no prototipo final, restauracao de estado, abas do prototipo e previa progressiva.
+
+`src/js/prototipo-final.js` controla o prototipo final em tela cheia: alternancia entre home e player expandido, estado da Radio Automatica no player inferior e remocao/restauracao fixa das faixas da fila.
+
+O prototipo final tambem demonstra a correcao do aleatorio. O botao com icone de aleatorio fica ao lado do chip de escopo da fila. Com `Radio off`, ele embaralha apenas as faixas ja presentes na playlist atual. Com `Radio on`, o chip muda para `Playlist + Radio rock` e cada clique no aleatorio troca a fila por recomendacoes de rock nacional e internacional. Nessa acao, o bloco `Sugestoes futuras da Radio` tambem muda: as duas sugestoes exibidas ali sao sempre promovidas para as duas primeiras posicoes da fila, preservando a relacao entre preview e resultado.
+
+Na fila expandida do prototipo final, cada faixa e clicavel e passa a ser a musica atual. O titulo do player grande e o texto do player inferior devem acompanhar essa selecao. O botao `Remover` continua separado da selecao para manter controle do usuario sem acao acidental.
+
+O botao de aleatorio do prototipo final deve expor estado selecionado. Ao clicar, ele alterna `aria-pressed` e recebe destaque visual persistente, reforcando visibilidade do status.
+
+A home do `prototipo-final.html` deve espelhar o `Depois` do P2 no Ciclo 2: abas `Musicas`, `Albuns`, `Videos` e `Playlists`, cards consistentes e painel de previa contextual. No prototipo em tela cheia, apenas o conteudo util desse P2 deve ocupar o palco principal; nao use uma moldura interna ou uma miniatura do mockup, porque isso desperdiça o espaco da tela e enfraquece a demonstracao. A faixa de titulo da home final deve usar a largura util inteira, sem texto explicativo secundario ao lado e sem grandes vazios laterais. As abas superiores devem ter o mesmo tamanho, usando quatro colunas iguais, para manter consistencia visual entre os controles de categoria. No corpo da home, os cards principais devem ocupar a largura equivalente aos tres primeiros tabs, enquanto o painel lateral de informacoes ocupa apenas a largura equivalente ao quarto tab.
 
 `README.md` explica objetivo, execucao e principais decisoes do projeto para quem vai abrir ou avaliar a entrega.
 
@@ -76,6 +95,8 @@ O Ciclo 2 e o fechamento. Ele repete os dois comparativos la embaixo e registra,
 
 Essa separacao e importante porque evita confundir evolucao historica com estado final. O avaliador consegue ver o que existia no ciclo anterior e o que mudou apos os feedbacks. Sempre que o `Depois` do Ciclo 1 mudar, o `Antes` do Ciclo 2 deve espelhar esse estado atualizado.
 
+A secao 2.2 usa um layout proprio para aproveitar melhor o espaco horizontal: Theo fica em destaque na coluna esquerda por ser o comentario mais longo, enquanto Karolini e Luis ficam empilhados na coluna direita. O card maior estica ate a mesma altura visual da coluna direita, evitando um vazio abaixo dele. Em telas menores, esse bloco volta para uma coluna, preservando legibilidade.
+
 ## Interacoes atuais do Ciclo 2
 
 No P1 do Ciclo 2, os dois lados sao interativos:
@@ -89,7 +110,8 @@ No P2 do Ciclo 2, os dois lados tambem sao interativos:
 
 - O lado `Antes` mostra o comportamento do Ciclo 1, com abas funcionais e previa progressiva.
 - O lado `Depois` inicia em `Playlists`, porque esse e o estado final mais relevante para provar que o agrupamento ficou consistente.
-- As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, descricao, cards e texto da previa.
+- O lado `Depois` usa um painel fixo de previa contextual, separado dos cards principais. Isso diferencia claramente o Ciclo 2 do Ciclo 1 e mostra que `Musicas`, `Albuns`, `Videos` e `Playlists` possuem evidencia propria sem abrir outra tela.
+- As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, descricao, cards e itens do painel de previa.
 
 ## Decisoes de design
 

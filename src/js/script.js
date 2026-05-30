@@ -14,6 +14,12 @@ const tabContent = {
     title: 'Continuar ouvindo',
     description: 'Faixas recentes, com tamanho consistente e ações rápidas.',
     preview: 'Mostra 4 faixas recentes e permite salvar sem quebrar o fluxo.',
+    previewTitle: 'Prévia de músicas',
+    previewItems: [
+      'Faixa foco 01: salvar ou adicionar',
+      'Faixa foco 02: enviar para fila',
+      'Faixa foco 03: continuar sem trocar de tela',
+    ],
     items: [
       ['Faixa foco 01', 'Adicionar à playlist'],
       ['Faixa foco 02', 'Enviar para fila'],
@@ -25,6 +31,12 @@ const tabContent = {
     title: 'Álbuns em destaque',
     description: 'Prévia de álbuns sem misturar vídeos, covers e playlists automáticas.',
     preview: 'Expande as primeiras faixas do álbum selecionado sem trocar de aba.',
+    previewTitle: 'Prévia de álbuns',
+    previewItems: [
+      'Deep Work Sessions: 12 faixas',
+      'Coding Night: 42 min',
+      'Focus Piano: adicionar à biblioteca',
+    ],
     items: [
       ['Deep Work Sessions', 'Ver faixas'],
       ['Coding Night', 'Salvar álbum'],
@@ -36,6 +48,12 @@ const tabContent = {
     title: 'Vídeos musicais',
     description: 'Conteúdo em vídeo aparece separado, com ação rápida para assistir depois.',
     preview: 'Mostra duração, canal e opção de assistir depois sem poluir a tela inicial.',
+    previewTitle: 'Prévia de vídeos',
+    previewItems: [
+      'Clipe oficial: 3min 48s',
+      'Live session: assistir depois',
+      'Performance: enviar para fila',
+    ],
     items: [
       ['Clipe oficial', 'Assistir depois'],
       ['Live session', 'Abrir prévia'],
@@ -47,6 +65,12 @@ const tabContent = {
     title: 'Playlists recomendadas',
     description: 'Playlists ficam agrupadas e mantêm cards consistentes.',
     preview: 'Mostra as primeiras músicas da playlist antes de abrir a página completa.',
+    previewTitle: 'Prévia de playlists',
+    previewItems: [
+      'Foco total: 3 primeiras faixas',
+      'Academia leve: 28 min',
+      'Descoberta controlada: recomendações separadas',
+    ],
     items: [
       ['Foco total', 'Fixar'],
       ['Academia leve', 'Reproduzir'],
@@ -419,6 +443,8 @@ function renderTab(windowElement, tabName) {
   const panel = windowElement.querySelector('[data-tab-panel]');
   const previewCopy = windowElement.querySelector('[data-preview-copy]');
   const preview = windowElement.querySelector('[data-progressive-preview]');
+  const previewTitle = windowElement.querySelector('[data-preview-title]');
+  const previewList = windowElement.querySelector('[data-preview-list]');
 
   if (title) {
     title.textContent = content.title;
@@ -430,6 +456,19 @@ function renderTab(windowElement, tabName) {
 
   if (previewCopy) {
     previewCopy.textContent = content.preview;
+  }
+
+  if (previewTitle) {
+    previewTitle.textContent = content.previewTitle ?? 'Prévia rápida';
+  }
+
+  if (previewList) {
+    previewList.replaceChildren();
+    (content.previewItems ?? []).forEach((item) => {
+      const previewItem = document.createElement('span');
+      previewItem.textContent = item;
+      previewList.append(previewItem);
+    });
   }
 
   setPreviewState(windowElement, false);
@@ -444,7 +483,7 @@ function renderTab(windowElement, tabName) {
     const cardTitle = document.createElement('span');
     const cardAction = document.createElement('small');
 
-    card.className = 'mock-media-card';
+    card.className = panel.dataset.cardMode === 'final' ? 'mock-media-card mock-media-card--final' : 'mock-media-card';
     card.type = 'button';
     cardTitle.textContent = label;
     cardAction.textContent = action;
