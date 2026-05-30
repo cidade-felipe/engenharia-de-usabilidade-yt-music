@@ -600,6 +600,7 @@ button {
 
 .home-p2-preview span:hover {
   background: #4d4b4b;
+  cursor: pointer;
 }
 
 .home-p2-actions {
