@@ -538,6 +538,10 @@ button {
   text-align: left;
 }
 
+.home-p2-card:hover {
+  transform: translateY(-2px);
+}
+
 .home-p2-card strong,
 .home-p2-card small {
   display: block;
@@ -579,10 +583,6 @@ button {
 .home-p2-preview-list {
   display: grid;  
   gap: 10px;
-}
-
-.home-p2-preview-list:hover {
-  transform: translateY(-2px);
 }
 
 .home-p2-preview span {
