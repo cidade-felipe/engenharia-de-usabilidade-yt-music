@@ -486,6 +486,7 @@ button {
 .home-p2-tabs button.is-selected:hover {
   transform: translateY(-2px);
   background: #ffffff;
+  color: #111111;
 }
 
 .home-p2-tabs button.is-selected small {
@@ -595,6 +596,10 @@ button {
   font-size: clamp(0.88rem, 1.2vw, 1.05rem);
   font-weight: 900;
   line-height: 1.25;
+}
+
+.home-p2-preview span:hover {
+  background: #4d4b4b;
 }
 
 .home-p2-actions {
