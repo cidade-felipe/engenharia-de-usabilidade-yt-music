@@ -19,7 +19,8 @@ const homeTabTitle = document.querySelector('[data-home-tab-title]');
 const homeCardPanel = document.querySelector('[data-home-card-panel]');
 const homePreviewTitle = document.querySelector('[data-home-preview-title]');
 const homePreviewList = document.querySelector('[data-home-preview-list]');
-const REMOVAL_DELAY_MS = 3000;
+const restoreAllButton = document.querySelector('[data-restore-all]');
+const REMOVAL_DELAY_MS = 7000;
 
 const homeTabContent = {
   musicas: {
@@ -254,6 +255,14 @@ function getTrackKey(track) {
 function clearPendingRemovals() {
   pendingRemovalTimers.forEach((timer) => window.clearTimeout(timer));
   pendingRemovalTimers.clear();
+  queueList?.querySelectorAll('li.is-removing').forEach((item) => {
+    item.classList.remove('is-removing');
+    const action = item.querySelector('[data-track-action]');
+
+    if (action) {
+      action.textContent = 'Remover';
+    }
+  });
 }
 
 function renderHomeTab(tabName) {
@@ -496,10 +505,33 @@ function toggleTrackState(button) {
   pendingRemovalTimers.set(key, timer);
 }
 
+function restorePrototypeState() {
+  clearPendingRemovals();
+
+  radioQueueIndex = 0;
+  currentRadioPriorityPair = radioPriorityPairs[0];
+  currentQueue = [...playlistTracks];
+  currentTrack = currentQueue[0] ?? null;
+
+  radioButton?.setAttribute('aria-pressed', 'false');
+  radioButton?.classList.remove('is-on');
+  if (radioButton) {
+    radioButton.textContent = 'Rádio off';
+  }
+
+  shuffleButton?.setAttribute('aria-pressed', 'false');
+  shuffleButton?.classList.remove('is-selected', 'is-shuffling');
+
+  renderRadioPreview();
+  renderQueue(currentQueue);
+  renderHomeTab('musicas');
+}
+
 openPlayerButton?.addEventListener('click', () => setPlayerOpen(true));
 closePlayerButton?.addEventListener('click', () => setPlayerOpen(false));
 radioButton?.addEventListener('click', toggleRadio);
 shuffleButton?.addEventListener('click', shuffleQueue);
+restoreAllButton?.addEventListener('click', restorePrototypeState);
 
 homeTabGroup?.addEventListener('click', (event) => {
   const tab = event.target.closest('[data-home-tab]');

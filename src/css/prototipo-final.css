@@ -1064,7 +1064,7 @@ button {
 
 .queue-list li.is-removing::before {
   opacity: 1;
-  animation: queueRemoveFill 3s linear forwards;
+  animation: queueRemoveFill 7s linear forwards;
 }
 
 .queue-list li.is-removing strong,
@@ -1395,6 +1395,39 @@ button {
   display: grid;
 }
 
+.restore-all-button {
+  position: fixed;
+  right: 22px;
+  bottom: calc(var(--player) + 18px);
+  z-index: 8;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 0, 51, 0.7);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111111;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.42);
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.yt-prototype.is-player-open .restore-all-button {
+  display: inline-flex;
+}
+
+.restore-all-button:hover,
+.restore-all-button:focus-visible {
+  border-color: #ffffff;
+  background: var(--red);
+  color: #ffffff;
+  outline: 0;
+  transform: translateY(-2px);
+}
+
 @media (max-width: 1180px) {
   :root {
     --sidebar: 238px;
@@ -1489,5 +1522,10 @@ button {
 
   .queue-chip {
     display: none;
+  }
+
+  .restore-all-button {
+    right: 16px;
+    bottom: 150px;
   }
 }

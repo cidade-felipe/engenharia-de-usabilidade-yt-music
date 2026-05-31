@@ -1,6 +1,6 @@
 # Mapa detalhado do projeto
 
-Ultima atualizacao: 30/05/2026.
+Ultima atualizacao: 31/05/2026.
 
 ## Visao geral
 
@@ -33,7 +33,7 @@ O impacto pratico das melhorias e reduzir atrito em tarefas recorrentes. Em term
 |-- codex.md
 |-- src
 |   |-- css
-|   |   |-- styles.css
+|   |   |-- index.css
 |   |   `-- prototipo-final.css
 |   |-- img
 |   |   |-- fila-antes.png
@@ -54,19 +54,19 @@ O impacto pratico das melhorias e reduzir atrito em tarefas recorrentes. Em term
 
 `prototipo-final.html` e a copia navegavel em tela cheia das duas telas finais inspiradas nos prints do YouTube Music. A primeira tela representa a home com organizacao resolvida e acesso ao player expandido pelo botao do canto inferior direito. A segunda tela representa o player/fila expandido e volta para a home pelo botao equivalente no canto inferior direito.
 
-`src/css/styles.css` concentra a identidade visual, layout responsivo, comparacoes Antes/Depois, mockups do YouTube Music, estados de radio automatica, toasts, barra de progresso e animacoes sutis.
+`src/css/index.css` concentra a identidade visual, layout responsivo, comparacoes Antes/Depois, mockups do YouTube Music, estados de radio automatica, toasts, barra de progresso, remocao pendente nos mocks do Ciclo 2 e animacoes sutis.
 
 `src/css/prototipo-final.css` isola a interface de tela cheia do prototipo final. Isso evita que estilos do relatorio academico vazem para a copia visual do YouTube Music e reduz risco de regressao no restante da entrega.
 
 Na tela expandida do prototipo final, o player de video deve respeitar a largura da propria coluna (`width: min(100%, 760px)`) para nao invadir a fila lateral. A lista fica em uma coluna separada e com `z-index` local, preservando legibilidade mesmo em telas largas ou com zoom do navegador.
 
-`src/js/script.js` concentra comportamento progressivo: menu lateral, progresso de leitura, efeitos de revelacao, brilho leve nos cards, toggle da Radio Automatica, remocao com desfazer no primeiro prototipo, restauracao fixa no prototipo final, restauracao de estado, abas do prototipo e previa progressiva.
+`src/js/script.js` concentra comportamento progressivo: menu lateral, progresso de leitura, efeitos de revelacao, brilho leve nos cards, toggle da Radio Automatica, remocao com desfazer no primeiro prototipo, remocao pendente de 7 segundos no Ciclo 2, restauracao de estado, abas do prototipo e previa progressiva. Ele tambem separa os dados historicos das abas do Ciclo 1 dos dados finais do Ciclo 2 por meio de `data-tab-source="final"`, evitando que ajustes finais alterem os mocks antigos.
 
 `src/js/prototipo-final.js` controla o prototipo final em tela cheia: alternancia entre home e player expandido, abas da home final, estado da Radio Automatica no player inferior, aleatorio contextual, selecao da faixa atual e remocao pendente das faixas da fila.
 
 O prototipo final tambem demonstra a correcao do aleatorio. O botao com icone de aleatorio fica ao lado do chip de escopo da fila. Com `Radio off`, ele embaralha apenas as faixas ja presentes na playlist atual. Com `Radio on`, o chip muda para `Playlist + Radio rock` e cada clique no aleatorio troca a fila por recomendacoes de rock nacional e internacional. Nessa acao, o bloco `Sugestoes futuras da Radio` tambem muda: as duas sugestoes exibidas ali sao sempre promovidas para as duas primeiras posicoes da fila, preservando a relacao entre preview e resultado.
 
-Na fila expandida do prototipo final, cada faixa e clicavel e passa a ser a musica atual. O titulo do player grande e o texto do player inferior devem acompanhar essa selecao. O botao `Remover` continua separado da selecao para manter controle do usuario sem acao acidental. Ao remover uma faixa, ela entra em estado pendente por 3 segundos: fica riscada, o botao vira `Restaurar` e um preenchimento vermelho progride pela linha. Se o usuario nao restaurar dentro desse intervalo, a faixa e removida definitivamente da fila.
+Na fila expandida do prototipo final, cada faixa e clicavel e passa a ser a musica atual. O titulo do player grande e o texto do player inferior devem acompanhar essa selecao. O botao `Remover` continua separado da selecao para manter controle do usuario sem acao acidental. Ao remover uma faixa, ela entra em estado pendente por 7 segundos: fica riscada, o botao vira `Restaurar` e um preenchimento vermelho progride pela linha. Se o usuario nao restaurar dentro desse intervalo, a faixa e removida definitivamente da fila. A tela expandida tambem possui um botao fixo `Restaurar tudo`, exibido acima do player inferior, que limpa remocoes pendentes e devolve fila, Radio Automatica, aleatorio e aba inicial ao estado padrao.
 
 O botao de aleatorio do prototipo final deve expor estado selecionado. Ao clicar, ele alterna `aria-pressed` e recebe destaque visual persistente, reforcando visibilidade do status.
 
@@ -108,14 +108,15 @@ A secao 2.2 usa um layout proprio para aproveitar melhor o espaco horizontal: Th
 No P1 do Ciclo 2, os dois lados sao interativos:
 
 - O lado `Antes` simula o estado do Ciclo 1, com toggle de Radio Automatica, preview semitransparente e remocao com desfazer em uma faixa.
-- O lado `Depois` simula o estado final do Ciclo 2, com toggle de Radio Automatica, todos os botoes `Remover`, preview final mais contrastada e restauracao fixa por faixa.
-- Os botoes `Remover` podem ser clicados um por um. Cada faixa permanece na lista com estado riscado/desabilitado, e o botao da propria faixa vira `Restaurar`.
+- O lado `Depois` simula o estado final do Ciclo 2, com toggle de Radio Automatica, todos os botoes `Remover`, preview final mais contrastada e exclusao pendente por faixa.
+- Os botoes `Remover` podem ser clicados um por um. Cada faixa entra em estado pendente por 7 segundos: a linha fica riscada, o preenchimento vermelho avanca pela faixa e o botao vira `Restaurar`. Se o usuario nao restaurar nesse intervalo, a faixa some definitivamente do mock.
 - Cada lado possui um botao de restaurar estado inicial abaixo da imagem, fora do mockup, para deixar claro que e uma acao de reset da demonstracao.
 
 No P2 do Ciclo 2, os dois lados tambem sao interativos:
 
 - O lado `Antes` mostra o comportamento do Ciclo 1, com abas funcionais e previa progressiva.
-- O lado `Depois` demonstra o agrupamento por intencao de uso com tabs equivalentes em tamanho e cards consistentes.
+- O lado `Depois` demonstra o estado final do P2: titulo `Escolha a dedo`, tabs equivalentes em tamanho, 6 itens por aba, cards consistentes e painel lateral de informacoes.
+- No `index.html`, o mock demonstrativo do lado `Depois` posiciona o painel de informacoes abaixo dos cards para melhorar leitura e evitar que a miniatura fique apertada. Essa e uma decisao de apresentacao do relatorio; no `prototipo-final.html`, o painel continua ocupando a coluna lateral do layout completo.
 - No prototipo final em tela cheia, o P2 inicia em `Musicas`, com o titulo `Escolha a dedo`, 6 cards e um painel lateral chamado `Informacoes das musicas`.
 - O painel lateral substitui a descricao solta por informacoes objetivas sobre os itens da aba ativa, como duracao de musicas, quantidade de faixas em albuns e quantidade de faixas em playlists.
 - As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, cards e itens do painel de informacoes. Nao ha mais descricao textual secundaria ao lado do titulo.
@@ -137,21 +138,21 @@ Os controles interativos usam atributos `data-*`, como `data-radio-toggle`, `dat
 O JS foi escrito em funcoes pequenas:
 
 - `prepareRadioPrototype`, controla estado da Radio Automatica e atualiza copy da preview.
-- `prepareUndoFeedback`, controla remocao temporaria com desfazer no Ciclo 1, restauracao fixa por faixa no Ciclo 2 e reset dos prototipos.
-- `renderTab`, troca conteudo das abas.
+- `prepareUndoFeedback`, controla remocao temporaria com desfazer no Ciclo 1, remocao pendente com progresso vermelho no Ciclo 2 e reset dos prototipos.
+- `renderTab`, troca conteudo das abas e escolhe entre os dados historicos e os dados finais conforme o `data-tab-source` do mock.
 - `preparePrototypeTabs`, conecta botoes de aba ao conteudo.
 - `prepareProgressivePreview`, alterna expansao da previa.
 - `renderHomeTab`, no `prototipo-final.js`, troca os dados da home final entre musicas, albuns, videos e playlists.
 - `renderQueue`, no `prototipo-final.js`, reconstrui a fila expandida com faixa atual, capa, artista, duracao e botao de remocao.
 - `shuffleQueue`, no `prototipo-final.js`, alterna o estado visual do aleatorio e muda a fila conforme a Radio Automatica esteja ligada ou desligada.
 - `selectTrack`, no `prototipo-final.js`, permite clicar em uma faixa da fila para torna-la a musica atual no player grande e no player inferior.
-- `toggleTrackState`, `restorePendingRemoval` e `finalizeTrackRemoval`, no `prototipo-final.js`, formam o fluxo de exclusao pendente: remover inicia a contagem visual de 3 segundos, restaurar cancela o timer e finalizar retira a faixa da fila.
+- `toggleTrackState`, `restorePendingRemoval` e `finalizeTrackRemoval`, no `prototipo-final.js`, formam o fluxo de exclusao pendente: remover inicia a contagem visual de 7 segundos, restaurar cancela o timer e finalizar retira a faixa da fila. A funcao `restorePrototypeState` restaura a experiencia completa pelo botao fixo `Restaurar tudo`.
 
 ## Pontos de atencao
 
 O site deve continuar funcionando abrindo `index.html` diretamente no navegador. Por isso, links para CSS, JS e imagens devem ser relativos e respeitar caixa de letras. Isso e essencial para GitHub Pages.
 
-Sempre que `src/css/prototipo-final.css` ou `src/js/prototipo-final.js` forem alterados, atualize tambem a query string no `prototipo-final.html`. Isso reduz risco de o GitHub Pages ou o navegador manterem uma versao antiga em cache. No estado atualizado em 30/05/2026, CSS e JS do prototipo final usam `v=20260530-remove-progress`.
+Sempre que `src/css/index.css` ou `src/js/script.js` forem alterados, atualize tambem as query strings do `index.html`. Sempre que `src/css/prototipo-final.css` ou `src/js/prototipo-final.js` forem alterados, atualize tambem a query string no `prototipo-final.html`. Isso reduz risco de o GitHub Pages ou o navegador manterem uma versao antiga em cache. No estado atualizado em 31/05/2026, CSS e JS do `index.html` usam `v=20260531-restore-all-7s`, enquanto CSS e JS do prototipo final usam `v=20260531-restore-all-7s`.
 
 Evite transformar o projeto em aplicacao com build, a menos que exista uma necessidade real. Para esta entrega, simplicidade e portabilidade sao vantagens.
 
@@ -169,8 +170,8 @@ Depois de qualquer alteracao, validar:
 - Abertura local do `index.html`, conferindo se CSS e JS carregam.
 - Abertura local do `prototipo-final.html`, conferindo a home final com 6 cards por aba, o painel lateral e a alternancia para a fila expandida.
 - Publicacao no GitHub Pages, conferindo se os caminhos relativos funcionam.
-- Ciclo 2 P1, testar Radio Automatica, Remover, estado riscado/desabilitado, Restaurar por faixa e restauracao geral.
-- Ciclo 2 P2, testar todas as abas e a previa progressiva nos dois lados.
+- Ciclo 2 P1, testar Radio Automatica, Remover, preenchimento vermelho de 7 segundos, Restaurar por faixa, exclusao definitiva e restauracao geral pelo botao fixo.
+- Ciclo 2 P2, testar todas as abas no lado `Depois`, conferindo 6 itens por aba, cards consistentes e painel lateral de informacoes alinhado ao prototipo final.
 
 ## Criterio de qualidade
 

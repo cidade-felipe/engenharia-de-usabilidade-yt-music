@@ -867,6 +867,7 @@ dd {
 }
 
 .mock-queue li {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 2px;
@@ -877,6 +878,7 @@ dd {
   border-radius: 8px;
   background: #202020;
   overflow: hidden;
+  isolation: isolate;
   transition: max-height 0.24s ease, opacity 0.2s ease, padding 0.2s ease, transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -888,6 +890,26 @@ dd {
   margin-bottom: 4px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.18);
+  position: relative;
+  z-index: 1;
+}
+
+.mock-queue li::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 0;
+  width: 0;
+  background: linear-gradient(90deg, rgba(215, 25, 32, 0.52), rgba(215, 25, 32, 0.18));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mock-queue li > span,
+.mock-queue li > small,
+.mock-queue li > button {
+  position: relative;
+  z-index: 1;
 }
 
 .mock-queue li.is-intruder {
@@ -921,6 +943,44 @@ dd {
 
 .mock-queue li.is-soft-removed small::after {
   content: ' - removida';
+}
+
+.mock-queue li.is-removing {
+  border-color: rgba(215, 25, 32, 0.62);
+  background: #181818;
+}
+
+.mock-queue li.is-removing::after {
+  opacity: 1;
+  animation: mockRemoveFill 7s linear forwards;
+}
+
+.mock-queue li.is-removing > span {
+  color: rgba(255, 255, 255, 0.58);
+  text-decoration: line-through;
+}
+
+.mock-queue li.is-removing small {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.mock-queue li.is-removing small::after {
+  content: ' - removendo';
+}
+
+.mock-queue li.is-confirmed-removed {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(8px) scale(0.985);
+}
+
+@keyframes mockRemoveFill {
+  to {
+    width: 100%;
+  }
 }
 
 .mock-inline-action {
@@ -1218,6 +1278,18 @@ dd {
   text-align: left;
 }
 
+.mock-filter-row--final {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mock-filter-row--final .mock-tab {
+  min-width: 0;
+  min-height: 64px;
+  padding: 10px 12px;
+}
+
 .mock-filter-row--stateful .mock-tab small {
   color: rgba(255, 255, 255, 0.52);
   font-size: 0.64rem;
@@ -1259,13 +1331,39 @@ dd {
   padding: 0;
 }
 
+.mock-home-shell--final-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.mock-home-shell--final-grid .mock-home-grid--compact {
+  grid-column: 1 / 4;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mock-home-shell--final-grid .mock-preview-panel {
+  grid-column: 4 / 5;
+}
+
+.mock-home-shell--preview-below .mock-home-grid--compact {
+  grid-column: 1 / -1;
+}
+
+.mock-home-shell--preview-below .mock-preview-panel {
+  grid-column: 1 / -1;
+}
+
+.mock-home-shell--preview-below .mock-preview-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .mock-home-grid--compact {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: start;
 }
 
 .mock-media-card--final {
-  min-height: 86px;
+  min-height: 108px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background:
     linear-gradient(145deg, rgba(44, 44, 44, 0.98), rgba(18, 18, 18, 0.96));
@@ -1548,6 +1646,11 @@ dd {
     grid-template-columns: 1fr;
   }
 
+  .mock-home-shell--final-grid .mock-home-grid--compact,
+  .mock-home-shell--final-grid .mock-preview-panel {
+    grid-column: auto;
+  }
+
   .feedback-grid--cycle2 {
     grid-template-columns: minmax(0, 1fr) minmax(230px, 0.86fr);
   }
@@ -1696,6 +1799,18 @@ dd {
   }
 
   .mock-home-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .mock-filter-row--final {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mock-home-shell--final-grid .mock-home-grid--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mock-home-shell--preview-below .mock-preview-list {
     grid-template-columns: 1fr;
   }
 

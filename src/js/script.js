@@ -80,6 +80,97 @@ const tabContent = {
   },
 };
 
+const finalTabContent = {
+  musicas: {
+    title: 'Escolha a dedo',
+    description: '',
+    preview: '',
+    previewTitle: 'Informações das músicas',
+    previewItems: [
+      'In the End: 3:36',
+      'Leave Out All the Rest: 3:29',
+      'Numb: 3:07',
+      'One More Light: 4:15',
+      'Papercut: 3:05',
+      'Crawling: 3:29',
+    ],
+    items: [
+      ['In the End', 'Ouvir música'],
+      ['Leave Out All the Rest', 'Ouvir música'],
+      ['Numb', 'Ouvir música'],
+      ['One More Light', 'Ouvir música'],
+      ['Papercut', 'Ouvir música'],
+      ['Crawling', 'Ouvir música'],
+    ],
+  },
+  albuns: {
+    title: 'Escolha a dedo',
+    description: '',
+    preview: '',
+    previewTitle: 'Informações dos álbuns',
+    previewItems: [
+      'Meteora: 13 faixas',
+      'Hybrid Theory: 12 faixas',
+      'Minutes to Midnight: 12 faixas',
+      'A Thousand Suns: 15 faixas',
+      'Living Things: 12 faixas',
+      'One More Light: 10 faixas',
+    ],
+    items: [
+      ['Meteora', 'Ouvir álbum'],
+      ['Hybrid Theory', 'Ouvir álbum'],
+      ['Minutes to Midnight', 'Ouvir álbum'],
+      ['A Thousand Suns', 'Ouvir álbum'],
+      ['Living Things', 'Ouvir álbum'],
+      ['One More Light', 'Ouvir álbum'],
+    ],
+  },
+  videos: {
+    title: 'Escolha a dedo',
+    description: '',
+    preview: '',
+    previewTitle: 'Informações dos vídeos',
+    previewItems: [
+      'What I\'ve Done: 3min 25s',
+      'Faint: 2min 42s',
+      'Breaking the Habit: 3min 16s',
+      'New Divide: 4min 30s',
+      'Somewhere I Belong: 3min 33s',
+      'Bleed It Out: 2min 44s',
+    ],
+    items: [
+      ['What I\'ve Done', 'Assistir vídeo'],
+      ['Faint', 'Assistir vídeo'],
+      ['Breaking the Habit', 'Assistir vídeo'],
+      ['New Divide', 'Assistir vídeo'],
+      ['Somewhere I Belong', 'Assistir vídeo'],
+      ['Bleed It Out', 'Assistir vídeo'],
+    ],
+  },
+  playlists: {
+    title: 'Escolha a dedo',
+    description: '',
+    preview: '',
+    previewTitle: 'Informações das playlists',
+    previewItems: [
+      'Estudos: 15 faixas',
+      'Academia: 20 faixas',
+      'Dormir: 10 faixas',
+      'Rock + MPB: 40 faixas',
+      'Rock: 25 faixas',
+      'MPB: 18 faixas',
+    ],
+    items: [
+      ['Estudos', 'Reproduzir'],
+      ['Academia', 'Reproduzir'],
+      ['Dormir', 'Reproduzir'],
+      ['Rock + MPB', 'Reproduzir'],
+      ['Rock', 'Reproduzir'],
+      ['MPB', 'Reproduzir'],
+    ],
+  },
+};
+
 function setNavigationState(isOpen) {
   body.classList.toggle('nav-open', isOpen);
   menuButton?.setAttribute('aria-expanded', String(isOpen));
@@ -168,15 +259,19 @@ function prepareRadioPrototype() {
         const status = preview.querySelector('[data-radio-preview-status]');
         const items = preview.querySelectorAll('span');
         if (title) {
-          title.textContent = isOn ? 'Rádio ligada: próximas recomendações' : 'Próximas músicas se ligar a Rádio';
+          title.textContent = isOn
+            ? title.dataset.radioOn || 'Rádio ligada: próximas recomendações'
+            : title.dataset.radioOff || 'Próximas músicas se ligar a Rádio';
         }
         if (status) {
-          status.textContent = isOn ? 'Recomendações adicionadas pela rádio' : 'Não fazem parte da playlist ainda';
+          status.textContent = isOn
+            ? status.dataset.radioOn || 'Recomendações adicionadas pela rádio'
+            : status.dataset.radioOff || 'Não fazem parte da playlist ainda';
         }
         items.forEach((item, index) => {
           item.textContent = isOn
-            ? ['Californication entrou na fila', 'Focus discovery entrou na fila'][index]
-            : ['Californication', 'Focus discovery'][index];
+            ? item.dataset.radioOn || ['Californication entrou na fila', 'Focus discovery entrou na fila'][index]
+            : item.dataset.radioOff || ['Californication', 'Focus discovery'][index];
         });
       }
     }
@@ -206,6 +301,8 @@ function prepareUndoFeedback() {
     const undoButton = toast?.querySelector('button');
     const resetButton = screen?.querySelector('[data-reset-queue]') ?? block?.querySelector('[data-reset-queue]');
     const usesInlineRestore = content.dataset.restoreMode === 'inline';
+    const usesPendingRestore = content.dataset.restoreMode === 'pending';
+    const pendingDurationMs = 7000;
     let pendingRemovals = [];
     let activeRemoval = null;
     let hideToastId = null;
@@ -230,6 +327,88 @@ function prepareUndoFeedback() {
         'aria-label',
         isRemoved ? `Restaurar ${getTrackName(button)}` : `Remover ${getTrackName(button)}`,
       );
+    }
+
+    if (usesPendingRestore) {
+      const queue = content.querySelector('.mock-queue');
+      const initialQueueMarkup = queue?.innerHTML ?? '';
+      const pendingTimers = new Map();
+
+      function clearPendingTimer(button) {
+        const timerId = pendingTimers.get(button);
+
+        if (timerId) {
+          window.clearTimeout(timerId);
+          pendingTimers.delete(button);
+        }
+      }
+
+      function setPendingRemovalState(button, isRemoving) {
+        button.classList.toggle('is-restore-action', isRemoving);
+        button.textContent = isRemoving ? 'Restaurar' : 'Remover';
+        button.disabled = false;
+        button.setAttribute(
+          'aria-label',
+          isRemoving ? `Restaurar ${getTrackName(button)}` : `Remover ${getTrackName(button)}`,
+        );
+      }
+
+      function restorePendingTrack(button) {
+        clearPendingTimer(button);
+        button.closest('li')?.classList.remove('is-removing');
+        setPendingRemovalState(button, false);
+      }
+
+      function confirmPendingRemoval(button, row) {
+        pendingTimers.delete(button);
+        row.classList.add('is-confirmed-removed');
+        button.disabled = true;
+        window.setTimeout(() => row.remove(), 220);
+      }
+
+      function startPendingRemoval(button) {
+        const row = button.closest('li');
+
+        if (!row) {
+          return;
+        }
+
+        if (row.classList.contains('is-removing')) {
+          restorePendingTrack(button);
+          return;
+        }
+
+        row.classList.add('is-removing');
+        setPendingRemovalState(button, true);
+
+        const timerId = window.setTimeout(() => {
+          confirmPendingRemoval(button, row);
+        }, pendingDurationMs);
+
+        pendingTimers.set(button, timerId);
+      }
+
+      function bindPendingRemovalButtons() {
+        queue?.querySelectorAll('[data-remove-track]').forEach((button) => {
+          button.addEventListener('click', () => startPendingRemoval(button));
+        });
+      }
+
+      bindPendingRemovalButtons();
+
+      resetButton?.addEventListener('click', () => {
+        pendingTimers.forEach((timerId) => window.clearTimeout(timerId));
+        pendingTimers.clear();
+
+        if (queue) {
+          queue.innerHTML = initialQueueMarkup;
+          bindPendingRemovalButtons();
+        }
+
+        resetRadio();
+      });
+
+      return;
     }
 
     if (usesInlineRestore) {
@@ -279,7 +458,7 @@ function prepareUndoFeedback() {
         toastText.textContent = `Faixa removida da fila. Apagando em ${removal.secondsLeft}s.`;
       }
       if (toastProgress) {
-        toastProgress.style.transform = `scaleX(${removal.secondsLeft / 5})`;
+        toastProgress.style.transform = `scaleX(${removal.secondsLeft / 7})`;
       }
     }
 
@@ -382,7 +561,7 @@ function prepareUndoFeedback() {
       const removal = {
         button,
         item: button.closest('li'),
-        secondsLeft: 5,
+        secondsLeft: 7,
         countdownId: null,
       };
 
@@ -437,7 +616,9 @@ function renderTab(windowElement, tabName) {
     return;
   }
 
-  const content = tabContent[tabName] ?? tabContent.musicas;
+  const tabGroup = windowElement.querySelector('[data-tab-group]');
+  const contentSource = tabGroup?.dataset.tabSource === 'final' ? finalTabContent : tabContent;
+  const content = contentSource[tabName] ?? contentSource.musicas;
   const title = windowElement.querySelector('[data-tab-title]');
   const description = windowElement.querySelector('[data-tab-description]');
   const panel = windowElement.querySelector('[data-tab-panel]');
@@ -497,7 +678,8 @@ function preparePrototypeTabs() {
   document.querySelectorAll('[data-tab-group]').forEach((group) => {
     const windowElement = group.closest('.mock-window');
     const tabs = Array.from(group.querySelectorAll('[data-tab]'));
-    const initialTab = tabContent[group.dataset.initialTab] ? group.dataset.initialTab : 'musicas';
+    const contentSource = group.dataset.tabSource === 'final' ? finalTabContent : tabContent;
+    const initialTab = contentSource[group.dataset.initialTab] ? group.dataset.initialTab : 'musicas';
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
