@@ -458,7 +458,7 @@ function prepareUndoFeedback() {
         toastText.textContent = `Faixa removida da fila. Apagando em ${removal.secondsLeft}s.`;
       }
       if (toastProgress) {
-        toastProgress.style.transform = `scaleX(${removal.secondsLeft / 7})`;
+        toastProgress.style.transform = `scaleX(${removal.secondsLeft / 5})`;
       }
     }
 
@@ -561,7 +561,7 @@ function prepareUndoFeedback() {
       const removal = {
         button,
         item: button.closest('li'),
-        secondsLeft: 7,
+        secondsLeft: 5,
         countdownId: null,
       };
 

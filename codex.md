@@ -94,10 +94,10 @@ O Ciclo 1 comeca no prototipo inicial Antes/Depois. Ele transforma o diagnostico
 
 ### Ciclo 2
 
-O Ciclo 2 e o fechamento. Ele repete os dois comparativos la embaixo e registra, na secao 2.2, os comentarios integros de Karolini, Luis e Theo sobre esse ciclo:
+O Ciclo 2 representa o refinamento apos o teste do Ciclo 1. No `index.html`, a secao 2.1 mostra um prototipo refinado aplicando apenas os 4 comentarios do Ciclo 1 (Arthur, Theo, Luis e Karolini). Na secao 2.2, ficam os 3 comentarios mais recentes (Ciclo 2). O `prototipo-final.html` e a consolidacao final, feita para atender de vez as sugestoes do Ciclo 2 sem misturar etapas na narrativa.
 
 - `Antes`, representando o estado do Ciclo 1.
-- `Depois`, representando o refinamento final do Ciclo 2.
+- `Depois`, representando o prototipo refinado do Ciclo 2 (a partir dos comentarios do Ciclo 1).
 
 Essa separacao e importante porque evita confundir evolucao historica com estado final. O avaliador consegue ver o que existia no ciclo anterior e o que mudou apos os feedbacks. Sempre que o `Depois` do Ciclo 1 mudar, o `Antes` do Ciclo 2 deve espelhar esse estado atualizado.
 
@@ -107,19 +107,15 @@ A secao 2.2 usa um layout proprio para aproveitar melhor o espaco horizontal: Th
 
 No P1 do Ciclo 2, os dois lados sao interativos:
 
-- O lado `Antes` simula o estado do Ciclo 1, com toggle de Radio Automatica, preview semitransparente e remocao com desfazer em uma faixa.
-- O lado `Depois` simula o estado final do Ciclo 2, com toggle de Radio Automatica, todos os botoes `Remover`, preview final mais contrastada e exclusao pendente por faixa.
-- Os botoes `Remover` podem ser clicados um por um. Cada faixa entra em estado pendente por 7 segundos: a linha fica riscada, o preenchimento vermelho avanca pela faixa e o botao vira `Restaurar`. Se o usuario nao restaurar nesse intervalo, a faixa some definitivamente do mock.
+- O lado `Antes` representa o prototipo do Ciclo 1 antes de aplicar o feedback: fila sem feedback reversivel e sem previa das proximas musicas.
+- O lado `Depois` aplica os 4 comentarios do Ciclo 1: toggle explicito da Radio Automatica, previa semitransparente das proximas musicas e acao critica com `Desfazer` via toast.
 - Cada lado possui um botao de restaurar estado inicial abaixo da imagem, fora do mockup, para deixar claro que e uma acao de reset da demonstracao.
 
 No P2 do Ciclo 2, os dois lados tambem sao interativos:
 
-- O lado `Antes` mostra o comportamento do Ciclo 1, com abas funcionais e previa progressiva.
-- O lado `Depois` demonstra o estado final do P2: titulo `Escolha a dedo`, tabs equivalentes em tamanho, 6 itens por aba, cards consistentes e painel lateral de informacoes.
-- No `index.html`, o mock demonstrativo do lado `Depois` posiciona o painel de informacoes abaixo dos cards para melhorar leitura e evitar que a miniatura fique apertada. Essa e uma decisao de apresentacao do relatorio; no `prototipo-final.html`, o painel continua ocupando a coluna lateral do layout completo.
-- No prototipo final em tela cheia, o P2 inicia em `Musicas`, com o titulo `Escolha a dedo`, 6 cards e um painel lateral chamado `Informacoes das musicas`.
-- O painel lateral substitui a descricao solta por informacoes objetivas sobre os itens da aba ativa, como duracao de musicas, quantidade de faixas em albuns e quantidade de faixas em playlists.
-- As abas `Musicas`, `Albuns`, `Videos` e `Playlists` alteram titulo, cards e itens do painel de informacoes. Nao ha mais descricao textual secundaria ao lado do titulo.
+- O lado `Antes` ilustra uma navegacao com evidencia limitada, sem provar que cada aba possui previa e conteudo proprio.
+- O lado `Depois` aplica os 4 comentarios do Ciclo 1: abas funcionais com conteudo proprio, previa progressiva e evidencia de comportamento em cada categoria.
+- O estado final do P2 com `Escolha a dedo`, 6 itens por aba e painel de informacoes fica no `prototipo-final.html`, junto com as microinteracoes finais do Ciclo 2.
 
 ## Decisoes de design
 
@@ -138,7 +134,7 @@ Os controles interativos usam atributos `data-*`, como `data-radio-toggle`, `dat
 O JS foi escrito em funcoes pequenas:
 
 - `prepareRadioPrototype`, controla estado da Radio Automatica e atualiza copy da preview.
-- `prepareUndoFeedback`, controla remocao temporaria com desfazer no Ciclo 1, remocao pendente com progresso vermelho no Ciclo 2 e reset dos prototipos.
+- `prepareUndoFeedback`, controla remocao temporaria com `Desfazer` nos mocks do `index.html` e reset dos prototipos.
 - `renderTab`, troca conteudo das abas e escolhe entre os dados historicos e os dados finais conforme o `data-tab-source` do mock.
 - `preparePrototypeTabs`, conecta botoes de aba ao conteudo.
 - `prepareProgressivePreview`, alterna expansao da previa.
