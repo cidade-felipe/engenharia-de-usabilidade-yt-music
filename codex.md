@@ -84,6 +84,10 @@ O menu lateral do relatorio agora espelha melhor a estrutura dos ciclos intermed
 
 Na mesma navegacao lateral, o item do segundo ciclo foi renomeado para `Prototipo refinado`, alinhando o menu ao papel real dessa etapa no relatorio. A sidebar tambem passou a ter rolagem propria com `overflow-y: auto`, `overscroll-behavior: contain` e `scrollbar-gutter: stable`, o que evita corte de links em telas menores e deixa a interacao mais previsivel em janelas baixas ou notebooks com zoom.
 
+O bloco que antes aparecia apenas como `Decisao final do ciclo` foi promovido na narrativa para um resumo explicito do `Ciclo Final`. No menu lateral, essa etapa agora tem ancora propria (`#resumo-ciclo-final`) antes de `#prototipo-navegavel`. Na pagina, o titulo do bloco passou a comunicar consolidacao, nao apenas decisao isolada. Isso melhora a leitura academica porque separa com clareza duas camadas: primeiro, o que o ultimo ciclo consolidou; depois, a demonstracao interativa dessa consolidacao no prototipo navegavel.
+
+Depois desse ajuste, o `Resumo do ciclo final` nao fica mais pendurado no fim da secao de comentarios do Ciclo 2. Ele passou a abrir uma secao propria `#ciclo-final`, com o titulo grande `CICLO FINAL`, seguida de duas subetapas dentro da mesma narrativa: `#resumo-ciclo-final` e `#prototipo-navegavel`. Essa organizacao aproxima o fechamento do projeto da estrutura usada nos ciclos anteriores e reduz a sensacao de quebra brusca entre avaliacao e consolidacao final.
+
 `README.md` explica objetivo, execucao e principais decisoes do projeto para quem vai abrir ou avaliar a entrega.
 
 `codex.md` serve como memoria tecnica para futuras alteracoes feitas por agentes ou pessoas desenvolvedoras.
