@@ -166,6 +166,10 @@ Ao alterar arquivos existentes, siga a regra de backup do projeto: criar pasta d
 
 O Ciclo 1 deve permanecer como registro historico. Melhorias finais devem ser aplicadas no Ciclo 2, especialmente nos blocos em que `Antes` representa Ciclo 1 e `Depois` representa Ciclo 2.
 
+No `Depois` do Ciclo 1, os mocks devem permanecer em um nivel de funcionalidade limitado. Em P1, o botao `Remover` pode aparecer como elemento visual do prototipo, mas nao deve acionar cronometro, exclusao temporizada ou fluxo completo de desfazer; esse comportamento pertence ao Ciclo 2. Em P2, as abas do `Depois` do Ciclo 1 devem comunicar agrupamento visual, mas nao devem abrir todas as categorias com conteudo proprio. A interacao completa das abas, com `data-tab-group`, troca dinamica e previa expandivel, fica reservada para o Ciclo 2.
+
+Para P1 especificamente, o `Antes` do Ciclo 2 deve espelhar esse mesmo fechamento visual do Ciclo 1: playlist isolada, Radio Automatica como controle separado, botao `Remover` visivel e previa das proximas musicas da Radio. A diferenca e que esse lado `Antes` continua sem `data-remove-track` e sem `data-undo-toast`, ou seja, ainda nao dispara cronometro nem fluxo de exclusao. O lado `Depois` do Ciclo 2 e quem demonstra a reversao temporizada e o comportamento completo.
+
 ## Validacao recomendada
 
 Depois de qualquer alteracao, validar:

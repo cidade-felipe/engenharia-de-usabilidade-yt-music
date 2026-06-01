@@ -346,7 +346,7 @@
                         <li>
                           <span>Linkin Park - Points of Authority</span>
                           <small>Da playlist</small>
-                          <button class="mock-inline-action" type="button" data-remove-track>Remover</button>
+                          <button class="mock-inline-action" type="button">Remover</button>
                         </li>
                         <li><span>Creep</span><small>Da playlist</small></li>
                       </ol>
@@ -357,7 +357,7 @@
                         <span>Focus discovery</span>
                       </div>
 
-                      <div class="mock-toast" data-undo-toast aria-live="polite">
+                      <div class="mock-toast" aria-live="polite">
                         <span></span>
                         <button type="button">Desfazer</button>
                       </div>
@@ -374,8 +374,8 @@
             </div>
 
             <p class="prototype-impact">
-              Resultado esperado: menos erro de interpretação, mais previsibilidade, reversão clara para ações críticas
-              e menor risco de interromper o foco do usuário durante estudo ou trabalho.
+              Resultado esperado: menos erro de interpretação, mais previsibilidade sobre a playlist atual e indicação
+              mais clara de que a Rádio Automática precisa ser tratada como controle separado.
             </p>
           </article>
 
@@ -431,11 +431,11 @@
                     <span class="mock-search">Início</span>
                   </div>
 
-                  <div class="mock-filter-row" aria-label="Filtros do protótipo" data-tab-group>
-                    <button class="mock-tab is-selected" type="button" data-tab="musicas">Músicas</button>
-                    <button class="mock-tab" type="button" data-tab="albuns">Álbuns</button>
-                    <button class="mock-tab" type="button" data-tab="videos">Vídeos</button>
-                    <button class="mock-tab" type="button" data-tab="playlists">Playlists</button>
+                  <div class="mock-filter-row" aria-label="Filtros do protótipo">
+                    <button class="mock-tab is-selected" type="button">Músicas</button>
+                    <button class="mock-tab" type="button">Álbuns</button>
+                    <button class="mock-tab" type="button">Vídeos</button>
+                    <button class="mock-tab" type="button">Playlists</button>
                   </div>
 
                   <div class="mock-section-label">
@@ -465,7 +465,7 @@
                   <div class="mock-quick-actions" aria-label="Ações rápidas do protótipo">
                     <button type="button">Adicionar à playlist</button>
                     <button type="button">Enviar para fila</button>
-                    <button type="button" data-preview-toggle>Expandir prévia</button>
+                    <button type="button">Prévia rápida</button>
                   </div>
 
                   <div class="mock-progressive-preview" data-progressive-preview>
@@ -477,8 +477,8 @@
             </div>
 
             <p class="prototype-impact">
-              Resultado esperado: leitura visual mais rápida, menor esforço para filtrar conteúdos, mais consistência
-              entre os cards exibidos e maior flexibilidade de uso sem poluir a tela.
+              Resultado esperado: leitura visual mais rápida, menor esforço para filtrar conteúdos e mais consistência
+              entre os cards exibidos, ainda com prévia limitada no primeiro protótipo.
             </p>
           </article>
         </section>
@@ -502,14 +502,13 @@
                 seja ativada, para reduzir surpresa e deixar o comportamento previsível.
               </li>
               <li>
-                <strong>P1 (prevenção de erros):</strong> a ação crítica de remover faixa ganha feedback reversível com
-                botão “Desfazer” (toast), reduzindo risco de erro acidental enquanto o usuário está focado em outra
-                tarefa.
+                <strong>P1 (prevenção de erros):</strong> a remoção aparece como ação crítica a ser tratada, mas o fluxo
+                completo com cronômetro e reversão temporária fica reservado para o refinamento do Ciclo 2.
               </li>
               <li>
                 <strong>P2 (home):</strong> o conteúdo deixa de ser um grid caótico e passa a ser organizado por abas,
-                com cards de tamanho consistente e divulgação progressiva (prévia expandível) para consultar informações
-                sem quebrar o ritmo da navegação.
+                com cards de tamanho consistente e uma prévia inicial na aba de músicas. As demais abas ainda ficam como
+                melhoria para o Ciclo 2.
               </li>
             </ul>
             <p>
@@ -724,9 +723,21 @@
                         <li>
                           <span>Linkin Park - Points of Authority</span>
                           <small>Da playlist</small>
+                          <button class="mock-inline-action" type="button">Remover</button>
                         </li>
                         <li><span>Creep</span><small>Da playlist</small></li>
                       </ol>
+
+                      <div class="mock-next-preview" data-radio-preview>
+                        <strong>Próximas músicas se ligar a Rádio</strong>
+                        <span>Californication</span>
+                        <span>Focus discovery</span>
+                      </div>
+
+                      <div class="mock-toast" aria-live="polite">
+                        <span></span>
+                        <button type="button">Desfazer</button>
+                      </div>
                     </div>
                   </div>
                 </div>
