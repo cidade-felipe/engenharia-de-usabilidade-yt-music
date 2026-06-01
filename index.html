@@ -32,12 +32,14 @@
         <h4>Ciclo 1</h4>
         <nav class="toc" aria-label="Sumário">
           <a href="#prototipo">Protótipo inicial</a>
-          <a href="#feedback-ciclo-1">Teste e refinamento</a>
+          <a href="#resumo-ciclo-1">Resumo do ciclo 1</a>
+          <a href="#comentarios-ciclo-1">Comentários do ciclo 1</a>
         </nav>
         <h4>Ciclo 2</h4>
         <nav class="toc" aria-label="Sumário">
-          <a href="#ciclo-2">Protótipo final</a>
-          <a href="#feedback-ciclo-2">Comentários finais</a>
+          <a href="#ciclo-2">Protótipo refinado</a>
+          <a href="#resumo-ciclo-2">Resumo do ciclo 2</a>
+          <a href="#comentarios-ciclo-2">Comentários do ciclo 2</a>
         </nav>
         <h4>Ciclo Final</h4>
         <nav class="toc" aria-label="Sumário">
@@ -482,9 +484,9 @@
         </section>
 
         <section id="feedback-ciclo-1" class="doc-section">
-          <div class="section-heading">
-            <p class="section-index">Teste com Usuário e Refinamento</p>
-            <p>Comentários íntegros recebidos no Ciclo 1 e decisões aplicadas no protótipo refinado.</p>
+          <div class="section-heading" id="resumo-ciclo-1">
+            <p class="section-index">Resumo das melhorias propostas no primeiro protótipo</p>
+            <p>O bloco abaixo resume o que já foi ajustado no protótipo do Ciclo 1 antes da rodada de comentários.</p>
           </div>
 
           <article class="refinement-panel">
@@ -514,6 +516,11 @@
               Os 4 comentários abaixo registram a avaliação do Ciclo 1 e servem como backlog de sugestões para o Ciclo 2.
             </p>
           </article>
+
+          <div class="section-heading" id="comentarios-ciclo-1">
+            <p class="section-index">Comentários do Ciclo 1 e sugestões para o Ciclo 2</p>
+            <p>Os 4 comentários abaixo registram a avaliação do Ciclo 1 e viram sugestões para o protótipo do Ciclo 2.</p>
+          </div>
 
           <div class="feedback-grid feedback-grid--comments">
             <article class="feedback-card feedback-card--comment">
@@ -947,7 +954,38 @@
         </section>
 
         <section id="feedback-ciclo-2" class="doc-section">
-          <div class="section-heading">
+          <div class="section-heading" id="resumo-ciclo-2">
+            <p class="section-index">Resumo das melhorias propostas no segundo protótipo</p>
+            <p>O bloco abaixo resume o que já foi ajustado no segundo protótipo antes da rodada final de comentários.</p>
+          </div>
+
+          <article class="refinement-panel">
+            <h3>O que já foi ajustado no segundo protótipo</h3>
+            <ul>
+              <li>
+                <strong>P1 (fila e aleatório):</strong> a Rádio Automática ficou explícita como controle separado, com
+                texto de estado e prévia das próximas músicas para reduzir surpresa antes da ativação.
+              </li>
+              <li>
+                <strong>P1 (remoção de faixas):</strong> a ação crítica ganhou feedback reversível no próprio fluxo da
+                fila, reforçando controle do usuário e prevenção de erros.
+              </li>
+              <li>
+                <strong>P2 (organização da home):</strong> o conteúdo passou a ser agrupado por abas, com cards
+                consistentes e prévias próprias para provar que cada categoria entrega comportamento diferente.
+              </li>
+              <li>
+                <strong>P2 (divulgação progressiva):</strong> o protótipo passou a mostrar ações rápidas e expansão de
+                prévia, para permitir consulta sem quebrar o ritmo da navegação.
+              </li>
+            </ul>
+            <p>
+              Os comentários abaixo registram a avaliação desse segundo protótipo e orientam o ajuste final consolidado
+              no protótipo navegável.
+            </p>
+          </article>
+
+          <div class="section-heading" id="comentarios-ciclo-2">
             <p class="section-index">Comentários do Ciclo 2 e Ajuste Final</p>
             <p>Comentários íntegros recebidos no Ciclo 2 e correção final priorizando o feedback mais recente.</p>
           </div>

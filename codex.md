@@ -1,6 +1,6 @@
 # Mapa detalhado do projeto
 
-Ultima atualizacao: 31/05/2026.
+Ultima atualizacao: 01/06/2026.
 
 ## Visao geral
 
@@ -77,6 +77,12 @@ No prototipo em tela cheia, apenas o conteudo util desse P2 deve ocupar o palco 
 O CSS atual do P2 final usa `--home-p2-gap` para manter o mesmo espacamento entre titulo, tabs, cards e painel. A grade principal da home usa `repeat(4, minmax(0, 1fr))`; `.home-p2-grid` ocupa `grid-column: 1 / 4` e renderiza 6 cards em 3 colunas, enquanto `.home-p2-preview` ocupa `grid-column: 4 / 5`. Em telas menores, esse posicionamento e resetado para uma coluna, evitando overflow lateral.
 
 As microinteracoes atuais da home final incluem hover nos tabs, hover nos cards e hover nos itens do painel lateral. Esses efeitos sao discretos e servem para comunicar clicabilidade sem transformar o prototipo em uma experiencia visual exagerada.
+
+No `index.html`, os blocos de resumo de cada ciclo aparecem antes dos comentarios integrais. Para manter leitura mais confortavel e evitar que o titulo dos comentarios "cole" no card branco anterior, o CSS aplica um espacamento adicional com a regra `.refinement-panel + .section-heading`. Essa decisao e pequena, mas melhora a hierarquia visual do relatorio e ajuda na apresentacao em tela compartilhada, onde proximidade excessiva entre secoes costuma parecer erro de alinhamento.
+
+O menu lateral do relatorio agora espelha melhor a estrutura dos ciclos intermediarios. Em vez de um item generico para "teste e refinamento" ou "comentarios finais", o sumario separa cada etapa em ancora de resumo e ancora de comentarios: `#resumo-ciclo-1`, `#comentarios-ciclo-1`, `#resumo-ciclo-2` e `#comentarios-ciclo-2`. Isso reduz ambiguidade durante a apresentacao, porque permite navegar direto para a parte exata da narrativa, sem obrigar scroll manual dentro da mesma secao.
+
+Na mesma navegacao lateral, o item do segundo ciclo foi renomeado para `Prototipo refinado`, alinhando o menu ao papel real dessa etapa no relatorio. A sidebar tambem passou a ter rolagem propria com `overflow-y: auto`, `overscroll-behavior: contain` e `scrollbar-gutter: stable`, o que evita corte de links em telas menores e deixa a interacao mais previsivel em janelas baixas ou notebooks com zoom.
 
 `README.md` explica objetivo, execucao e principais decisoes do projeto para quem vai abrir ou avaliar a entrega.
 
