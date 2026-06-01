@@ -168,7 +168,9 @@ O Ciclo 1 deve permanecer como registro historico. Melhorias finais devem ser ap
 
 No `Depois` do Ciclo 1, os mocks devem permanecer em um nivel de funcionalidade limitado. Em P1, o botao `Remover` pode aparecer como elemento visual do prototipo, mas nao deve acionar cronometro, exclusao temporizada ou fluxo completo de desfazer; esse comportamento pertence ao Ciclo 2. Em P2, as abas do `Depois` do Ciclo 1 devem comunicar agrupamento visual, mas nao devem abrir todas as categorias com conteudo proprio. A interacao completa das abas, com `data-tab-group`, troca dinamica e previa expandivel, fica reservada para o Ciclo 2.
 
-Para P1 especificamente, o `Antes` do Ciclo 2 deve espelhar esse mesmo fechamento visual do Ciclo 1: playlist isolada, Radio Automatica como controle separado, botao `Remover` visivel e previa das proximas musicas da Radio. A diferenca e que esse lado `Antes` continua sem `data-remove-track` e sem `data-undo-toast`, ou seja, ainda nao dispara cronometro nem fluxo de exclusao. O lado `Depois` do Ciclo 2 e quem demonstra a reversao temporizada e o comportamento completo.
+Para P1 especificamente, o `Antes` do Ciclo 2 deve espelhar esse mesmo fechamento visual do Ciclo 1: playlist isolada, Radio Automatica como controle separado, botao `Remover` visivel e previa das proximas musicas da Radio. A diferenca e que esse lado `Antes` usa remocao imediata simples, sem `data-undo-toast`, ou seja, ainda nao dispara cronometro nem fluxo de reversao temporizada. O lado `Depois` do Ciclo 2 e quem demonstra a reversao com tempo e o comportamento completo.
+
+Apos o ultimo ajuste de continuidade, o `Depois` do P1 no Ciclo 1 e o `Antes` do P1 no Ciclo 2 usam `data-restore-mode="instant"`. Nesses dois estados, o botao `Remover` apaga a faixa imediatamente da fila visual, mas nao exibe cronometro nem reversao temporizada. O retorno ao estado normal acontece pelo botao inferior de restauracao do respectivo mock. Esse modo demonstra que a acao de exclusao ja existe no primeiro prototipo, enquanto o Ciclo 2 mostra o refinamento de seguranca com desfazer e temporizacao.
 
 ## Validacao recomendada
 

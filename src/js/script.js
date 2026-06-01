@@ -300,6 +300,7 @@ function prepareUndoFeedback() {
     const toastProgress = toast?.querySelector('[data-undo-progress]');
     const undoButton = toast?.querySelector('button');
     const resetButton = screen?.querySelector('[data-reset-queue]') ?? block?.querySelector('[data-reset-queue]');
+    const usesInstantRemoval = content.dataset.restoreMode === 'instant';
     const usesInlineRestore = content.dataset.restoreMode === 'inline';
     const usesPendingRestore = content.dataset.restoreMode === 'pending';
     const pendingDurationMs = 7000;
@@ -421,6 +422,25 @@ function prepareUndoFeedback() {
 
       resetButton?.addEventListener('click', () => {
         buttons.forEach((button) => setInlineRemovalState(button, false));
+        resetRadio();
+      });
+
+      return;
+    }
+
+    if (usesInstantRemoval) {
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          button.closest('li')?.classList.add('is-removed');
+          button.disabled = true;
+        });
+      });
+
+      resetButton?.addEventListener('click', () => {
+        buttons.forEach((button) => {
+          button.closest('li')?.classList.remove('is-removed');
+          button.disabled = false;
+        });
         resetRadio();
       });
 
