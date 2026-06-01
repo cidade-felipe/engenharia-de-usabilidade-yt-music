@@ -1,181 +1,99 @@
 # Engenharia de Usabilidade - YouTube Music
 
-Mini site responsivo em HTML, CSS e JavaScript puro para documentar a Avaliação 2 da disciplina de Interface Humano-Computador (IHC). O projeto funciona como uma wiki acadêmica sobre a avaliação de usabilidade do YouTube Music, com foco em leitura clara, evidências visuais e registro das decisões de design.
+Projeto acadêmico de Interface Humano-Computador (IHC) voltado à análise e melhoria da experiência de uso do YouTube Music. O repositório documenta um processo de Engenharia de Usabilidade aplicado à plataforma, partindo da definição de contexto e persona, passando por avaliação heurística, diagnóstico de problemas, prototipação, feedback e refinamento até a entrega de um protótipo final navegável.
+
+O foco principal do trabalho é demonstrar como decisões de interface podem afetar controle, previsibilidade, esforço cognitivo e clareza na experiência do usuário.
 
 ## Objetivo
 
-Documentar a etapa anterior aos ciclos e os ciclos 1 e 2 de Engenharia de Usabilidade aplicados ao YouTube Music, conectando contexto de uso, persona, diagnóstico heurístico, decisões de melhoria, protótipo, refinamento após avaliação e versão final.
+Avaliar problemas de usabilidade no YouTube Music e propor melhorias de interface por meio de ciclos de prototipação. O projeto busca conectar análise teórica, evidências visuais e solução prática em uma documentação navegável.
 
-O foco do trabalho é mostrar como problemas de interface impactam a experiência real do usuário. No caso analisado, os principais riscos são perda de controle sobre a fila de reprodução, aumento de esforço cognitivo e redução da previsibilidade da interface.
+## Problemas analisados
 
-## Escopo Atual
+O trabalho concentra a avaliação em dois problemas principais:
 
-Fato: o site atualmente documenta dois problemas de usabilidade:
+1. Quebra de controle explícito e compatibilidade na fila de reprodução, quando o sistema insere músicas sugeridas sem solicitação clara do usuário.
+2. Sobrecarga cognitiva na tela inicial, causada pela alta densidade de informações e pela mistura de diferentes tipos de conteúdo.
 
-- P1, Quebra de Controle Explícito e Compatibilidade, com severidade alta.
-- P2, Sobrecarga Cognitiva na Tela Inicial, com severidade média.
+Esses problemas foram analisados a partir de princípios de IHC e das heurísticas de Nielsen, com atenção especial à liberdade do usuário, visibilidade do estado do sistema, compatibilidade entre sistema e mundo real, prevenção de erros e redução de carga cognitiva.
 
-Fato: o Problema P3 foi removido da página principal. A entrega ficou mais enxuta e mais coerente com a priorização do ciclo atual.
+## Processo do projeto
 
-Fato: o site agora organiza o trabalho em uma etapa anterior aos ciclos e dois ciclos de prototipação. A etapa anterior reúne contexto, persona, diagnóstico e decisões. O Ciclo 1 começa no protótipo inicial e registra os comentários recebidos. O Ciclo 2 apresenta o protótipo final: o lado "Antes" representa o estado do Ciclo 1, e o lado "Depois" representa o refinamento final.
+O projeto foi organizado em etapas de Engenharia de Usabilidade:
 
-Inferência: a remoção do P3 ajuda a concentrar a narrativa nos problemas com maior impacto para a experiência de uso e evita que o diagnóstico fique disperso.
+1. Definição do sistema avaliado.
+2. Construção da persona e do contexto de uso.
+3. Identificação dos problemas de usabilidade.
+4. Avaliação heurística com severidade e evidências visuais.
+5. Criação do protótipo inicial.
+6. Registro dos feedbacks recebidos no Ciclo 1.
+7. Refinamento das soluções.
+8. Desenvolvimento do protótipo final navegável.
+9. Documentação das decisões tomadas ao longo do processo.
 
-Opinião técnica: para uma apresentação acadêmica, essa versão está melhor direcionada. Dois problemas bem explicados, com evidências visuais e decisões de design conectadas, tendem a ser mais fortes do que três problemas tratados de forma superficial.
+## Principais melhorias propostas
 
-## Conteúdo da Página
+Entre as melhorias trabalhadas no protótipo estão:
 
-- Cabeçalho com título, subtítulo, aluno, professor e semestre.
-- Seção de contexto e justificativa do sistema escolhido.
-- Persona principal do usuário analisado.
-- Diagnóstico heurístico com base nas heurísticas de Nielsen.
-- Prints em PNG para evidenciar os problemas encontrados.
-- Decisões de design para melhorar previsibilidade, controle e clareza.
-- Protótipo em HTML/CSS/JS mostrando a solução proposta para a fila e para a tela inicial.
-- Etapa anterior aos ciclos com contexto, persona, diagnóstico heurístico e decisões de design.
-- Ciclo 1 com protótipo inicial e refinamentos baseados nos comentários do teste.
-- Ciclo 2 com comparação Antes vs. Depois entre Ciclo 1 e protótipo final, comentários finais e os dois lados interativos.
-- Navegação lateral no estilo wiki.
-- Barra de progresso de leitura.
-- Efeitos leves de entrada e realce nos cards.
+- Separação mais clara entre reprodução aleatória da playlist e rádio automática.
+- Maior controle do usuário sobre a fila de reprodução.
+- Redução de músicas intrusas adicionadas sem intenção explícita.
+- Organização da tela inicial por categorias e filtros.
+- Criação de estados visuais mais claros para indicar o comportamento da interface.
+- Melhoria da previsibilidade das ações do sistema.
 
-## Estrutura do Projeto
+## Estrutura do repositório
 
 ```text
 .
-├── index.html
-├── README.md
-├── src
-│   ├── css
-│   │   └── styles.css
-│   ├── img
-│   │   ├── fila-antes.png
-│   │   ├── fila-depois.png
-│   │   ├── notificacao-rapida.png
-│   │   └── tela-inicial-poluida.png
-│   └── js
-│       └── script.js
-├── conteudo_aula.md
-├── instrucoes_agente.md
-└── instrucoes_trabalho.md
+├── index.html              # Página principal com a documentação completa do projeto
+├── prototipo-final.html    # Protótipo final navegável
+├── codex.md                # Registro auxiliar de desenvolvimento e decisões
+├── LICENSE                 # Licença do projeto
+└── src/
+    ├── css/                # Estilos da documentação e do protótipo
+    ├── img/                # Imagens, evidências e telas utilizadas
+    └── js/                 # Scripts de interação do protótipo
 ```
 
-## Como Executar
-
-Como o projeto é estático, não precisa instalar dependências.
-
-Opção simples:
-
-```text
-Abra o arquivo index.html diretamente no navegador.
-```
-
-Opção com servidor local:
-
-```bash
-python -m http.server 5500
-```
-
-Depois acesse:
-
-```text
-http://localhost:5500
-```
-
-## Onde Alterar os Prints
-
-Os prints usados no site ficam em:
-
-```text
-src/img
-```
-
-Arquivos principais:
-
-- `fila-antes.png`, print da fila antes do clique em reprodução aleatória.
-- `fila-depois.png`, print da fila depois da inserção de músicas sugeridas.
-- `tela-inicial-poluida.png`, print da tela inicial com alta densidade informacional.
-
-O arquivo `notificacao-rapida.png` ainda existe na pasta de imagens, mas não é usado pela página principal após a remoção do P3.
-
-## Decisões de Design
-
-A interface usa uma estética limpa, parecida com wiki ou documentação colaborativa. A paleta é neutra, com detalhes em vermelho e preto para manter relação visual com o YouTube Music.
-
-O protótipo reforça as correções principais:
-
-- O botão de ordem aleatória atua somente sobre a playlist atual.
-- A rádio automática fica separada em um controle próprio, com estado ligado e desligado.
-- A preferência da rádio é apresentada como específica da playlist, não como chave global.
-- A fila mostra sugestões futuras da rádio em um bloco separado, com contraste e rótulo de status.
-- A remoção de faixa começa com feedback reversível no Ciclo 1 e evolui, no Ciclo 2, para faixa riscada com botão fixo de restaurar.
-- Todas as faixas da playlist possuem a ação Remover de forma consistente.
-- A tela inicial passa a agrupar conteúdos por intenção de uso e tipo de mídia.
-- As abas de Músicas, Álbuns, Vídeos e Playlists têm conteúdo próprio.
-- Ações rápidas e prévia progressiva reduzem rigidez sem poluir a interface.
-
-## Etapa Anterior
-
-A etapa anterior aos ciclos reúne a leitura inicial do sistema, a persona, o diagnóstico heurístico e as decisões de design. Ela prepara a justificativa do protótipo, mas ainda não é tratada como ciclo de solução.
-
-## Ciclo 1
-
-O Ciclo 1 começa no protótipo inicial. Os comentários apontaram que esse protótipo melhorou a estética e reduziu a carga cognitiva, mas ainda deixava dúvidas sobre estados, feedback e flexibilidade. Na seção 1.2, os cards registram os comentários íntegros dos colegas, identificados apenas por nome e sobrenome.
-
-Ajustes aplicados:
-
-- Estado ligado/desligado da Rádio Automática.
-- Texto explicando que a Rádio Automática vale para a playlist atual.
-- Prévia semi-transparente das próximas músicas caso a rádio seja ativada.
-- Ação de remover faixa com feedback e opção `Desfazer` no primeiro protótipo.
-- Abas funcionais para Músicas, Álbuns, Vídeos e Playlists.
-- Prévia progressiva para visualizar conteúdo sem trocar o contexto.
-
-Impacto esperado: menor risco de erro, mais previsibilidade, mais controle para o usuário e redução da sobrecarga cognitiva durante tarefas recorrentes.
-
-## Ciclo 2
-
-O ciclo final resolve os principais pontos do feedback do Ciclo 1 e dos comentários recebidos no Ciclo 2:
-
-- A prévia da Rádio Automática foi redesenhada para não parecer parte da playlist. Ela usa bloco visual separado, maior contraste e texto indicando que as músicas ainda são sugestões futuras.
-- A remoção deixou de depender de um aviso temporário. A faixa removida permanece visível, riscada e desabilitada, com botão fixo de `Restaurar`.
-
-Também foi corrigida a inconsistência dos botões de remoção. Agora todas as faixas da playlist exibem a ação `Remover`, evitando dúvida sobre quais itens podem ser excluídos.
-
-No site, o Ciclo 1 permanece como registro do protótipo anterior. No Ciclo 2, os dois blocos de correção são repetidos com a comparação correta:
-
-- `Antes`, estado do Ciclo 1.
-- `Depois`, refinamento final do Ciclo 2.
-
-Os comentários íntegros de Karolini, Luis e Theo também ficam registrados no Ciclo 2, com autoria por nome e sobrenome.
-
-Ambos os lados do Ciclo 2 são clicáveis. Isso permite comparar comportamento, não só aparência: o lado `Antes` demonstra o que já existia no Ciclo 1, enquanto o lado `Depois` mostra os ajustes finais de contraste, consistência e microinteração.
-
-Impacto esperado: mais estabilidade visual, menos ambiguidade entre playlist e sugestões futuras, e microinterações mais previsíveis.
-
-As interações foram mantidas sutis:
-
-- A barra de progresso ajuda o leitor a entender o avanço na página.
-- A navegação lateral facilita voltar rapidamente para cada seção.
-- Os cards usam realce leve no hover para dar sensação de acabamento.
-- Os blocos aparecem suavemente ao rolar, sem distrair da leitura.
-
-Essa abordagem reduz custo de manutenção, evita dependências desnecessárias e mantém a entrega fácil de abrir, revisar e apresentar.
-
-## Validação Recomendada
-
-Antes da entrega final, vale conferir:
-
-- Se todos os prints estão atualizados e legíveis.
-- Se os textos batem com a fala da apresentação.
-- Se o site abre corretamente no Chrome, Edge ou Firefox.
-- Se a página funciona bem em notebook e celular.
-- Se as evidências visuais realmente demonstram os problemas descritos.
-
-## Tecnologias
+## Tecnologias utilizadas
 
 - HTML5
 - CSS3
-- JavaScript puro
+- JavaScript
+- Prototipação navegável em ambiente web
+- Organização de documentação acadêmica em formato de site
 
-Sem frameworks, sem build e sem dependências externas.
+## Como executar
+
+O projeto é estático e não exige instalação de dependências.
+
+Para visualizar localmente:
+
+1. Clone o repositório.
+2. Abra o arquivo `index.html` no navegador.
+3. Para acessar diretamente o protótipo final, abra `prototipo-final.html`.
+
+Também é possível executar com uma extensão como Live Server no VS Code, caso queira uma navegação local mais confortável.
+
+## Entregáveis principais
+
+- Site-documentação da análise de usabilidade.
+- Avaliação heurística do YouTube Music.
+- Persona e contexto de uso.
+- Diagnóstico de problemas de interface.
+- Protótipo inicial.
+- Feedback e refinamento.
+- Protótipo final navegável.
+
+## Status
+
+Projeto atualizado para refletir a versão atual do repositório, com documentação completa e protótipo final separado.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
+## Autor
+
+Felipe Cidade Soares
